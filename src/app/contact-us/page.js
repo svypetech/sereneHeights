@@ -41,7 +41,7 @@ function Contactus() {
               <div>
                 <p className="font-medium mt-2">Project</p>
                 <p className="text-[#37584F] text-sm">
-                  Serene Heights. 1.5KM, Kala Bagh Air Base Road, Nathia Gali
+                  Serene Heights. 1.5KM, Kala Bagh Air Base Road, Nathiagali
                 </p>
               </div>
             </div>

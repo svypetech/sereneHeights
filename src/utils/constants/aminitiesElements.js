@@ -20,7 +20,7 @@ export const aminitiesElements = [
   { src: "frame19", text: "Conference Room" },
   { src: "frame20", text: "Banquet Hall" },
   { src: "frame21", text: "Dedicated Lawn" },
-  { src: "frame22", text: "24/7 Frontdesk& Concierge" },
+  { src: "frame22", text: "24/7 Frontdesk & Concierge" },
 ];
 
 export const featuresElements = [
@@ -39,7 +39,7 @@ export const featuresElements = [
   {
     src: "featureImg3",
     heading: "ARCHITECTURAL FEATURES",
-    text: "Downhill Site (Click Here for Video) Classic Travertine Marble Outdoor Finishing Double Glazed UPVC Windows Complete Automation / Smart Home (Optional)",
+    text: "Downhill Site Classic Lime Stone Marble Outdoor Finishing Double Glazed UPVC Windows Complete Automation / Smart Home (Optional)",
     width: "47%",
   },
   {
@@ -87,7 +87,7 @@ export const featuresElements = [
   {
     src: "featureImg11",
     heading: "Ease of Access",
-    text: "Murree Expressway, Hazara Expressway, Direct Access from Haveli Interchange",
+    text: "Murree Expressway, Hazara Expressway, Direct Access from Havelian Interchange",
     width: "24%",
   },
   {

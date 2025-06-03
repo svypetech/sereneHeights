@@ -3,27 +3,27 @@
 // import React, { useEffect, useState } from "react";
 
 // const floorsFront = [
-//   { id: 1, name: "Ground Floor", rooms: 10, top: "86%", rotate: "-1deg" },
-//   { id: 2, name: "Floor 1", rooms: 10, top: "75%", rotate: "-3deg" },
-//   { id: 3, name: "Floor 2", rooms: 10, top: "65%", rotate: "-6deg" },
-//   { id: 4, name: "Floor 3", rooms: 10, top: "56%", rotate: "-8deg" },
-//   { id: 5, name: "Floor 4", rooms: 10, top: "47%", rotate: "-10deg" },
-//   { id: 6, name: "Floor 5", rooms: 10, top: "38%", rotate: "-13deg" },
-//   { id: 7, name: "Floor 6", rooms: 10, top: "29%", rotate: "-14deg" },
-//   { id: 8, name: "Floor 7", rooms: 10, top: "20%", rotate: "-14deg" },
-//   { id: 9, name: "Floor 8", rooms: 10, top: "10%", rotate: "-15deg" },
+//   { id: 1, name: "Ground Floor", apartments: 10, top: "86%", rotate: "-1deg" },
+//   { id: 2, name: "Floor 1", apartments: 10, top: "75%", rotate: "-3deg" },
+//   { id: 3, name: "Floor 2", apartments: 10, top: "65%", rotate: "-6deg" },
+//   { id: 4, name: "Floor 3", apartments: 10, top: "56%", rotate: "-8deg" },
+//   { id: 5, name: "Floor 4", apartments: 10, top: "47%", rotate: "-10deg" },
+//   { id: 6, name: "Floor 5", apartments: 10, top: "38%", rotate: "-13deg" },
+//   { id: 7, name: "Floor 6", apartments: 10, top: "29%", rotate: "-14deg" },
+//   { id: 8, name: "Floor 7", apartments: 10, top: "20%", rotate: "-14deg" },
+//   { id: 9, name: "Floor 8", apartments: 10, top: "10%", rotate: "-15deg" },
 // ];
 
 // const floorsSide = [
-//   { id: 1, name: "Ground Floor", rooms: 10, top: "86%", rotate: "-1deg" },
-//   { id: 2, name: "Floor 1", rooms: 10, top: "75%", rotate: "5deg" },
-//   { id: 3, name: "Floor 2", rooms: 10, top: "63%", rotate: "18deg" },
-//   { id: 4, name: "Floor 3", rooms: 10, top: "53%", rotate: "22deg" },
-//   { id: 5, name: "Floor 4", rooms: 10, top: "41%", rotate: "28deg" },
-//   { id: 6, name: "Floor 5", rooms: 10, top: "30%", rotate: "32deg" },
-//   { id: 7, name: "Floor 6", rooms: 10, top: "20%", rotate: "34deg" },
-//   { id: 8, name: "Floor 7", rooms: 10, top: "14%", rotate: "32deg" },
-//   { id: 9, name: "Floor 8", rooms: 10, top: "4%", rotate: "35deg" },
+//   { id: 1, name: "Ground Floor", apartments: 10, top: "86%", rotate: "-1deg" },
+//   { id: 2, name: "Floor 1", apartments: 10, top: "75%", rotate: "5deg" },
+//   { id: 3, name: "Floor 2", apartments: 10, top: "63%", rotate: "18deg" },
+//   { id: 4, name: "Floor 3", apartments: 10, top: "53%", rotate: "22deg" },
+//   { id: 5, name: "Floor 4", apartments: 10, top: "41%", rotate: "28deg" },
+//   { id: 6, name: "Floor 5", apartments: 10, top: "30%", rotate: "32deg" },
+//   { id: 7, name: "Floor 6", apartments: 10, top: "20%", rotate: "34deg" },
+//   { id: 8, name: "Floor 7", apartments: 10, top: "14%", rotate: "32deg" },
+//   { id: 9, name: "Floor 8", apartments: 10, top: "4%", rotate: "35deg" },
 // ];
 
 // function TowerView() {
@@ -178,7 +178,7 @@
 //                  <Icon icon="circum:map" width="24" height="24" />
 //                  <div>
 //                    <p className="font-bold">{hoveredFloor.name}</p>
-//                    <p>Rooms: {hoveredFloor.rooms}</p>
+//                    <p>apartments: {hoveredFloor.apartments}</p>
 //                  </div>
 //                </div>
 //              )}
@@ -201,72 +201,72 @@ const floorsFront = [
     label: "ground-floor",
     id: 1,
     name: "Ground Floor",
-    rooms: 10,
-    top: "87%",
+    apartments: 8,
+    top: "85%",
     rotate: "-1deg",
   },
   {
     label: "1st-floor",
     id: 2,
     name: "Floor 1",
-    rooms: 10,
-    top: "77%",
+    apartments: 16,
+    top: "75%",
     rotate: "-3deg",
   },
   {
     label: "2nd-floor",
     id: 3,
     name: "Floor 2",
-    rooms: 10,
-    top: "67%",
+    apartments: 20,
+    top: "65%",
     rotate: "-6deg",
   },
   {
     label: "3rd-floor",
     id: 4,
     name: "Floor 3",
-    rooms: 10,
-    top: "58%",
+    apartments: 22,
+    top: "56%",
     rotate: "-8deg",
   },
   {
     label: "4th-floor",
     id: 5,
     name: "Floor 4",
-    rooms: 10,
-    top: "49%",
+    apartments: 10,
+    top: "45%",
     rotate: "-10deg",
   },
   {
     label: "5th-floor",
     id: 6,
     name: "Floor 5",
-    rooms: 10,
-    top: "39%",
+    apartments: 10,
+    top: "35%",
     rotate: "-14deg",
   },
   {
     label: "6th-floor",
     id: 7,
     name: "Floor 6",
-    rooms: 10,
-    top: "29%",
+    apartments: 20,
+    top: "25%",
     rotate: "-16deg",
   },
   {
     label: "7th-floor",
     id: 8,
     name: "Floor 7",
-    rooms: 10,
-    top: "20%",
+    apartments: 20,
+    top: "18%",
     rotate: "-19deg",
   },
   {
     label: "8th-floor",
     id: 9,
     name: "Floor 8",
-    rooms: 10,
-    top: "11%",
+    apartments: 20,
+    top: "8%",
     rotate: "-22deg",
   },
 ];
@@ -276,7 +276,7 @@ const floorsSide = [
     label: "ground-floor",
     id: 1,
     name: "Ground Floor",
-    rooms: 10,
+    apartments: 10,
     top: "87%",
     rotate: "-1deg",
   },
@@ -284,7 +284,7 @@ const floorsSide = [
     label: "1st-floor",
     id: 2,
     name: "Floor 1",
-    rooms: 10,
+    apartments: 10,
     top: "75%",
     rotate: "10deg",
   },
@@ -292,7 +292,7 @@ const floorsSide = [
     label: "2nd-floor",
     id: 3,
     name: "Floor 2",
-    rooms: 10,
+    apartments: 10,
     top: "63%",
     rotate: "20deg",
   },
@@ -300,7 +300,7 @@ const floorsSide = [
     label: "3th-floor",
     id: 4,
     name: "Floor 3",
-    rooms: 10,
+    apartments: 10,
     top: "53%",
     rotate: "26deg",
   },
@@ -308,7 +308,7 @@ const floorsSide = [
     label: "4th-floor",
     id: 5,
     name: "Floor 4",
-    rooms: 10,
+    apartments: 10,
     top: "43%",
     rotate: "32deg",
   },
@@ -316,7 +316,7 @@ const floorsSide = [
     label: "5th-floor",
     id: 6,
     name: "Floor 5",
-    rooms: 10,
+    apartments: 10,
     top: "33%",
     rotate: "35deg",
   },
@@ -324,7 +324,7 @@ const floorsSide = [
     label: "6th-floor",
     id: 7,
     name: "Floor 6",
-    rooms: 10,
+    apartments: 10,
     top: "21%",
     rotate: "44deg",
   },
@@ -332,7 +332,7 @@ const floorsSide = [
     label: "7th-floor",
     id: 8,
     name: "Floor 7",
-    rooms: 10,
+    apartments: 10,
     top: "13%",
     rotate: "43deg",
   },
@@ -340,7 +340,7 @@ const floorsSide = [
     label: "8th-floor",
     id: 9,
     name: "Floor 8",
-    rooms: 10,
+    apartments: 10,
     top: "6%",
     rotate: "38deg",
   },
@@ -416,53 +416,53 @@ function TowerView() {
 
   return (
     <div className="relative flex overflow-hidden justify-center items-center  ">
-      <div className="flex absolute top-0  inset-0 bg-black opacity-100">
+      {/* <div className="flex absolute top-0  inset-0 bg-black opacity-100">
         <img src="/assets/animatedImg/bg1.jpg" className="w-[50%] opacity-50" />
         <img src="/assets/animatedImg/bg2.jpg" className="w-[50%] opacity-50" />
-      </div>
+      </div> */}
       <div className="relative flex justify-end w-full">
         {otherView ? (
           <img
             src="/assets/carousel/carouselImg1.png"
             alt="Building"
-            className="floor-plan-img w-[50vw] max-h-[90vh] object-cover"
-            style={{
-              height: `calc(100vh - ${navbarHeight}px)`,
-            }}
+            className="floor-plan-img w-screen max-h-[90vh] object-contain"
+            // style={{
+            //   height: `calc(100vh - ${navbarHeight}px)`,
+            // }}
           />
         ) : snow ? (
           mood ? (
             <img
               src="/assets/animatedImg/SR_33 - Photo 1.png"
               alt="Building"
-              className="floor-plan-img w-[50vw] h-full max-h-[90vh] object-cover"
-              style={{
-                height: `calc(100vh - ${navbarHeight}px)`,
-              }}
+              className="floor-plan-img  w-screen h-full max-h-[90vh] object-contain"
+              // style={{
+              //   height: `calc(100vh - ${navbarHeight}px)`,
+              // }}
             />
           ) : (
             <img
               src="/assets/animatedImg/SR_31 - Photo 1.png"
               alt="Building"
-              className="floor-plan-img w-[50vw] max-h-[90vh] object-cover "
-              style={{
-                height: `calc(100vh - ${navbarHeight}px)`,
-              }}
+              className="floor-plan-img  w-screen max-h-[90vh] object-contain "
+              // style={{
+              //   height: `calc(100vh - ${navbarHeight}px)`,
+              // }}
             />
           )
         ) : (
           <img
             src="/assets/animatedImg/SR_29 - Photo 1.png"
             alt="Building"
-            className="floor-plan-img w-[50vw] max-h-[90vh] object-cover"
-            style={{
-              height: `calc(100vh - ${navbarHeight}px)`,
-            }}
+            className="floor-plan-img  w-screen max-h-[90vh] object-contain"
+            // style={{
+            //   height: `calc(100vh - ${navbarHeight}px)`,
+            // }}
           />
         )}
 
         {!otherView && (
-          <div className="absolute md:top-16 z-10 sm:top-16 top-7 sm:left-[14rem] left-[16rem] md:left-[28rem] flex gap-2">
+          <div className="absolute md:top-16 z-10 sm:top-16  top-[8rem] sm:right-0 lg:right-[18rem] right-3 md:right-[10rem] flex gap-2">
             <div className="">
               {snow ? (
                 <img
@@ -507,7 +507,7 @@ function TowerView() {
             {floorsFront.map((floor) => (
               <div
                 key={`front-${floor.id}`}
-                className={`absolute left-[75%] w-[17%] h-[6%]  cursor-pointer ${
+                className={`absolute left-[51%] w-[17%] h-[6%]  cursor-pointer ${
                   hoveredFloorId === floor.id ? "bg-white/25" : ""
                 }`}
                 style={{
@@ -522,10 +522,10 @@ function TowerView() {
                 }
               ></div>
             ))}
-            {floorsSide.map((floor) => (
+            {floorsSide.map((floor, index) => (
               <div
                 key={`side-${floor.id}`}
-                className={`absolute left-[75%] w-[10%] h-[4%] md:h-[5%] cursor-pointer ${
+                className={`absolute right-[42%] w-[10%] h-[4%] md:h-[5%] cursor-pointer ${
                   hoveredFloorId === floor.id ? "" : ""
                 }`}
                 style={{
@@ -554,14 +554,16 @@ function TowerView() {
                 <Icon icon="circum:map" width="24" height="24" />
                 <div>
                   <p className="font-bold">{hoveredFloor.name}</p>
-                  <p>Rooms: {hoveredFloor.rooms}</p>
+                  {hoveredFloor.name.toLowerCase() !== "floor 4" && hoveredFloor.name.toLowerCase() !== "floor 5" && (
+                    <p>Apartments: {hoveredFloor.apartments}</p>
+                   )}
                 </div>
               </div>
             )}
           </>
         )}
-        {/* <--------right side---------->  */}
-        <div className="flex absolute left-0 w-[70%] md:w-[35%] sm:w-[50%]  top-0 h-full items-start md:items-center flex-col justify-between ">
+        {/* <--------left side---------->  */}
+        <div className="flex absolute  sm:left-[7rem] lg:left-[15rem] md:left-[7rem] left-[0rem] w-[70%] md:w-[25%] sm:w-[50%]  top-0 h-full items-start md:items-center flex-col sm:justify-between justify-normal ">
           <div className="px-5 sm:px-14 mt-10 sm:mt-0 flex md:gap-3 gap-1 flex-col justify-center  md:py-3 py-0 ">
             <img
               src="/assets/logo/logo.png"
@@ -593,14 +595,14 @@ function TowerView() {
           {/* </div> */}
 
           {show && (
-            <div className="absolute z-20 w-full h-full top-0 sm:px-10 px-5 py-8  bg-[#FEFEFB]/25 backdrop-blur">
+            <div className="absolute z-20 sm:mt-0 mt-20 w-full sm:h-full md:h-full h-[70%] top-0 sm:px-10 px-5 py-8  bg-[#FEFEFB]/25 backdrop-blur">
               <p
                 className="flex justify-end w-full cursor-pointer pb-2 font-semibold text-xl text-white"
                 onClick={() => setShow(false)}
               >
                 X
               </p>
-              <div className="h-[98%] overflow-y-auto scrollbar-thin scrollbar-thumb-[#37584F]/50 scrollbar-track-transparent">
+              <div className="sm:h-[98%] md:h-[98%] h-[80%] overflow-y-auto scrollbar-thin scrollbar-thumb-[#37584F]/50 scrollbar-track-transparent">
                 {icons.map((icon, index) => (
                   <div
                     key={index}

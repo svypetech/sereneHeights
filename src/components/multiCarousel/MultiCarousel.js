@@ -1,11 +1,14 @@
 "use client";
 
 import { Icon } from "@iconify-icon/react";
-import React from "react";
+import React, { useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 function MultiCarousel() {
+  const carouselRef = useRef(null);
+  
+  // Update responsive to show exactly 3 items on desktop
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -24,10 +27,45 @@ function MultiCarousel() {
       items: 1,
     },
   };
+  
+  // Functions to control the carousel
+  const handlePrevious = () => {
+    if (carouselRef.current) {
+      carouselRef.current.previous();
+    }
+  };
+  
+  const handleNext = () => {
+    if (carouselRef.current) {
+      carouselRef.current.next();
+    }
+  };
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 relative w-full mx-auto px-16">
+      
+      <button 
+        onClick={handlePrevious} 
+        className="absolute left-5 top-1/2 -translate-y-1/2 bg-[#00000066] hover:bg-[#37584F] text-white w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer z-10 transition-900-all"
+        aria-label="Previous"
+        style={{ transform: "translateY(-50%)" }}
+      >
+        <Icon icon="akar-icons:chevron-left" />
+      </button>
+      
+      
+      <button 
+        onClick={handleNext}
+        className="absolute right-5 top-1/2 -translate-y-1/2 bg-[#00000066] hover:bg-[#37584F] text-white w-9 h-9 rounded-full flex items-center justify-center border-none cursor-pointer z-10 transition-900-all"
+        aria-label="Next"
+        style={{ transform: "translateY(-50%)" }}
+      >
+        <Icon icon="akar-icons:chevron-right" />
+      </button>
+      
+      {/* Carousel without built-in arrows */}
       <Carousel
+        ref={carouselRef}
         responsive={responsive}
         showDots={false}
         infinite={true}
@@ -39,7 +77,9 @@ function MultiCarousel() {
         containerClass="carousel-container"
         removeArrowOnDeviceType={["tablet", "mobile"]}
         dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px">
+        itemClass="carousel-item-padding-40-px"
+        arrows={false}
+      >
         <div className="border rounded-lg px-5 py-7 mx-3">
           <Icon
             icon="humbleicons:location"

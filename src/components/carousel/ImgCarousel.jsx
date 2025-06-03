@@ -36,6 +36,20 @@ function ImgCarousel() {
         showArrows={showArrows}
         swipeable={swipeable}
       >
+        
+
+        {/* Video Slide 1*/}
+        <div className="relative h-[95vh]">
+          <video
+            className="h-full w-full object-cover"
+            src="/assets/carousel/landingVideo.mp4"
+            autoPlay
+            muted
+            loop
+            onMouseEnter={() => setAutoPlay(false)} // Stop autoplay when hovering over the video
+            onMouseLeave={() => setAutoPlay(true)} // Resume autoplay when leaving the video
+          />
+        </div>
         <div className="relative h-[95vh] ">
           <img
             className="h-full w-full"
@@ -81,19 +95,6 @@ function ImgCarousel() {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Video Slide 1*/}
-        <div className="relative h-[95vh]">
-          <video
-            className="h-full w-full object-cover"
-            src="/assets/carousel/landingVideo.mp4"
-            autoPlay
-            muted
-            loop
-            onMouseEnter={() => setAutoPlay(false)} // Stop autoplay when hovering over the video
-            onMouseLeave={() => setAutoPlay(true)} // Resume autoplay when leaving the video
-          />
         </div>
 
         {/* Image Slide 2 */}
