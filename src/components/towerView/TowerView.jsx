@@ -562,7 +562,7 @@ function TowerView() {
             )}
           </>
         )}
-        {/* <--------left side---------->  */}
+        {/* <--------left side----------->  */}
         <div className="flex absolute  sm:left-[7rem] lg:left-[15rem] md:left-[7rem] left-[0rem] w-[70%] md:w-[25%] sm:w-[50%]  top-0 h-full items-start md:items-center flex-col sm:justify-between justify-normal ">
           <div className="px-5 sm:px-14 mt-10 sm:mt-0 flex md:gap-3 gap-1 flex-col justify-center  md:py-3 py-0 ">
             <img
