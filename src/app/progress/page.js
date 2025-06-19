@@ -107,6 +107,10 @@ import React, { useEffect, useState, useRef } from "react";
 
 function Progress() {
   const data = [
+    {
+      label: "APRIL, 2025",
+      video: "https://www.youtube.com/embed/zih0inhf1hM?si=BKwJaQOzj6PEYX1c",
+    },
     { label: "JULY, 2024", video: "https://www.youtube.com/embed/_RjucM01Vp8" },
     {
       label: "FEBRUARY, 2024",
@@ -150,7 +154,7 @@ function Progress() {
           setActiveId(visibleSection);
         }
       },
-      { threshold: 0.6, rootMargin: "-50px 0px -30% 0px" }
+      { threshold: 0.5, rootMargin: "-50px 0px -30% 0px" }
     );
 
     sectionsRef.current.forEach((section) => {
