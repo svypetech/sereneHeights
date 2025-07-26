@@ -15,6 +15,7 @@ import localFont from "next/font/local";
 import { headers } from "next/headers";
 import { Icon } from "@iconify-icon/react";
 import ConIcon from "@/components/conIcon/ConIcon";
+import {Analytics} from "@vercel/analytics/next"
 
 const gravesendSans = localFont({
   src: "../../public/fonts/gravesend-sans-medium.ttf", // Correct path if in public folder
@@ -83,7 +84,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${poppins.variable} ${cinzel.variable} ${workSans.variable} ${inter.variable} ${helveticaNeue.variable} ${gravesendSans.variable} antialiased overflo`}
-      >
+      > 
+       
         <div className="flex flex-col min-h-screen w-full">
           <Navbar />
           <main className="flex-grow w-full">{children}</main>
@@ -121,6 +123,7 @@ export default function RootLayout({ children }) {
           }
              }
         `}</style>
+         <Analytics />
       </body>
     </html>
   );
