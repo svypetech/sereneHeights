@@ -22,7 +22,7 @@ function PaymentCards({
           basic == "true"
             ? "rounded-2xl h-auto lg:h-[400px] xl:h-[370px]"
             : "rounded-2xl borde h-auto lg:h-[400px] xl:h-[370px]"
-        } p-2 md:p-4 `}
+        } p-2 md:p-4 flex flex-col justify-center items-center text-center`}
       >
         <p
           className={`  ${
@@ -45,7 +45,7 @@ function PaymentCards({
             (basic == "true" ? (
               <p className="text-xl font-semibold">{currency}</p>
             ) : (
-              <span className="text-xl font-semibold ">from</span>
+              <span className="text-xl font-semibold ">from <br /></span>
             ))}
           <span className="">
             <span
