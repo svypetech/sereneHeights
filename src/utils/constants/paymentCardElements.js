@@ -16,7 +16,7 @@ export const paymentCardsElements = [
     //   "✔ 10% Baloon Payment After 18 Months",
     // ],
 
-    basic: "true",
+    basic: "false",
   },
   {
     keys: "installmentplan",
@@ -26,6 +26,6 @@ export const paymentCardsElements = [
     //   "✔ Possession In 36 Months, Insha'Allah",
     //   "✔ Detailed Instalment Plan Will Be Shared At The Time Of Booking",
     // ],
-    basic: "true",
+    basic: "false",
   },
 ];
