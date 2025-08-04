@@ -22,7 +22,7 @@ function PaymentCards({
           basic == "true"
             ? "rounded-2xl h-auto lg:h-[400px] xl:h-[370px]"
             : "rounded-2xl borde h-auto lg:h-[400px] xl:h-[370px]"
-        } p-2 md:p-4 flex flex-col justify-center items-center text-center`}
+        } p-2 md:p-4 `}
       >
         <p
           className={`  ${
@@ -40,7 +40,7 @@ function PaymentCards({
             </React.Fragment>
           ))}
         </p>
-        <div className="pb-4">
+        <div className="pb-4 flex flex-col justify-center items-center text-center">
           {keys !== "installmentplan" &&
             (basic == "true" ? (
               <p className="text-xl font-semibold">{currency}</p>
