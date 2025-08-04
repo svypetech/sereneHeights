@@ -40,24 +40,28 @@ function PaymentCards({
             </React.Fragment>
           ))}
         </p>
-        <div className="pb-4 flex flex-col justify-center items-center text-center">
-          {keys !== "installmentplan" &&
-            (basic == "true" ? (
-              <p className="text-xl font-semibold">{currency}</p>
-            ) : (
-              <span className="text-xl font-semibold ">from <br /></span>
-            ))}
-          <span className="">
+        <div className="flex flex-col justify-center items-center h-full pb-4">
+          <div className="min-h-[40px] flex items-end">
+            {keys !== "installmentplan" &&
+              (basic == "true" ? (
+                <p className="text-xl font-semibold leading-none">PKR</p>
+              ) : (
+                <span className="text-xl font-semibold leading-none">from</span>
+              ))}
+          </div>
+
+          <span className="flex flex-col items-center">
             <span
               className={`${
-                basic == "true" ? "text-6xl py-2" : "text-6xl "
-              } helveticaNeue  `}
+                basic == "true" ? "text-6xl py-2" : "text-6xl"
+              } helveticaNeue`}
             >
               {price}
             </span>
+
             {(keys === "installmentplan" || basic === "true") &&
               (keys === "installmentplan" ? (
-                <span className="pl-1 text-lg text-left font-semibold inline-block leading-tight">
+                <span className="pl-1 text-lg text-left font-semibold leading-tight">
                   Months
                   <br />
                   Only
@@ -66,14 +70,8 @@ function PaymentCards({
                 <p className="text-xl font-semibold pt-4">Per sq ft</p>
               ))}
           </span>
-          {/* {basic == "false" && (
-            <div
-              className={`${
-                keys == "booking" ? "pt-8 " : "pt-6 "
-              } border-b pt-`}
-            ></div>
-          )} */}
         </div>
+
         <div className="text-[#37584F] p-4 text-left text-sm inter">
           {body?.map((line, index) => (
             <p key={index} className="mb-2">
