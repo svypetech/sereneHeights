@@ -45,7 +45,7 @@ function PaymentCards({
             (basic == "true" ? (
               <p className="text-xl font-semibold">{currency}</p>
             ) : (
-              <span className="text-xl font-semibold ">from <br /></span>
+              <span className="text-xl font-semibold ">From <br /></span>
             ))}
           <span className="">
             <span
