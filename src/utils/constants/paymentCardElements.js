@@ -9,7 +9,7 @@ export const paymentCardsElements = [
   {
     keys: "booking",
     heading: "BOOKING",
-    price: "32,000",
+    price: "30%",
     // body: [
     //   "✔ 30% Down Payment Payable Within 5 Days Of Booking",
     //   "✔ 10% on Possession",
