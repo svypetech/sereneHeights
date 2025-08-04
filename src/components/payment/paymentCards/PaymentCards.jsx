@@ -66,13 +66,13 @@ function PaymentCards({
                 <p className="text-xl font-semibold pt-4">Per sq ft</p>
               ))}
           </span>
-          {basic == "false" && (
+          {/* {basic == "false" && (
             <div
               className={`${
                 keys == "booking" ? "pt-8 " : "pt-6 "
               } border-b pt-`}
             ></div>
-          )}
+          )} */}
         </div>
         <div className="text-[#37584F] p-4 text-left text-sm inter">
           {body?.map((line, index) => (
