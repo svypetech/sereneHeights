@@ -16,6 +16,7 @@ import { headers } from "next/headers";
 import { Icon } from "@iconify-icon/react";
 import ConIcon from "@/components/conIcon/ConIcon";
 import { Analytics } from "@vercel/analytics/next"
+import Script from "next/script";
 
 const gravesendSans = localFont({
   src: "../../public/fonts/gravesend-sans-medium.ttf", // Correct path if in public folder
