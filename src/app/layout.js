@@ -15,7 +15,7 @@ import localFont from "next/font/local";
 import { headers } from "next/headers";
 import { Icon } from "@iconify-icon/react";
 import ConIcon from "@/components/conIcon/ConIcon";
-import {Analytics} from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next"
 
 const gravesendSans = localFont({
   src: "../../public/fonts/gravesend-sans-medium.ttf", // Correct path if in public folder
@@ -82,10 +82,34 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+
+      <head>
+        {/* Google Tag Manager */}
+        <Script id="gtm-script" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-N5M6LRHD');
+          `}
+        </Script>
+      </head>
+
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${poppins.variable} ${cinzel.variable} ${workSans.variable} ${inter.variable} ${helveticaNeue.variable} ${gravesendSans.variable} antialiased overflo`}
-      > 
-       
+      >
+
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe 
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N5M6LRHD"
+            height="0" 
+            width="0" 
+            style={{display:"none", visibility:"hidden"}}
+          ></iframe>
+        </noscript>
+
         <div className="flex flex-col min-h-screen w-full">
           <Navbar />
           <main className="flex-grow w-full">{children}</main>
@@ -123,7 +147,7 @@ export default function RootLayout({ children }) {
           }
              }
         `}</style>
-         <Analytics />
+        <Analytics />
       </body>
     </html>
   );
