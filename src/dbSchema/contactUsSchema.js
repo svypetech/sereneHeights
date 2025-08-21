@@ -6,8 +6,20 @@ const contactSchema = new Schema({
     type: String,
     required: [true, "Email Required!"],
   },
-  phoneNumber: Number,
-  message: String,
+  phoneNumber: String,
+  city: {
+    type: String,
+    required: [true, "City is required!"],
+  },
+  interestedIn: {
+    type: String,
+    enum: ["smart property unit", "full apartment"],
+    required: [true, "Interested In is required!"],
+  },
+  subInterest: {
+    type: String,
+    required: [true, "Sub Interest is required!"],
+  },
   check: String,
   feedback: String,
 });

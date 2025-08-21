@@ -9,6 +9,7 @@ function ContactUs() {
   const [loading, setLoading] = useState(false);
   const [dropdownValues, setDropdownValues] = useState({
     interestedIn: "",
+    subInterest: "",
   });
 
   const handleDropdownChange = (name, value) => {
@@ -20,24 +21,33 @@ function ContactUs() {
 
   const validateForm = (values) => {
     const errors = {};
-    
+
     // Validate regular form fields
     if (!values.userName.trim()) {
       errors.userName = "Name is required";
     }
-    
+
     if (!values.email.trim()) {
       errors.email = "Email is required";
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
       errors.email = "Invalid email address";
     }
-    
+
     if (!values.phoneNumber.trim()) {
       errors.phoneNumber = "Phone number is required";
     }
-    
+
     if (!values.city.trim()) {
       errors.city = "City is required";
+    }
+
+    // Validate dropdown values
+    if (!dropdownValues.interestedIn.trim()) {
+      errors.interestedIn = "Interest selection is required";
+    }
+
+    if (!dropdownValues.subInterest.trim()) {
+      errors.subInterest = "Sub interest selection is required";
     }
 
     return errors;
@@ -51,7 +61,7 @@ function ContactUs() {
       const submitData = {
         ...values,
         ...dropdownValues,
-        check: "This form is submitted from texinity website",
+        check: "This form is submitted from Svype website",
       };
 
       const response = await fetch("/api/contactus", {
@@ -66,7 +76,7 @@ function ContactUs() {
         resetForm();
         setDropdownValues({
           interestedIn: "",
-          budget: "",
+          subInterest: "",
         });
 
         // Mock success alert (replace with your SweetAlert2)
@@ -145,6 +155,21 @@ function ContactUs() {
                       touched={touched}
                       setFieldTouched={setFieldTouched}
                     />
+                    
+                    {dropdownValues.interestedIn && (
+                      <DropdownRadio
+                        label="Sub Interest"
+                        name="subInterest"
+                        options={[]}
+                        selectedValue={dropdownValues.subInterest}
+                        onChange={handleDropdownChange}
+                        placeholder="Select sub interest"
+                        errors={errors}
+                        touched={touched}
+                        setFieldTouched={setFieldTouched}
+                        parentValue={dropdownValues.interestedIn} // Pass the parent value
+                      />
+                    )}
                   </div>
 
                   <button

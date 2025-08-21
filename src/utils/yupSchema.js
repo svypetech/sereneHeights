@@ -16,11 +16,14 @@ export const contactusSchema = Yup.object().shape({
     .matches(/^[0-9]+$/, "Phone number must contain only digits")
     .min(10, "Phone number must be at least 10 digits")
     .max(15, "Phone number must not exceed 15 digits"),
-  // .required("Please enter your phone number"),
-  message: Yup.string()
-    .min(50, "Message must be 50 characters")
-    .max(300, "Message must not be greater then 300 characters")
-    .required("Please enter how can we help you!"),
+
+  city: Yup.string().required("City is required!"),
+
+  interestedIn: Yup.string()
+    .oneOf(["smart property unit", "full apartment"], "Invalid selection")
+    .required("Please select an option"),
+  subInterest: Yup.string()
+    .required("Please select a sub-option"),
 });
 
 

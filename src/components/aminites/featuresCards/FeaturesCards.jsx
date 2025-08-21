@@ -23,109 +23,31 @@ function FeaturesCards() {
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  // px-6 md:px-8 lg:px-12
   return (
-    <div className="sm:px-2 px-8">
-      <div className="pt-16 bg-white h-full w-full flex flex-col md:flex-row items-stretch gap-8 justify-center ">
-        {featuresElements.slice(0, 3).map((data, index) => (
+    <div className="pt-16 pb-16 bg-white ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {featuresElements.map((data, index) => (
           <div
             key={index}
-            className={`feature-card rounded-md w-full p-6 flex flex-col justify-center items-center text-center cursor-pointer 
-          shadow-[0_0_4px_0_#00000040] transition-all duration-300 
-          hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]`}
-            style={{
-              width: screenSize === 'lg' ? data.width : undefined,
-              aspectRatio: screenSize === 'md' ? '1/1' : 'auto'
-            }}
+            className="feature-card rounded-md p-6 flex flex-col md:flex-row items-center md:items-center justify-center cursor-pointer 
+              shadow-[0_0_4px_0_#00000040] transition-all duration-300 
+              hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]
+              bg-white"
           >
             <img
               src={`assets/aminities/features/${data.src}.png`}
               alt={`${data.src}`}
-              className="w-20 h-20 object-contain mb-4"
+              className="w-16 h-16 lg:w-20 lg:h-20 object-contain mb-4 md:mb-0 md:mr-6 flex-shrink-0"
             />
-            <p className="sm:text-3xl text-2xl font-semibold gravesendSans break-words mb-2">
-              {data.heading}
-            </p>
-            <p className="text-[#222222]/70 text-sm popping break-words leading-relaxed">
-              {data.text}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="bg-white py-7 h-full w-full flex flex-col md:flex-row items-stretch gap-8 justify-center ">
-        {featuresElements.slice(3, 6).map((data, index) => (
-          <div
-            key={index}
-            className={`feature-card rounded-md w-full p-6 flex flex-col justify-center items-center text-center cursor-pointer 
-          shadow-[0_0_4px_0_#00000040] transition-all duration-300 
-          hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]`}
-            style={{
-              width: screenSize === 'lg' ? data.width : undefined,
-              aspectRatio: screenSize === 'md' ? '1/1' : 'auto'
-            }}
-          >
-            <img
-              src={`assets/aminities/features/${data.src}.png`}
-              alt={`${data.src}`}
-              className="w-20 h-20 object-contain mb-4"
-            />
-            <p className="sm:text-3xl text-2xl font-semibold gravesendSans break-words mb-2">
-              {data.heading}
-            </p>
-            <p className="text-[#222222]/70 text-sm popping break-words leading-relaxed">
-              {data.text}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="bg-white h-full w-full flex flex-col md:flex-row items-stretch gap-8 justify-center ">
-        {featuresElements.slice(6, 9).map((data, index) => (
-          <div
-            key={index}
-            className={`feature-card rounded-md w-full p-6 flex flex-col justify-center items-center text-center cursor-pointer 
-          shadow-[0_0_4px_0_#00000040] transition-all duration-300 
-          hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]`}
-            style={{
-              width: screenSize === 'lg' ? data.width : undefined,
-              aspectRatio: screenSize === 'md' ? '1/1' : 'auto'
-            }}
-          >
-            <img
-              src={`assets/aminities/features/${data.src}.png`}
-              alt={`${data.src}`}
-              className="w-20 h-20 object-contain mb-4"
-            />
-            <p className="sm:text-3xl text-2xl font-semibold gravesendSans break-words mb-2">
-              {data.heading}
-            </p>
-            <p className="text-[#222222]/70 text-sm popping break-words leading-relaxed">
-              {data.text}
-            </p>
-          </div>
-        ))}
-      </div>
-      <div className="pb-16 bg-white py-7 h-full w-full flex flex-col md:flex-row items-stretch gap-8 justify-center ">
-        {featuresElements.slice(9, 12).map((data, index) => (
-          <div
-            key={index}
-            className={`feature-card rounded-md w-full p-6 flex flex-col justify-center items-center text-center cursor-pointer 
-          shadow-[0_0_4px_0_#00000040] transition-all duration-300 
-          hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]`}
-            style={{
-              width: screenSize === 'lg' ? data.width : undefined,
-              aspectRatio: screenSize === 'md' ? '1/1' : 'auto'
-            }}
-          >
-            <img
-              src={`assets/aminities/features/${data.src}.png`}
-              alt={`${data.src}`}
-              className="w-20 h-20 object-contain mb-4"
-            />
-            <p className="sm:text-3xl text-2xl font-semibold gravesendSans break-words mb-2">
-              {data.heading}
-            </p>
-            <p className="text-[#222222]/70 text-sm popping break-words leading-relaxed">
-              {data.text}
-            </p>
+            <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">
+              <p className="text-lg lg:text-xl font-semibold gravesendSans break-words mb-2 w-full">
+                {data.heading}
+              </p>
+              <p className="text-[#222222]/70 text-xs lg:text-sm popping break-words leading-relaxed w-full">
+                {data.text}
+              </p>
+            </div>
           </div>
         ))}
       </div>
