@@ -165,7 +165,7 @@ export async function POST(request) {
       const mailOptions = {
         from: "info@svype.net",
         replyTo: email,
-        to: "info@sereneheightsnathiagali.com",
+        to: "sereneenquires@gmail.com",
         subject: "New Lead from Website",
         html: `
         <p>You have received a new contact us submission:</p>
