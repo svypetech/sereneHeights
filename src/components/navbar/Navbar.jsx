@@ -204,12 +204,12 @@ function Navbar() {
                   height="30"
                 />
               </Link>
-              <Icon
+              {/* <Icon
                 color={textColor}
                 icon="iconamoon:search-thin"
                 width="24"
                 height="24"
-              />
+              /> */}
               <Link
                 href="/contact-us#contact-us"
                 className="text-decoration-none   "
