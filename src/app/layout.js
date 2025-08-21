@@ -18,6 +18,7 @@ import ConIcon from "@/components/conIcon/ConIcon";
 import { Analytics } from "@vercel/analytics/next"
 import Script from "next/script";
 
+
 const gravesendSans = localFont({
   src: "../../public/fonts/gravesend-sans-medium.ttf", // Correct path if in public folder
   variable: "--font-gravesend-sans", // Define a CSS variable
@@ -26,9 +27,9 @@ const gravesendSans = localFont({
 });
 
 const helveticaNeue = localFont({
-  src: "../../public/fonts/helvetica-neue.otf", // Correct path if in public folder
+  src: "../../public/fonts/Helvetica-Neue-LT-Pro-65-Medium.otf", // Correct path if in public folder
   variable: "--font-helvetica-neue", // Define a CSS variable
-  // weight: "400", // Adjust weight if needed
+  // weight: "500", // Adjust weight if needed
   display: "swap", // Optional: improve loading performance
 });
 
@@ -98,7 +99,7 @@ export default function RootLayout({ children }) {
       </head>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${poppins.variable} ${cinzel.variable} ${workSans.variable} ${inter.variable} ${helveticaNeue.variable} ${gravesendSans.variable} antialiased overflo`}
+        className={`${geistSans.variable} ${geistMono.variable} ${greatVibes.variable} ${poppins.variable} ${cinzel.variable} ${workSans.variable} ${inter.variable} ${helveticaNeue.variable} ${gravesendSans.variable} antialiased overflow-x-hidden`}
       >
 
         {/* Google Tag Manager (noscript) */}
@@ -111,9 +112,9 @@ export default function RootLayout({ children }) {
           ></iframe>
         </noscript>
 
-        <div className="flex flex-col min-h-screen w-full">
+        <div className="flex flex-col min-h-screen w-full max-w-full overflow-x-hidden">
           <Navbar />
-          <main className="flex-grow w-full">{children}</main>
+          <main className="flex-grow w-full max-w-full overflow-x-hidden pt-36">{children}</main>
           {/* {currentPath != "floor-plans" && <Footer />} */}
           <Footer />
         </div>
@@ -145,6 +146,16 @@ export default function RootLayout({ children }) {
 
           .animate-pop {
             animation: popEffect 1.5s infinite ease-in-out;
+          }
+          
+          /* Additional overflow prevention */
+          html, body {
+            overflow-x: hidden;
+            max-width: 100vw;
+          }
+          
+          * {
+            box-sizing: border-box;
           }
              }
         `}</style>

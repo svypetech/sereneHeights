@@ -28,12 +28,12 @@ import React from "react";
 
 function AminitiesCards({ src, text }) {
   return (
-    <div className="py-16 bg-white flex flex-wrap gap-8 justify-center items-center">
+    <div className="py-16 bg-[#FEFEFB] flex flex-wrap gap-8 justify-center items-center">
       {aminitiesElements.map((data, index) => (
         <div
           key={index}
           className="rounded-md w-[200px] h-[210px] p-6 flex flex-col justify-center items-center text-center cursor-pointer 
-          shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] transition-all duration-300 
+          shadow-[0_0_4px_0_#00000040] transition-all duration-300 
           hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]"
         >
           <img

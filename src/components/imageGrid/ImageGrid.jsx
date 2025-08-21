@@ -168,14 +168,14 @@ const MotionImage = ({
       />
       {src === "frame4.png" ? (
         <Image
-          src="/assets/logo/logo.png" // Replace with the actual path of the new image
+          src="/assets/logo/logo.png"
           alt="Alternative Image"
-          width={300} // Adjust the width as needed
-          height={300} // Adjust the height as needed
+          width={300}
+          height={300}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       ) : (
-        <div className="absolute top-0 flex flex-col justify-center items-center text-center w-full h-full text-white px-44 md:px-6 lg:px-16 xl:px-24">
+        <div className="absolute top-0 flex flex-col justify-center items-center text-center w-full h-full text-white px-30 md:px-6 lg:px-16 xl:px-24">
           <p className="cinzel text-3xl  xl:text-5xl 2xl:text-7xl font-medium">
             {textNum}
           </p>
@@ -243,7 +243,7 @@ function ImageGrid() {
   }, [isXsScreen]);
 
   return (
-    <div className="relative ">
+    <div className="relative">
       <div className="block xs:hidden text-[#37584F] text-center text-3xl font-bold gravesendSans">
         <p> A HAVEN IN THE</p>
         <p> HIGHLANDS</p>
@@ -251,19 +251,15 @@ function ImageGrid() {
 
       <div
         ref={ref}
-        className="pb-32 hidden xs:flex absolut  top- z-10 rounded-2xl text-white text-6xl text-center font-bold flex-col justify-center h-full w-full pointer-events-none"
-        // className="absolute xs:hidden top-0 z-10 rounded-2xl text-white  text-4xl sm:text-6xl text-center font-bold flex flex-col h-full w-full  pointer-events-none"
+        className="pb-32 hidden xs:flex absolut z-10 rounded-2xl text-white text-6xl text-center font-bold flex-col justify-center h-full w-full pointer-events-none"
       >
         <motion.div
           variants={typingVariants}
-          // ref={ref}
-          // initial="hidden"
           style={{ transform: `translateY(${textPosition}px)` }}
           animate={isInView ? "visible" : "hidden"}
           exit="exit"
           className="inline-block text-[#37584F]"
         >
-          {/* First Line */}
           <motion.div className="block ">
             {text1.split("").map((char, index) => (
               <motion.span
@@ -278,7 +274,6 @@ function ImageGrid() {
             ))}
           </motion.div>
 
-          {/* Second Line */}
           <motion.div className="block gravesendSans">
             {text2.split("").map((char, index) => (
               <motion.span key={index} custom={index} variants={letterVariants}>
@@ -289,10 +284,9 @@ function ImageGrid() {
         </motion.div>
       </div>
 
-      <motion.div
+      <div
         ref={ref}
         initial={{ scale: 1.5 }}
-        // animate={controls}
         style={{ scale }}
         transition={{ type: "spring", stiffness: 80, damping: 10 }}
         className=" w-full flex items-center justify-center "
@@ -332,12 +326,8 @@ function ImageGrid() {
               ))}
             </div>
           </div>
-
-          {/* <div className="absolute rounded-2xl text-white text-4xl sm:text-6xl text-center font-bold flex flex-col justify-center items-center h-full w-full bg-[#37584F]/40 pointer-events-none">
-          A HAVEN IN THE<span>HIGHLANDS</span>
-        </div> */}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

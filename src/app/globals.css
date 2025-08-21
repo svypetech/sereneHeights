@@ -62,10 +62,10 @@
     width: 100% !important;
   }
   .floor-plan-img {
-       height: 60vh !important;
+    height: 100vh !important;
+    /* width: 100vw !important; */
  }
 }
-
 
 /* Add this to your CSS file
 .custom-button-group {

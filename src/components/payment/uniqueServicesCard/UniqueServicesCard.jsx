@@ -30,15 +30,15 @@
 
 import React from "react";
 
-function UniqueServicesCard({ body, isExpanded, onClick }) {
+function UniqueServicesCard({ body, isExpanded, onClick, totalServices, index }) {
   return (
     <>
       <div className="flex gap-4 justify-between text-start items-center">
         <div className="flex-1">
           {" "}
           {/* Allows text to take remaining space */}
-          <p className="text-sm font-semibold">{body[0]}</p>
-          {isExpanded && <p className="text-sm font-normal">{body[1]}</p>}
+          <p className="text-sm font-semibold text-[#101828]">{body[0]}</p>
+          {isExpanded && <p className="text-sm pt-2 font-normal text-[#475467]">{body[1]}</p>}
         </div>
         <div
           onClick={onClick}
@@ -56,7 +56,9 @@ function UniqueServicesCard({ body, isExpanded, onClick }) {
         </div>
       </div>
 
-      <div className="w-full my-4 border-t border-black"></div>
+      {index !== totalServices - 1 &&  (
+        <div className="w-full my-4 border-t border-gray-200"></div>
+      )}
     </>
   );
 }

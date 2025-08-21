@@ -1,79 +1,19 @@
-// import { elements } from "@/utils/constants/navElements";
-// import { useState } from "react";
-// // import { elements } from "../path-to-elements-file"; // Adjust the path accordingly
-// import { FaChevronRight } from "react-icons/fa";
-
-// const ResponsiveNavbar = () => {
-//   const [openMenu, setOpenMenu] = useState(null);
-
-//   const toggleMenu = (key) => {
-//     setOpenMenu(openMenu === key ? null : key);
-//   };
-
-//   return (
-//     <div className="w-screen h-screen bg-gray-900 text-white flex flex-col p-6">
-//       {elements.map((element) => (
-//         <div key={element.key} className="w-full">
-//           <div
-//             className="flex items-center justify-between p-4 cursor-pointer bg-gray-800 hover:bg-gray-700 rounded-lg mb-2"
-//             onClick={() => toggleMenu(element.key)}
-//           >
-//             <span>{element.name}</span>
-//             {element.submenu && (
-//               <FaChevronRight
-//                 className={`transition-transform ${
-//                   openMenu === element.key ? "rotate-90" : ""
-//                 }`}
-//               />
-//             )}
-//           </div>
-
-//           {openMenu === element.key && element.submenu && (
-//             <div className="ml-4 bg-gray-700 p-3 rounded-lg">
-//               {element.submenu.map((submenu, index) => (
-//                 <div key={index} className="mb-3">
-//                   <h4 className="text-sm font-bold text-gray-300">
-//                     {submenu.sectionTitle}
-//                   </h4>
-//                   <ul className="mt-2">
-//                     {submenu.items.map((item) => (
-//                       <li
-//                         key={item.id}
-//                         className="p-2 hover:bg-gray-600 rounded-md cursor-pointer"
-//                       >
-//                         {item.name}
-//                       </li>
-//                     ))}
-//                   </ul>
-//                 </div>
-//               ))}
-//             </div>
-//           )}
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
-
-// export default ResponsiveNavbar;
-
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-// import { elements } from "../path-to-elements-file"; // Adjust the path accordingly
 import { FaChevronRight } from "react-icons/fa";
 import { elements } from "@/utils/constants/navElements";
 import { Icon } from "@iconify-icon/react";
 import ConIcon from "../conIcon/ConIcon";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const SidebarMenu = ({ setShow }) => {
   const [openMenu, setOpenMenu] = useState(null);
   const router = useRouter();
 
   useEffect(() => {
-    document.body.style.overflow = "hidden"; // Disable scrolling on background
+    document.body.style.overflow = "hidden";
     return () => {
-      document.body.style.overflow = "auto"; // Restore scrolling on close
+      document.body.style.overflow = "auto";
     };
   }, []);
 
@@ -87,7 +27,7 @@ const SidebarMenu = ({ setShow }) => {
     } else {
       router.push(`/${id}`);
     }
-    setShow(false); // Close the menu on navigation
+    setShow(false);
   };
 
   return (

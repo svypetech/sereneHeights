@@ -17,12 +17,14 @@ function ImageGrid({ images }) {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row w-full gap-4 pb-4 ">
+    <div className="flex flex-col md:flex-row w-full gap-3 pb-4 ">
       {images.map((image, index) => (
         <div
           key={index}
-          className="w-full md:w-full rounded-3xl"
-          style={screenSize >= 840 ? { width: image.width } : {}}
+          className="w-full md:w-full aspect-square md:aspect-auto" // Square on mobile, auto on desktop
+          style={{
+            ...(screenSize >= 840 ? { width: image.width } : {}),
+          }}
         >
           <Image
             key={index}
@@ -30,7 +32,7 @@ function ImageGrid({ images }) {
             alt="About Image"
             width={300}
             height={300}
-            className="h-[290px] md:h-[185px] xl:h-[280px] 2xl:h-[315px] w-full"
+            className="w-full h-full md:h-[185px] xl:h-[280px] 2xl:h-[315px] object-cover rounded-3xl"
             priority
           />
         </div>

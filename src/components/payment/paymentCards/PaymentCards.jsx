@@ -10,27 +10,26 @@ function PaymentCards({
   keys,
 }) {
   return (
-    <div className="cursor-pointer rounded-2xl text-center border-2 shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px]">
-      {/* {
-      basic == "true" && (
-        <div className="p-2 rounded-t-2xl text-white bg-[#37584F] ">
+    <div className="cursor-pointer rounded-2xl text-center border-2">
+      {basic == "true" && (
+        <div className="p-2 rounded-t-2xl text-white bg-[#37584F]">
           {mainheading}
         </div>
-      )} */}
+      )}
       <div
         className={`${
           basic == "true"
-            ? "rounded-2xl h-auto lg:h-[400px] xl:h-[370px]"
-            : "rounded-2xl borde h-auto lg:h-[400px] xl:h-[370px]"
+            ? "rounded-2xl h-auto md:max-lg:h-[420px] lg:h-[400px] xl:h-[370px]"
+            : "rounded-2xl border h-auto md:max-lg:h-[420px] lg:h-[400px] xl:h-[370px]"
         } p-2 md:p-4 flex flex-col justify-center items-center text-center`}
       >
         <p
-          className={`  ${
+          className={`${
             keys == "booking"
-              ? "py-8 text-xl xs:text-3xl"
-              : "py-8 text-xl xs:text-3xl"
+              ? "py-8 text-3xl md:text-[25px] lg:text-3xl"
+              : "py-8 text-3xl md:text-[25px] lg:text-3xl"
           } ${
-            basic == "true" ? "text-xl xs:text-3xl" : ""
+            basic == "true" ? "text-3xl md:text-[25px] lg:text-3xl" : ""
           }  text-[#37584F]  font-semibold gravesendSans`}
         >
           {heading.split("<br/>").map((line, index) => (
@@ -45,7 +44,9 @@ function PaymentCards({
             (basic == "true" ? (
               <p className="text-xl font-semibold">{currency}</p>
             ) : (
-              <span className="text-xl font-semibold ">From <br /></span>
+              <span className="text-xl font-semibold">
+                From <br />
+              </span>
             ))}
           <span className="">
             <span
@@ -66,13 +67,6 @@ function PaymentCards({
                 <p className="text-xl font-semibold pt-4">Per sq ft</p>
               ))}
           </span>
-          {/* {basic == "false" && (
-            <div
-              className={`${
-                keys == "booking" ? "pt-8 " : "pt-6 "
-              } border-b pt-`}
-            ></div>
-          )} */}
         </div>
         <div className="text-[#37584F] p-4 text-left text-sm inter">
           {body?.map((line, index) => (

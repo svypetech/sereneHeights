@@ -5,8 +5,10 @@ import { paymentCardsElements } from "@/utils/constants/paymentCardElements";
 import { uniqueServicesElements } from "@/utils/constants/uniqueServicesElement";
 import React, { useState } from "react";
 
-function page() {
+function Page() {
   const [expandedIndex, setExpandedIndex] = useState(0);
+
+  const totalServices = uniqueServicesElements.length;
 
   const toggleExpand = (index) => {
     setExpandedIndex(expandedIndex === index ? null : index);
@@ -21,7 +23,7 @@ function page() {
         {" "}
         PAYMENT PLAN{" "}
       </h1>
-      <div className=" flex flex-wrap justify-center items-center ">
+      <div className="flex flex-wrap justify-center items-center">
         {paymentCardsElements.map((element, index) => (
           <div key={element.keys} className="w-full md:w-[33%] ">
             <PaymentCards
@@ -41,11 +43,11 @@ function page() {
         <p className="sm:text-4xl text-3xl font-bold pt-20 text-[#37584F] gravesendSans ">
           OUR UNIQUE SERVICED <br /> APARTMENT MODEL
         </p>
-        <p className="py-2 text-sm pb-8 inter">
+        <p className="py-2 text-sm pb-8 inter text-[#475467]">
           Everything you need to know about Serene Heights
         </p>
 
-        <div className="sm:w-[60vw] w-auto mx-auto inter">
+        <div className="sm:w-[60vw] w-auto mx-auto inter mt-10 mb-10">
           {uniqueServicesElements.map((elemnt, index) => (
             <UniqueServicesCard
               body={elemnt.body}
@@ -53,6 +55,8 @@ function page() {
               key={index}
               isExpanded={expandedIndex === index}
               onClick={() => toggleExpand(index)}
+              totalServices={totalServices}
+              index={index}
             />
           ))}
         </div>
@@ -61,4 +65,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

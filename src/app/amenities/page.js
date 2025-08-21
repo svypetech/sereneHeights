@@ -5,7 +5,7 @@ import React from "react";
 function page() {
   return (
     <div
-      className="text-center px-8  md:px-20 pt-1  "
+      className="text-center px-6 md:px-16 lg:px-36 pt-1  "
       style={{ textTransform: "none" }}
     >
       <h1

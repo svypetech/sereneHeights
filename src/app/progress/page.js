@@ -195,37 +195,37 @@ function Progress() {
             {/* Side Indicator */}
             <div className="flex flex-col items-center">
               <div
-                className={`rounded-full border-2 h-10 flex justify-center items-center w-10 transition-all duration-500 ease-in-out ${
-                  activeId === item.id
+                className={`rounded-full border-2 h-10 flex justify-center items-center w-10 transition-all duration-500 ease-in-out ${activeId === item.id
                     ? "border-[#37584F] bg-[#1654430D]/5 scale-110"
                     : "border-[#D3D3D3] scale-100"
-                }`}
+                  }`}
               >
                 <Icon
-                  className={`p-2 transition-all duration-500 ease-in-out ${
-                    activeId === item.id ? "text-[#37584F]" : "text-[#D3D3D3]"
-                  }`}
+                  className={`p-2 transition-all duration-500 ease-in-out ${activeId === item.id ? "text-[#37584F]" : "text-[#D3D3D3]"
+                    }`}
                   icon="uit:calender"
                   width="24"
                   height="24"
                 />
               </div>
               <div
-                className={`h-full w-[2px] transition-all duration-500 ease-in-out ${
-                  activeId === item.id ? "bg-[#37584F]" : "bg-[#D3D3D3]"
-                }`}
+                className={`h-full w-[2px] transition-all duration-500 ease-in-out ${activeId === item.id ? "bg-[#37584F]" : "bg-[#D3D3D3]"
+                  }`}
               ></div>
             </div>
 
             {/* Content Section */}
             <div className="w-full pb-20">
-              <p className="text-[#37584F] font-semibold sm:text-3xl text-2xl gravesendSans">
+              <p className={` ${activeId !== item.id ?
+                "text-[#949494]"
+                : "text-[#37584F]"}
+                font-semibold sm:text-3xl text-2xl gravesendSans`}>
                 {item.label}
               </p>
               <iframe
                 src={item.video}
                 title={item.label}
-                className="rounded-lg my-7 xl:h-[500px] w-full opacity-0 transition-opacity duration-700 ease-in-out"
+                className="rounded-lg my-7 w-full xl:h-[500px] aspect-video opacity-0 transition-opacity duration-700 ease-in-out"
                 style={{
                   opacity: activeId === item.id ? 1 : 0.3,
                 }}

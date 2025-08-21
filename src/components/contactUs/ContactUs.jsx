@@ -1,124 +1,173 @@
 "use client";
-import { Form, Formik, Field, ErrorMessage } from "formik";
 import React, { useState } from "react";
+import { Formik, Form } from "formik";
 import { RingLoader } from "react-spinners";
-import Swal from "sweetalert2";
-
-import { contactusSchema } from "@/utils/yupSchema";
+import DropdownRadio from "./DropdownRadio";
 import InputField from "./InputField";
 
-function ContactUs({ orbitron, montserrat }) {
+function ContactUs() {
   const [loading, setLoading] = useState(false);
+  const [dropdownValues, setDropdownValues] = useState({
+    interestedIn: "",
+  });
 
-  const handleSubmit = async (values, { resetForm }) => {
-    console.log("values", values);
+  const handleDropdownChange = (name, value) => {
+    setDropdownValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const validateForm = (values) => {
+    const errors = {};
+    
+    // Validate regular form fields
+    if (!values.userName.trim()) {
+      errors.userName = "Name is required";
+    }
+    
+    if (!values.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+    
+    if (!values.phoneNumber.trim()) {
+      errors.phoneNumber = "Phone number is required";
+    }
+    
+    if (!values.city.trim()) {
+      errors.city = "City is required";
+    }
+
+    return errors;
+  };
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    console.log("Form data:", { ...values, ...dropdownValues });
+
     try {
       setLoading(true);
-      const formData = {
+      const submitData = {
         ...values,
-        check: "This form is submitted from texinity webiste",
+        ...dropdownValues,
+        check: "This form is submitted from texinity website",
       };
+
       const response = await fetch("/api/contactus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(submitData),
       });
+
       if (response.ok) {
         resetForm();
-        Swal.fire({
-          title: "Message Sent!",
-          text: "Your message has been submitted successfully!",
-          icon: "success",
+        setDropdownValues({
+          interestedIn: "",
+          budget: "",
         });
+
+        // Mock success alert (replace with your SweetAlert2)
+        alert("Message Sent! Your message has been submitted successfully!");
       } else {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      Swal.fire({
-        title: "Error!",
-        text: "An error occurred while submitting your message. Please try again later.",
-        icon: "error",
-      });
+      alert(
+        "Error! An error occurred while submitting your message. Please try again later."
+      );
     } finally {
       setLoading(false);
+      setSubmitting(false);
     }
   };
+
+  const initialValues = {
+    userName: "",
+    email: "",
+    phoneNumber: "",
+    city: "",
+  };
+
   return (
-    <div className="relative border rounded-lg shadow-sm p-2 w-full">
-      <Formik
-        initialValues={{
-          userName: "",
-          email: "",
-          phoneNumber: "",
-          message: "",
-        }}
-        validationSchema={contactusSchema}
-        onSubmit={handleSubmit}
-      >
-        <div className="px-2 md:px-16 text-left my-10 w-full ">
-          <Form className={`  my-2`}>
-            <div>
-              <div className=" ">
-                <InputField
-                  label="Name"
-                  name="userName"
-                  placeholder="Enter First Name"
-                  type="text"
-                />
-                <div className="flex  items-end flex-col md:flex-row gap-0 md:gap-3">
+    <div className="relative border rounded-lg shadow-sm p-2 w-full max-w-4xl mx-auto">
+      <div className="px-2 md:px-16 text-left my-10 w-full">
+        <Formik
+          initialValues={initialValues}
+          validate={validateForm}
+          onSubmit={handleSubmit}
+        >
+          {({ isSubmitting, errors, touched, setFieldTouched }) => (
+            <Form>
+              <div className="my-2">
+                <div>
                   <InputField
-                    label="Phone Number"
-                    name="phoneNumber"
-                    placeholder="Phone Number"
+                    label="Name"
+                    name="userName"
+                    placeholder="Enter First Name"
                     type="text"
                   />
+
+                  <div className="flex items-end flex-col md:flex-row gap-0 md:gap-3">
+                    <InputField
+                      label="Phone Number"
+                      name="phoneNumber"
+                      placeholder="Phone Number"
+                      type="text"
+                    />
+                    <InputField
+                      label="Email"
+                      name="email"
+                      placeholder="Email"
+                      type="email"
+                    />
+                  </div>
+
                   <InputField
-                    label="Email"
-                    name="email"
-                    placeholder="Email"
-                    type="email"
+                    label="City"
+                    name="city"
+                    placeholder="Enter your city"
+                    type="text"
                   />
+
+                  <div className="grid grid-cols-1 gap-0">
+                    <DropdownRadio
+                      label="Interested in"
+                      name="interestedIn"
+                      options={[]}
+                      selectedValue={dropdownValues.interestedIn}
+                      onChange={handleDropdownChange}
+                      placeholder="Select your interest"
+                      errors={errors}
+                      touched={touched}
+                      setFieldTouched={setFieldTouched}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={loading || isSubmitting}
+                    className="group w-full relative mt-5 inline-flex items-center justify-center overflow-hidden rounded-full bg-[#37584F] px-12 py-3 font-mono text-xl font-medium tracking-tighter text-white border-[1px] border-[#00000033] disabled:opacity-50"
+                  >
+                    <span className="absolute h-0 w-0 rounded-full bg-[#37584F] transition-all duration-500 ease-out group-hover:h-56 group-hover:w-56"></span>
+                    <span className="absolute inset-0 -mt-1 h-full w-full rounded-lg bg-gradient-to-b from-transparent via-transparent to-gray-700 opacity-30"></span>
+                    <span className="relative font-[Poppins] tracking-wide font-medium text-[20px] text-[#FEFEFB]">
+                      {loading ? (
+                        <RingLoader color="white" size={30} />
+                      ) : (
+                        "Message Us"
+                      )}
+                    </span>
+                  </button>
                 </div>
               </div>
-              <div className="flex flex-col popping">
-                <label htmlFor="message" className="text-sm">
-                  Message
-                </label>
-                <Field
-                  as="textarea"
-                  id="message"
-                  name="message"
-                  rows={5}
-                  placeholder="Enter Message"
-                  className=" rounded-lg border shadow-sm placeholder:text-sm bg-transparent px-3 py-3 text-lg focus:border-white focus:outline-none"
-                />
-                <ErrorMessage
-                  name="message"
-                  component="div"
-                  className=" py-1 text-red-600"
-                />
-              </div>
-              <button
-                type="submit"
-                className="group w-full relative mt-5 inline-flex items-center justify-center overflow-hidden rounded-full bg-[#37584F] px-12 py-2 font-mono text-xl font-medium tracking-tighter text-white"
-              >
-                <span className="absolute h-0 w-0 rounded-full bg-[#37584F] transition-all duration-500 ease-out group-hover:h-56 group-hover:w-56"></span>
-                <span className="absolute inset-0 -mt-1 h-full w-full rounded-lg bg-gradient-to-b from-transparent via-transparent to-gray-700 opacity-30"></span>
-                <span className="relative popping tracking-wide  ">
-                  {loading ? (
-                    <RingLoader color="white" size={30} />
-                  ) : (
-                    "Message Us"
-                  )}
-                </span>
-              </button>
-            </div>
-          </Form>
-        </div>
-      </Formik>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 }
