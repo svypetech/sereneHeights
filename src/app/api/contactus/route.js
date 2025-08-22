@@ -156,16 +156,16 @@ export async function POST(request) {
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
-          user: "info@svype.net",
-          pass: "ekvs kamh prar zkhu",
+          user: "sereneenquires@gmail.com",
+          pass: "olxq wbse eenc mkza",
         },
         // tls: { rejectUnauthorized: false },
       });
 
       const mailOptions = {
-        from: "info@svype.net",
+        from: "sereneenquires@gmail.com",
         replyTo: email,
-        to: "info@sereneheightsnathiagali.com",
+        to: "sereneenquires@gmail.com",
         subject: "New Lead from Website",
         html: `
         <p>You have received a new contact us submission:</p>
