@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { RingLoader } from "react-spinners";
 import DropdownRadio from "./DropdownRadio";
 import InputField from "./InputField";
+import Swal from "sweetalert2";
 
 function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -80,15 +81,31 @@ function ContactUs() {
         });
 
         // Mock success alert (replace with your SweetAlert2)
-        alert("Message Sent! Your message has been submitted successfully!");
+        // alert("Message Sent! Your message has been submitted successfully!");
+        Swal.fire({
+          title: "Message Sent!",
+          text: "Your message has been submitted successfully!",
+          icon: "success",
+          confirmButtonText: "OK",
+          backdrop: true,
+          scrollbarPadding: false,
+        });
       } else {
         throw new Error("Failed to submit form");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert(
-        "Error! An error occurred while submitting your message. Please try again later."
-      );
+      // alert(
+      //   "Error! An error occurred while submitting your message. Please try again later."
+      // );
+      Swal.fire({
+        title: "Error!",
+        text: "An error occurred while submitting your message. Please try again later.",
+        icon: "error",
+        confirmButtonText: "OK",
+        backdrop: true,
+        scrollbarPadding: false,
+      });
     } finally {
       setLoading(false);
       setSubmitting(false);
@@ -155,7 +172,7 @@ function ContactUs() {
                       touched={touched}
                       setFieldTouched={setFieldTouched}
                     />
-                    
+
                     {dropdownValues.interestedIn && (
                       <DropdownRadio
                         label="Sub Interest"

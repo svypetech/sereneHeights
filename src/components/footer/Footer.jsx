@@ -187,7 +187,7 @@ function Footer() {
               href="https://www.instagram.com/sereneheightshotelsandresorts/"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden lg:block"
+              // className="hidden lg:block"
             >
               <Icon icon="streamline:instagram-solid" width="20" height="20" />
             </a>
@@ -199,15 +199,14 @@ function Footer() {
               <Icon icon="ic:outline-facebook" width="24" height="24" />
             </a>
             <a
-              href="https://www.facebook.com/sereneheightshotelsandresorts"
+              href="https://youtube.com/@sereneheightsnathiagali5573?si=3Q-4tZW0WSAb8aN0"
               target="_blank"
               rel="noopener noreferrer"
-              className="lg:hidden"
             >
-              <Icon icon="mdi:github" width="24" height="24" />
+              <Icon icon="mdi:youtube" width="24" height="24" />
             </a>
 
-            <a
+            {/* <a
               href="https://www.facebook.com/sereneheightshotelsandresorts"
               target="_blank"
               rel="noopener noreferrer"
@@ -222,7 +221,7 @@ function Footer() {
               className="lg:hidden"
             >
               <Icon icon="mingcute:dribbble-line" width="24" height="24" />
-            </a>
+            </a> */}
           </div>
         </div>
       </div>
