@@ -27,7 +27,7 @@ const smartPropertyFeatures = [
     src: "/assets/coownership/featureGrid/feature4.png",
   },
   {
-    heading: "STANDARDIZED SHARES",
+    heading: "STANDARDIZED UNITS",
     text: "Buy in fixed units of 50 SQFT, clear and fair.",
     width: "50%",
     src: "/assets/coownership/featureGrid/feature5.png",

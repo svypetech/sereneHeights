@@ -34,7 +34,7 @@ const HowItWorks = () => {
     },
     {
       label: "STEP 5",
-      title: "TRANSFERABLE SHARES",
+      title: "TRANSFERABLE UNITS",
       description:
         "Sell or transfer your ownership anytime",
       icon: "humbleicons:coins",

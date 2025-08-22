@@ -20,7 +20,7 @@ const featuresData = [
   {
     id: 3,
     title: "Rental Income",
-    description: "High ROI through managed rentals via Smart Property Share.",
+    description: "High ROI through managed rentals via Smart Property Unit.",
     image: "/assets/coownership/frame3.png",
     alt: "rental-income",
   },
