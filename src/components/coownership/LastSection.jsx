@@ -16,7 +16,7 @@ const smartPropertyFeatures = [
   },
   {
     heading: "SECURE CONTRACTS",
-    text: "Every share is protected by legal agreements.",
+    text: "Every unit is protected by legal agreements.",
     width: "30%",
     src: "/assets/coownership/featureGrid/feature3.png",
   },
@@ -121,7 +121,7 @@ function LastSection() {
     <div className="">
       {/* Title */}
       <h1 className="uppercase font-bold text-[#37584F] pb-12 text-center sm:text-5xl text-3xl gravesendSans">
-        Why Choose Smart Property Share @ Serene Heights?
+        Why Choose Smart Property Unit @ Serene Heights?
       </h1>
 
       <FeatureRow

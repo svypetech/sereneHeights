@@ -1,6 +1,6 @@
 const tableData1 = [
-    { description: "1 share size sq ft", value: "50" },
-    { description: "1 share value", value: "2,000,000" },
+    { description: "1 unit size sq ft", value: "50" },
+    { description: "1 unit value", value: "2,000,000" },
     { description: "Down payment (30%)", value: "600,000" },
     { description: "Possession (10%)", value: "200,000" },
     { description: "4 bi-annual payment\nPkr 75,000 each", value: "300,000" },

@@ -22,7 +22,7 @@ const HowItWorks = () => {
       label: "STEP 3",
       title: "CONFIRM OWNERSHIP",
       description:
-        "Once payments are complete, your Smart Property Share in Serene Heights is secured.",
+        "Once payments are complete, your Smart Property Unit in Serene Heights is secured.",
       icon: "emojione-monotone:handshake",
     },
     {
@@ -213,7 +213,7 @@ const HowItWorks = () => {
               </h3>
 
               <p
-                className="text-[#222222] sm:text-lg text-sm mt-4 leading-relaxed transition-colors duration-500 ease-in-out"
+                className="text-[#222222] workSans sm:text-lg text-sm mt-4 leading-relaxed transition-colors duration-500 ease-in-out"
               >
                 {item.description}
               </p>
