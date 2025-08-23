@@ -227,7 +227,7 @@ function Footer() {
       </div>
 
       <div className="p-4 text-center bg-[#18332A] inter">
-        Powered By <u>Svype</u>
+        Powered By <a href="https://www.svype.net/" target="_blank"><u>Svype</u></a>
       </div>
     </div>
   );
