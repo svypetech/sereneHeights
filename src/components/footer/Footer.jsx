@@ -18,9 +18,9 @@ function Footer() {
           {/* Logo and Contact Info - Stays separate */}
           <div className="flex flex-col lg:w-auto lg:flex-shrink-0">
             <img
-              src="/assets/footer/finalLogo1.png"
+              src="/assets/logo/logo.png"
               alt="logo img"
-              className="h-72 w-56 max-h-auto"
+              className="h-72 w-auto max-w-[256px] object-contain"
             />
             <div className="flex flex-col gap-3 workSans text-sm">
               <div className="flex gap-3 items-center">

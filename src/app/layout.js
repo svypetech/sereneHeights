@@ -126,7 +126,7 @@ export default function RootLayout({ children }) {
         >
           <Icon icon="logos:whatsapp-icon" width="48" height="48" />
         </a> */}
-        <div className="fixed bottom-5 right-5 md:bottom-9 md:right-9 z-50 p-2 animate-po hover:scale-125 transition-transform  hover:animate-none">
+        <div className="fixed bottom-5 right-5 md:bottom-9 md:right-9 z-30 p-2 animate-po hover:scale-125 transition-transform  hover:animate-none">
           <ConIcon
             bgColor={"bg-black/40 hover:bg-white/60"}
             direction={"column"}
