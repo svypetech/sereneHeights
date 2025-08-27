@@ -143,7 +143,7 @@ export const elements = [
         sectionTitle: "SMART PROPERTY MODEL",
         items: [
           { id: "why-us", name: "WHY US?", section: "co-ownership" },
-          { id: "ownership-model", name: "OWNERSHIP MODEL", section: "co-ownership" },
+          { id: "ownership-model", name: "SMART PROPERTY UNIT", section: "co-ownership" },
           { id: "how-it-works", name: "HOW IT WORKS", section: "co-ownership" },
         ],
       },

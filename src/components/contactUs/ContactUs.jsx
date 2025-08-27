@@ -39,6 +39,9 @@ function ContactUs() {
 
     if (!values.phoneNumber.trim()) {
       errors.phoneNumber = "Phone number is required";
+    } else if (!/^\+\d{1,4}\d{7,15}$/.test(values.phoneNumber)) {
+      errors.phoneNumber =
+        "Enter a valid phone number with country code (e.g. +1234567890)";
     }
 
     if (!values.city.trim()) {

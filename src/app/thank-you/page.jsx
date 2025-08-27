@@ -11,10 +11,13 @@ const page = () => {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="flex flex-col justify-center items-center gap-6 min-h-[85vh]"
+      className="flex flex-col justify-center items-center text-center gap-6 min-h-[85vh]"
     >
       <p className="text-4xl text-[#37584F] sm:text-5xl  font-bold tracking-wide  gravesendSans">
-        THANK YOU
+        Thank you for choosing Serene Heights.
+      </p>
+      <p className="text-2xl sm:text-3xl text-[#37584F]/80  tracking-wide font-helvetica font-medium">
+        Our team will get in touch with you shortly.
       </p>
 
       {/* <button

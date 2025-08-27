@@ -310,6 +310,28 @@ function TowerView() {
 
           {snow && !otherView && (
             <>
+              {/* Highlight icon for topmost floor */}
+              {(() => {
+                const floor8 = floorsFront.find((f) => f.name === "Floor 8");
+                return floor8 ? (
+                  <div
+                    className="absolute "
+                    style={{
+                      top: "21%",
+                      left: "58%",
+                      transform: "translateX(-50%)",
+                    }}
+                  >
+                    <Icon
+                      icon="circum:map"
+                      width="56"
+                      height="56"
+                      className="text-white drop-shadow-lg"
+                    />
+                  </div>
+                ) : null;
+              })()}
+
               {/* Transparent Overlay Divs for Each Floor */}
               {floorsFront.map((floor) => (
                 <div
