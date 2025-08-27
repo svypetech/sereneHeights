@@ -5,6 +5,7 @@ import { RingLoader } from "react-spinners";
 import DropdownRadio from "./DropdownRadio";
 import InputField from "./InputField";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -12,6 +13,8 @@ function ContactUs() {
     interestedIn: "",
     subInterest: "",
   });
+
+  const router = useRouter();
 
   const handleDropdownChange = (name, value) => {
     setDropdownValues((prev) => ({
@@ -82,14 +85,15 @@ function ContactUs() {
 
         // Mock success alert (replace with your SweetAlert2)
         // alert("Message Sent! Your message has been submitted successfully!");
-        Swal.fire({
-          title: "Message Sent!",
-          text: "Your message has been submitted successfully!",
-          icon: "success",
-          confirmButtonText: "OK",
-          backdrop: true,
-          scrollbarPadding: false,
-        });
+        // Swal.fire({
+        //   title: "Message Sent!",
+        //   text: "Your message has been submitted successfully!",
+        //   icon: "success",
+        //   confirmButtonText: "OK",
+        //   backdrop: true,
+        //   scrollbarPadding: false,
+        // });
+        router.push("/thank-you");
       } else {
         throw new Error("Failed to submit form");
       }
