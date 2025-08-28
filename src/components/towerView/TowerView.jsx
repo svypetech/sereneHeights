@@ -315,10 +315,10 @@ function TowerView() {
                 const floor8 = floorsFront.find((f) => f.name === "Floor 8");
                 return floor8 ? (
                   <div
-                    className="absolute "
+                    className="absolute top-[22%] md:top-[21%] md:left-[58%] sm:top-[22%] sm:left-[64%] xs:top-[22%] xs:left-[78%] cursor-pointer"
                     style={{
-                      top: "21%",
-                      left: "58%",
+                      // top: "21%",
+                      // left: "58%",
                       transform: "translateX(-50%)",
                     }}
                   >
@@ -398,7 +398,7 @@ function TowerView() {
               <img
                 src="/assets/logo/logo.png"
                 alt="logo"
-                className="h-[80px] w-[80px] mb-1 sm:w-full sm:h-[100px] md:h-[150px]"
+                className="h-[80px] w-[80px] mb-1 sm:w-full sm:h-[100px] md:h-[150px] object-contain"
               />
               <button
                 className="cursor-pointer border text-xs sm:text-base flex items-center gap-2 md:gap-1 border-white rounded-lg text-white py-2 px-2 sm:px-4"
