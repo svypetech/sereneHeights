@@ -108,6 +108,10 @@ import React, { useEffect, useState, useRef } from "react";
 function Progress() {
   const data = [
     {
+      label: "SEPTEMBER, 2025",
+      video: "https://www.youtube.com/embed/_b7QhNjmldk",
+    },
+    {
       label: "APRIL, 2025",
       video: "https://www.youtube.com/embed/zih0inhf1hM?si=BKwJaQOzj6PEYX1c",
     },
