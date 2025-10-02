@@ -76,6 +76,12 @@ function Footer() {
                   Progress
                 </h3>
                 <Link
+                  href="/progress#april-2025"
+                  className="hover:underline cursor-pointer text-sm"
+                >
+                  April 2025
+                </Link>
+                <Link
                   href="/progress#july-2024"
                   className="hover:underline cursor-pointer text-sm"
                 >
@@ -98,12 +104,6 @@ function Footer() {
                   className="hover:underline cursor-pointer text-sm"
                 >
                   July 2023
-                </Link>
-                <Link
-                  href="/progress#october-2022"
-                  className="hover:underline cursor-pointer text-sm"
-                >
-                  October 2022
                 </Link>
               </div>
 
