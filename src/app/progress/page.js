@@ -196,8 +196,8 @@ function Progress() {
             <div className="flex flex-col items-center">
               <div
                 className={`rounded-full border-2 h-10 flex justify-center items-center w-10 transition-all duration-500 ease-in-out ${activeId === item.id
-                    ? "border-[#37584F] bg-[#1654430D]/5 scale-110"
-                    : "border-[#D3D3D3] scale-100"
+                  ? "border-[#37584F] bg-[#1654430D]/5 scale-110"
+                  : "border-[#D3D3D3] scale-100"
                   }`}
               >
                 <Icon
@@ -225,12 +225,13 @@ function Progress() {
               <iframe
                 src={item.video}
                 title={item.label}
-                className="rounded-lg my-7 w-full xl:h-[500px] aspect-video opacity-0 transition-opacity duration-700 ease-in-out"
+                className="rounded-lg my-7 w-full xl:h-[500px] aspect-video transition-opacity duration-700 ease-in-out"
                 style={{
-                  opacity: activeId === item.id ? 1 : 0.3,
+                  opacity: 1,
                 }}
                 allowFullScreen
               />
+
             </div>
           </div>
         ))}
