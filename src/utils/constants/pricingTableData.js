@@ -4,7 +4,7 @@ const tableData1 = [
     { description: "Down payment (30%)", value: "600,000" },
     { description: "Possession (10%)", value: "200,000" },
     { description: "4 bi-annual payment\nPkr 75,000 each", value: "300,000" },
-    { description: "36 monthly installments", value: "25,000" }
+    { description: "36 monthly installments", value: "38,900" }
 ];
 
 const tableData2 = [
@@ -13,7 +13,7 @@ const tableData2 = [
     { description: "Annual free night voucher", value: "2" },
     { description: "Value package", value: "500,000" },
     { description: "Annual capital gain on\ninvestment", value: "5%" },
-    { description: "ROI", value: "25%" }
+    { description: "ROI", value: "20%" }
 ];
 
 export { tableData1, tableData2 };
