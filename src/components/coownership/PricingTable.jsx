@@ -1,7 +1,7 @@
 const PricingTable = ({ title, tableData, className = "" }) => {
   return (
     <div 
-      className={`bg-[#FEFEFB] rounded-[20px] overflow-hidden w-full min-h-[400px] sm:min-h-[500px] lg:h-[600px] xl:h-[600px] ${className}`} 
+      className={`bg-[#FEFEFB] rounded-[20px] overflow-hidden w-full ${className}`} 
       style={{boxShadow: '0px 0px 4px 0px #00000040'}}
     >
       {/* Header */}
