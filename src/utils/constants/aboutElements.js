@@ -6,7 +6,7 @@ export const imageGroups = [
   ],
   [
     // { src: "aboutImg4.png", width: "35%" },
-    { src: "aboutImg5.png", width: "65%" },
+    { src: "aboutImg5.png", width: "100%" },
     // { src: "aboutImg6.png", width: "25%" },
   ],
 ];
