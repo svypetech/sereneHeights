@@ -19,11 +19,11 @@ function page() {
         About Us
       </h1>
       <p className="py-10 text-[#222] text-lg inter">
-        All In Holdings embodies a diverse portfolio of businesses,
+        Serene Holdings embodies a diverse portfolio of businesses,
         strategically investing across multiple sectors including{" "}
         textiles, travel, and real estate. Our unwavering commitment to
         excellence drives our pursuit of success in each venture we undertake.
-        DM Consortium part of All in Holdings is a real estate company with its
+        DM Consortium part of Serene Holdings is a real estate company with its
         flagship project by the name of Serene Heights Hotel & Resorts.
         <br /> Prior to commencing vertical construction, DM Consortium achieved
         remarkable success with the completion of a{" "}
