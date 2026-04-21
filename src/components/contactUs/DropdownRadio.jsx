@@ -26,9 +26,9 @@ const DropdownRadio = ({
     {
       text: "How many 50 sq ft Smart Property Units of Serene Heights, Nathia Gali would you like to co-own?",
     },
-    { text: "1 Unit - PKR 2,000,000 (Down Payment: PKR 600,000)" },
-    { text: "2 Units - PKR 4,000,000 (Down Payment: PKR 1,200,000)" },
-    { text: "3 Units - PKR 6,000,000 (Down Payment: PKR 1,800,000)" },
+    { text: "1 Unit - PKR 2,250,000 (Down Payment: PKR 675,000)" },
+    { text: "2 Units - PKR 4,500,000 (Down Payment: PKR 1,350,000)" },
+    { text: "3 Units - PKR 6,750,000 (Down Payment: PKR 2,025,000)" },
     {
       text: "More than 3 Units",
     },
