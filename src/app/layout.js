@@ -12,11 +12,10 @@ import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import localFont from "next/font/local";
-import { headers } from "next/headers";
-import { Icon } from "@iconify-icon/react";
 import ConIcon from "@/components/conIcon/ConIcon";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
+import { SITE_URL } from "@/utils/site";
 
 
 const gravesendSans = localFont({
@@ -74,13 +73,18 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Serene Heights Nathia Gali",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Serene Heights Nathia Gali",
+    template: "%s | Serene Heights Nathia Gali",
+  },
   description: "Serene Heights Nathia Gali",
+  alternates: {
+    canonical: "/",
+  },
 };
+
 export default function RootLayout({ children }) {
-  // const headersList = headers();
-  // const fullUrl = headersList.get("x-url") || "";
-  // const lastPart = fullUrl.split("/").filter(Boolean).pop();
 
   return (
     <html lang="en">

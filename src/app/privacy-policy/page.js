@@ -1,8 +1,11 @@
-export const metadata = {
-  title: "Privacy Policy | Serene Heights Nathia Gali",
+import { createPageMetadata } from "@/utils/site";
+
+export const metadata = createPageMetadata({
+  title: "Privacy Policy",
   description:
     "Privacy policy for Serene Heights Nathia Gali resort and real estate enquiries.",
-};
+  path: "/privacy-policy",
+});
 
 export default function PrivacyPolicyPage() {
   return (
