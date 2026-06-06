@@ -87,17 +87,31 @@ function resolveTitle(title, path) {
   return `${pageTitle} | ${SITE_NAME}`;
 }
 
+function buildPageUrl(path) {
+  return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+}
+
+function buildHreflangAlternates(path) {
+  const url = buildPageUrl(path);
+
+  return {
+    canonical: path,
+    languages: {
+      en: url,
+      "x-default": url,
+    },
+  };
+}
+
 function buildSocialMetadata({ title, description, path }) {
   const pageMeta = PAGE_SEO[path] || {};
   const resolvedTitle = resolveTitle(title, path);
   const resolvedDescription =
     description || pageMeta.description || DEFAULT_DESCRIPTION;
-  const url = path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  const url = buildPageUrl(path);
 
   return {
-    alternates: {
-      canonical: path,
-    },
+    alternates: buildHreflangAlternates(path),
     openGraph: {
       title: resolvedTitle,
       description: resolvedDescription,
