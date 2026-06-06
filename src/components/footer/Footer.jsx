@@ -74,6 +74,12 @@ function Footer() {
                 >
                   Privacy Policy
                 </Link>
+                <Link
+                  href="/blog"
+                  className="hover:underline cursor-pointer text-sm"
+                >
+                  Blog
+                </Link>
               </div>
 
               {/* Progress Column */}
