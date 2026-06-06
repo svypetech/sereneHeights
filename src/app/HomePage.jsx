@@ -10,6 +10,7 @@ import { Icon } from "@iconify-icon/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import SimpleMap from "../components/map/Map";
+import { HOME_DISCOVER_ALTS } from "@/utils/constants/imageAltText";
 
 export default function Home() {
   return (
@@ -46,7 +47,7 @@ export default function Home() {
               >
                 <Image
                   src="/assets/home/image1.png"
-                  alt="img"
+                  alt={HOME_DISCOVER_ALTS["image1.png"]}
                   width={170}
                   height={220}
                   className="rounded-[10px]"
@@ -61,7 +62,7 @@ export default function Home() {
               >
                 <Image
                   src="/assets/home/image2.png"
-                  alt="img"
+                  alt={HOME_DISCOVER_ALTS["image2.png"]}
                   width={170}
                   height={140}
                   className="rounded-[10px]"
@@ -78,7 +79,7 @@ export default function Home() {
               >
                 <Image
                   src="/assets/home/image3.png"
-                  alt="img"
+                  alt={HOME_DISCOVER_ALTS["image3.png"]}
                   width={170}
                   height={140}
                   className="rounded-[10px]"
@@ -94,7 +95,7 @@ export default function Home() {
               >
                 <Image
                   src="/assets/home/image4.png"
-                  alt="img"
+                  alt={HOME_DISCOVER_ALTS["image4.png"]}
                   width={170}
                   height={220}
                   className="rounded-[10px]"

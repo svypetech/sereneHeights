@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { elements } from "@/utils/constants/navElements";
+import { BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
 import { Icon } from "@iconify-icon/react";
 import ConIcon from "../conIcon/ConIcon";
 import Link from "next/link";
@@ -37,7 +38,7 @@ const SidebarMenu = ({ setShow }) => {
           <img
             src="assets/logo/logoGreen.png"
             className="h-[140px]"
-            alt="logo"
+            alt={BRAND_LOGO_ALT}
           />
           <p className="text-[#37584F] text-4xl" onClick={() => setShow(false)}>
             X

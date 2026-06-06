@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { COOWNERSHIP_FEATURE_ALTS } from "@/utils/constants/imageAltText";
 
 const featuresData = [
   {
@@ -7,7 +8,7 @@ const featuresData = [
     title: "Prime Location",
     description: "Located in the heart of Nathiagali near major access points.",
     image: "/assets/coownership/frame1.png",
-    alt: "prime-location",
+    alt: COOWNERSHIP_FEATURE_ALTS["prime-location"],
   },
   {
     id: 2,
@@ -15,14 +16,14 @@ const featuresData = [
     description:
       "Luxury apartments with contemporary finishes and smart space planning.",
     image: "/assets/coownership/frame2.png",
-    alt: "modern-design",
+    alt: COOWNERSHIP_FEATURE_ALTS["modern-design"],
   },
   {
     id: 3,
     title: "Rental Income",
     description: "High ROI through managed rentals via Smart Property Unit.",
     image: "/assets/coownership/frame3.png",
-    alt: "rental-income",
+    alt: COOWNERSHIP_FEATURE_ALTS["rental-income"],
   },
   {
     id: 4,
@@ -30,7 +31,7 @@ const featuresData = [
     description:
       "A project powered by trusted developers and managed by DM Consortium.",
     image: "/assets/coownership/frame4.png",
-    alt: "backed-by-experts",
+    alt: COOWNERSHIP_FEATURE_ALTS["backed-by-experts"],
   },
 ];
 

@@ -11,7 +11,7 @@
 //         >
 //           <img
 //             src={`assets/aminities/frames/${data.src}.png`}
-//             alt={`${data.src}`}
+//             alt={amenityAlt(data.text)}
 //           />
 //           {/* {data.heading && <p>{data.heading}</p>} */}
 //           <p className="text- pt-3 text-[#222222] font-medium popping ">{data.text}</p>
@@ -24,6 +24,7 @@
 // export default AminitiesCards
 
 import { aminitiesElements } from "@/utils/constants/aminitiesElements";
+import { amenityAlt } from "@/utils/constants/imageAltText";
 import React from "react";
 
 function AminitiesCards({ src, text }) {
@@ -38,7 +39,7 @@ function AminitiesCards({ src, text }) {
         >
           <img
             src={`assets/aminities/frames/${data.src}.png`}
-            alt={`${data.src}`}
+            alt={amenityAlt(data.text)}
           />
           <p className="pt-3 text-[#222222] font-medium popping">{data.text}</p>
         </div>

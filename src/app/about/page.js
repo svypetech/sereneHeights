@@ -10,6 +10,11 @@ import { Icon } from "@iconify-icon/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import React from "react";
+import {
+  ABOUT_FRAME_ALTS,
+  ABOUT_OBJECTIVE_ALTS,
+  ABOUT_OPPORTUNITY_ALTS,
+} from "@/utils/constants/imageAltText";
 
 function page() {
   return (
@@ -41,7 +46,7 @@ function page() {
           <div className="w-full md:w-[19%] lg:w-[19%] xl:w-[20%] 2xl:w-[20%] 4xl:w-[10%] h-full pb-4">
             <Image
               src={`/assets/about/frames/${sideImage.src}`}
-              alt="Side Image"
+              alt={ABOUT_FRAME_ALTS[sideImage.src]}
               width={150}
               height={300}
               className="w-full min-h-[800px] md:min-h-[385px] xl:min-h-[578px] 2xl:min-h-[640px] object-cover rounded-3xl"
@@ -83,7 +88,7 @@ function page() {
             <div className="mb-2">
               <Image
                 src="/assets/about/obj/objImg1.png"
-                alt="img"
+                alt={ABOUT_OBJECTIVE_ALTS["objImg1.png"]}
                 width={170}
                 height={220}
                 className="rounded-[10px] w-full h-auto"
@@ -93,7 +98,7 @@ function page() {
             <div>
               <Image
                 src="/assets/about/obj/objImg2.png"
-                alt="img"
+                alt={ABOUT_OBJECTIVE_ALTS["objImg2.png"]}
                 width={170}
                 height={140}
                 className="rounded-[10px] w-full h-auto"
@@ -105,7 +110,7 @@ function page() {
             <div className="mb-2">
               <Image
                 src="/assets/about/obj/objImg3.png"
-                alt="img"
+                alt={ABOUT_OBJECTIVE_ALTS["objImg3.png"]}
                 width={170}
                 height={140}
                 className="rounded-[10px] w-full h-auto"
@@ -115,7 +120,7 @@ function page() {
             <div className="flex-1">
               <Image
                 src="/assets/about/obj/objImg4.png"
-                alt="img"
+                alt={ABOUT_OBJECTIVE_ALTS["objImg4.png"]}
                 width={170}
                 height={220}
                 className="rounded-[10px] w-full h-full object-cover"
@@ -131,7 +136,7 @@ function page() {
         <div className="relative w-full md:w-1/2 order-2 md:order-1">
           <Image
             src="/assets/about/opportunity/opr1.png"
-            alt="img"
+            alt={ABOUT_OPPORTUNITY_ALTS["opr1.png"]}
             width={1000}
             height={500}
             className="w-full h-[500px] 2xl:h-[500px] rounded-2xl mb-3 object-cover"
@@ -140,7 +145,7 @@ function page() {
 
           <Image
             src="/assets/about/opportunity/oprFrame1.png"
-            alt="img"
+            alt={ABOUT_OPPORTUNITY_ALTS["oprFrame1.png"]}
             width={220}
             height={220}
             className="absolute hidden md:block top-[5%] md:top-[8%] right-[-6%] w-[35%] max-w-[180px] md:max-w-[220px]"
@@ -148,7 +153,7 @@ function page() {
 
           <Image
             src="/assets/about/opportunity/oprFrame2.png"
-            alt="img"
+            alt={ABOUT_OPPORTUNITY_ALTS["oprFrame2.png"]}
             width={220}
             height={220}
             className="absolute hidden md:block bottom-[5%] md:bottom-[10%] right-[-18%] w-[35%] max-w-[180px] md:max-w-[220px]"

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
+import { HOME_FRAME_ALTS, BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
 
 const text1 = "A HAVEN IN THE";
 const text2 = "HIGHLANDS";
@@ -163,13 +164,13 @@ const MotionImage = ({
         height={height}
         className={`${defaultHeight} ${xlHeight} rounded-3xl min-h-[150px] max-h-[710px] w-full transition-transform duration-100 ease-in-out`}
         src={`/assets/home/frames/${src}`}
-        alt="img"
+        alt={HOME_FRAME_ALTS[src] || `Serene Heights Nathia Gali resort feature highlight`}
         priority
       />
       {src === "frame4.png" ? (
         <Image
           src="/assets/logo/logo.png"
-          alt="Alternative Image"
+          alt={BRAND_LOGO_ALT}
           width={300}
           height={300}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"

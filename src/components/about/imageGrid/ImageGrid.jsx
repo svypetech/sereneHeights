@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
+import { ABOUT_FRAME_ALTS } from "@/utils/constants/imageAltText";
 
 function ImageGrid({ images }) {
   const [screenSize, setScreenSize] = useState(0);
@@ -29,7 +30,7 @@ function ImageGrid({ images }) {
           <Image
             key={index}
             src={`/assets/about/frames/${image.src}`}
-            alt="About Image"
+            alt={ABOUT_FRAME_ALTS[image.src] || `Serene Heights Nathia Gali resort development photo`}
             width={300}
             height={300}
             className="w-full h-full md:h-[185px] xl:h-[280px] 2xl:h-[315px] object-cover rounded-3xl"

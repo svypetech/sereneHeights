@@ -1,5 +1,6 @@
 "use client";
 import { featuresElements } from "@/utils/constants/aminitiesElements";
+import { featureAlt } from "@/utils/constants/imageAltText";
 import React, { useState, useEffect } from "react";
 
 function FeaturesCards() {
@@ -37,7 +38,7 @@ function FeaturesCards() {
           >
             <img
               src={`assets/aminities/features/${data.src}.png`}
-              alt={`${data.src}`}
+              alt={featureAlt(data.heading)}
               className="w-16 h-16 lg:w-20 lg:h-20 object-contain mb-4 md:mb-0 md:mr-6 flex-shrink-0"
             />
             <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left w-full">

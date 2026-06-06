@@ -3,6 +3,7 @@ import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
 import React, { useState, useRef, useEffect } from "react";
 import { elements } from "@/utils/constants/navElements";
+import { BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
 import { usePathname, useRouter } from "next/navigation";
 import ResponsiveNavbar from "../responsiveNavbar/ResponsiveNavbar";
 
@@ -128,7 +129,7 @@ function Navbar() {
               <img
                 src={`/assets/logo/${logo}.png`}
                 className="h-28 my-0 sm:my-5"
-                alt="serene heights"
+                alt={BRAND_LOGO_ALT}
               />
             </Link>
             <div className="flex items-center gap-1 ">

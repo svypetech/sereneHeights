@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { DESIRE_FRAME_ALTS } from "@/utils/constants/imageAltText";
 
 // You can keep your real file names/paths.
 // Using the same structure you shared.
@@ -54,7 +55,7 @@ function LoopingRow({ images, animation }) {
                 className="h-full w-full px-2 sm:px-0 p-1 sm:p-0 rounded-2xl sm:rounded-none"
                 // Keep your original path
                 src={`/assets/home/desireFrames/${src}`}
-                alt="img"
+                alt={DESIRE_FRAME_ALTS[src] || `Resort amenity at Serene Heights Nathia Gali`}
                 priority
               />
             ))}

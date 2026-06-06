@@ -6,7 +6,7 @@
 //       <img
 //         src="/assets/home/location/locationIcon.png"
 //         className="h-10"
-//         alt="locationIcon"
+//         alt={locationAlt(title)}
 //       />
 //       <div className="py-2">
 //         <p>{title}</p>
@@ -19,6 +19,7 @@
 // export default LocationCards
 
 import React from "react";
+import { locationAlt } from "@/utils/constants/imageAltText";
 
 function LocationCards({ title, distance }) {
   return (
@@ -26,7 +27,7 @@ function LocationCards({ title, distance }) {
       <img
         src="/assets/home/location/locationIcon.png"
         className="h-14 object-cover flex-shrink-0"
-        alt="locationIcon"
+        alt={locationAlt(title)}
       />
       <div className="py-2 flex-grow">
         <p>{title}</p>

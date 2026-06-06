@@ -51,7 +51,7 @@ function UniqueServicesCard({ body, isExpanded, onClick, totalServices, index })
                 ? "/assets/payment/minusCircle.svg"
                 : "/assets/payment/plusCircle.svg"
             }
-            alt="toggle-icon"
+            alt={isExpanded ? "Collapse payment plan details" : "Expand payment plan details"}
           />
         </div>
       </div>

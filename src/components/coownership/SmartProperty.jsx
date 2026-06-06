@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import { SMART_PROPERTY_ALTS } from "@/utils/constants/imageAltText";
 
 const SmartProperty = () => {
   return (
@@ -26,7 +27,7 @@ const SmartProperty = () => {
           <div className="mb-2">
             <Image
               src="/assets/about/obj/objImg1.png"
-              alt="img"
+              alt={SMART_PROPERTY_ALTS["objImg1.png"]}
               width={170}
               height={220}
               className="rounded-[10px] w-full h-auto"
@@ -36,7 +37,7 @@ const SmartProperty = () => {
           <div>
             <Image
               src="/assets/about/obj/objImg2.png"
-              alt="img"
+              alt={SMART_PROPERTY_ALTS["objImg2.png"]}
               width={170}
               height={140}
               className="rounded-[10px] w-full h-auto"
@@ -48,7 +49,7 @@ const SmartProperty = () => {
           <div className="mb-2">
             <Image
               src="/assets/about/obj/objImg3.png"
-              alt="img"
+              alt={SMART_PROPERTY_ALTS["objImg3.png"]}
               width={170}
               height={140}
               className="rounded-[10px] w-full h-auto"
@@ -58,7 +59,7 @@ const SmartProperty = () => {
           <div className="flex-1">
             <Image
               src="/assets/about/obj/objImg4.png"
-              alt="img"
+              alt={SMART_PROPERTY_ALTS["objImg4.png"]}
               width={170}
               height={220}
               className="rounded-[10px] w-full h-full object-cover"

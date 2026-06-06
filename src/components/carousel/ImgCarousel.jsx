@@ -197,7 +197,7 @@
 //                 <img
 //                   className="h-28 md:h-40"
 //                   src="/assets/carousel/dm.png"
-//                   alt="DM brand mark"
+//                   alt={DM_CONSORTIUM_ALT}
 //                 />
 //               </motion.div>
 
@@ -228,7 +228,7 @@
 //           <img
 //             className="h-full w-full object-cover"
 //             src="/assets/carousel/carouselImg1.png"
-//             alt="Resort exterior with mountain landscape"
+//             alt={CAROUSEL_RESORT_ALT}
 //           />
 
 //           <Overlay active={selectedSlide === 0}>
@@ -259,7 +259,7 @@
 //                 <img
 //                   className="h-28 md:h-40"
 //                   src="/assets/carousel/dm.png"
-//                   alt="DM brand mark"
+//                   alt={DM_CONSORTIUM_ALT}
 //                 />
 //               </motion.div>
 
@@ -290,7 +290,7 @@
 //           <img
 //             className="h-full w-full object-cover"
 //             src="/assets/carousel/carouselImg1.png"
-//             alt="Resort exterior with mountain landscape"
+//             alt={CAROUSEL_RESORT_ALT}
 //           />
 
 //           <Overlay active={selectedSlide === 1}>
@@ -321,7 +321,7 @@
 //                 <img
 //                   className="h-28 md:h-40"
 //                   src="/assets/carousel/dm.png"
-//                   alt="DM brand mark"
+//                   alt={DM_CONSORTIUM_ALT}
 //                 />
 //               </motion.div>
 
@@ -352,7 +352,7 @@
 //           <img
 //             className="h-full w-full object-cover"
 //             src="/assets/carousel/carouselImg1.png"
-//             alt="Resort exterior with mountain landscape"
+//             alt={CAROUSEL_RESORT_ALT}
 //           />
 
 //           <Overlay active={selectedSlide === 2}>
@@ -383,7 +383,7 @@
 //                 <img
 //                   className="h-28 md:h-40"
 //                   src="/assets/carousel/dm.png"
-//                   alt="DM brand mark"
+//                   alt={DM_CONSORTIUM_ALT}
 //                 />
 //               </motion.div>
 
@@ -448,7 +448,7 @@
 //                 <img
 //                   className="h-28 md:h-40"
 //                   src="/assets/carousel/dm.png"
-//                   alt="DM brand mark"
+//                   alt={DM_CONSORTIUM_ALT}
 //                 />
 //               </motion.div>
 
@@ -490,6 +490,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { motion } from "framer-motion";
+import { CAROUSEL_RESORT_ALT, DM_CONSORTIUM_ALT } from "@/utils/constants/imageAltText";
 
 export default function ImgCarousel() {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -699,7 +700,7 @@ export default function ImgCarousel() {
                 <img
                   className="h-28 md:h-40"
                   src="/assets/carousel/dm.png"
-                  alt="DM brand mark"
+                  alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
 
@@ -730,7 +731,7 @@ export default function ImgCarousel() {
           <img
             className="h-full w-full object-cover"
             src="/assets/carousel/carouselImg1.png"
-            alt="Resort exterior with mountain landscape"
+            alt={CAROUSEL_RESORT_ALT}
           />
 
           <Overlay active={selectedSlide === 0}>
@@ -761,7 +762,7 @@ export default function ImgCarousel() {
                 <img
                   className="h-28 md:h-40"
                   src="/assets/carousel/dm.png"
-                  alt="DM brand mark"
+                  alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
 
@@ -792,7 +793,7 @@ export default function ImgCarousel() {
           <img
             className="h-full w-full object-cover"
             src="/assets/carousel/carouselImg1.png"
-            alt="Resort exterior with mountain landscape"
+            alt={CAROUSEL_RESORT_ALT}
           />
 
           <Overlay active={selectedSlide === 1}>
@@ -823,7 +824,7 @@ export default function ImgCarousel() {
                 <img
                   className="h-28 md:h-40"
                   src="/assets/carousel/dm.png"
-                  alt="DM brand mark"
+                  alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
 
@@ -854,7 +855,7 @@ export default function ImgCarousel() {
           <img
             className="h-full w-full object-cover"
             src="/assets/carousel/carouselImg1.png"
-            alt="Resort exterior with mountain landscape"
+            alt={CAROUSEL_RESORT_ALT}
           />
 
           <Overlay active={selectedSlide === 2}>
@@ -885,7 +886,7 @@ export default function ImgCarousel() {
                 <img
                   className="h-28 md:h-40"
                   src="/assets/carousel/dm.png"
-                  alt="DM brand mark"
+                  alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
 
@@ -950,7 +951,7 @@ export default function ImgCarousel() {
                 <img
                   className="h-28 md:h-40"
                   src="/assets/carousel/dm.png"
-                  alt="DM brand mark"
+                  alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
 

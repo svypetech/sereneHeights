@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { FLOOR_PLAN_ALTS } from "@/utils/constants/imageAltText";
 
 const data = [
   { label: "ground-floor", image: "/assets/floorPlan/ground1.png" },
@@ -58,7 +59,7 @@ function Page() {
               >
                 <Image
                   src={item.image}
-                  alt={item.label}
+                  alt={FLOOR_PLAN_ALTS[item.label]}
                   width={1600}
                   height={1400}
                   className={`absolute top-0 left-0 w-full h-full object-contain transition-transform duration-300 ${hoveredIndex === index ? "scale-[3]" : "scale-100"

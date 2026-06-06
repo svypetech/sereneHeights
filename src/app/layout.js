@@ -15,7 +15,7 @@ import localFont from "next/font/local";
 import ConIcon from "@/components/conIcon/ConIcon";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
-import { SITE_URL } from "@/utils/site";
+import { rootMetadata } from "@/utils/site";
 
 
 const gravesendSans = localFont({
@@ -72,17 +72,7 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  metadataBase: new URL(SITE_URL),
-  title: {
-    default: "Serene Heights Nathia Gali",
-    template: "%s | Serene Heights Nathia Gali",
-  },
-  description: "Serene Heights Nathia Gali",
-  alternates: {
-    canonical: "/",
-  },
-};
+export const metadata = rootMetadata;
 
 export default function RootLayout({ children }) {
 
