@@ -1,4 +1,4 @@
-import { getAllBlogSlugs, getBlogPost } from "@/utils/constants/blogPosts";
+import { getAllSlugs, getBlogBySlug } from "@/lib/getBlogs";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -11,7 +11,39 @@ function formatDate(dateString) {
   });
 }
 
+// ========================================
+// RICH TEXT RENDERER
+// Supports:
+// - Plain text
+// - Internal links
+function RichText({ content }) {
+  if (typeof content === "string") {
+    return content;
+  }
+
+  return content.map((item, i) => {
+    if (item.type === "link") {
+      return (
+        <Link
+          key={i}
+          href={item.href}
+          className="underline text-[#37584F] font-medium hover:text-[#165443]"
+        >
+          {item.text}
+        </Link>
+      );
+    }
+
+    return <span key={i}>{item.value}</span>;
+  });
+}
+
+// ========================================
+// BLOG CONTENT RENDERER
+// Handles all supported content types
 function PostSection({ section, index }) {
+  // ========================================
+  // HEADING (H2)
   if (section.type === "heading") {
     return (
       <h2 className="text-2xl md:text-3xl font-semibold text-[#37584F] gravesendSans">
@@ -20,6 +52,42 @@ function PostSection({ section, index }) {
     );
   }
 
+  // ========================================
+  // SUBHEADING (H3)
+  if (section.type === "subheading") {
+  return (
+    <h3 className="text-xl md:text-2xl font-semibold text-[#37584F] gravesendSans">
+      {section.content}
+    </h3>
+  );
+}
+
+  // ========================================
+  // HIGHLIGHT / KEY TAKEAWAY
+  if (section.type === "highlight") {
+    return (
+      <div className="border-l-4 border-[#37584F] pl-6">
+        <p className="italic text-md text-[#37584F] font-medium">
+          {section.content}
+        </p>
+      </div>
+    );
+  }
+
+  // ========================================
+  // NOTE / DISCLAIMER
+  if (section.type === "note") {
+    return (
+      <div className="rounded-lg bg-[#fff9ee] p-5">
+        <p className="italic text-base text-[#977119]">
+          {section.content}
+        </p>
+      </div>
+    );
+  }
+
+  // ========================================
+  // BULLETED LIST
   if (section.type === "list") {
     return (
       <ul className="list-disc pl-6 space-y-2">
@@ -30,28 +98,126 @@ function PostSection({ section, index }) {
     );
   }
 
-  const isAlternate = index % 2 === 0;
+  // ========================================
+  // TABLE
+  if (section.type === "table") {
+    return (
+      <div className="overflow-x-auto rounded-2xl border border-[#E4E7EC]">
+        <table className="w-full text-left">
+          <thead>
+            <tr className="bg-[#37584F] text-white">
+              {section.headers.map((header, i) => (
+                <th key={i} className="px-4 py-3 font-medium">
+                  {header}
+                </th>
+              ))}
+            </tr>
+          </thead>
 
-  return (
-    <div
-      className={
-        isAlternate
-          ? "bg-[#F3F2ED] rounded-2xl p-6 md:p-10 shadow-sm"
-          : undefined
-      }
-    >
-      <p>{section.content}</p>
-    </div>
-  );
+          <tbody>
+            {section.rows.map((row, rowIndex) => (
+              <tr
+                key={rowIndex}
+                className="border-t border-[#E4E7EC]"
+              >
+                {row.map((cell, cellIndex) => (
+                  <td
+                    key={cellIndex}
+                    className="px-4 py-3 align-top"
+                  >
+                    {cell}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    );
+  }
+
+  // ========================================
+  // CALL TO ACTION (CTA)
+  if (section.type === "cta") {
+    return (
+      <div className="rounded-2xl bg-[#37584F] p-8 text-center text-white">
+        <h3 className="text-2xl font-semibold gravesendSans">
+          {section.title}
+        </h3>
+
+        <p className="mt-4">
+          <RichText content={section.text} />
+        </p>
+
+     <Link
+        href={section.href}
+        className="inline-block  mt-6 rounded-lg bg-white px-5 py-3 text-base font-semibold text-[#37584F] border border-white transition-all duration-300 hover:bg-transparent hover:text-white hover:border-white"
+     >
+        {section.buttonText}
+    </Link>
+      </div>
+    );
+  }
+
+  // ========================================
+  // FAQ SECTION
+  if (section.type === "faq") {
+    return (
+      <div className="space-y-5">
+        {section.items.map((faq, i) => (
+          <div
+            key={i}
+            className="rounded-2xl bg-[#F3F2ED] p-6"
+          >
+            <h3 className="font-semibold text-[#37584F] text-lg">
+              <RichText content={faq.question} />
+            </h3>
+
+            <p className="mt-3">
+              <RichText content={faq.answer} />
+            </p>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+
+  // ========================================
+  // STANDARD PARAGRAPH
+  // Supports:
+  // - Plain text
+  // - Inline links
+  if (section.type === "paragraph") {
+    const isAlternate = index % 2 !== 0;
+
+    return (
+      <div
+        className={
+          isAlternate
+            ? "bg-[#F3F2ED] rounded-2xl p-6 md:p-10 shadow-sm"
+            : undefined
+        }
+      >
+        <p>
+          <RichText content={section.content} />
+        </p>
+      </div>
+    );
+  }
+
+  return null;
 }
 
+
+
 export async function generateStaticParams() {
-  return getAllBlogSlugs().map((slug) => ({ slug }));
+  return getAllSlugs();
 }
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getBlogBySlug(slug);
 
   if (!post) {
     return { title: "Post Not Found | Serene Heights Nathia Gali" };
@@ -65,7 +231,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = getBlogBySlug(slug);
 
   if (!post) {
     notFound();

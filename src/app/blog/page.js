@@ -1,5 +1,5 @@
 import BlogCard from "@/components/blog/BlogCard";
-import { blogPosts } from "@/utils/constants/blogPosts";
+import { getAllBlogs } from "@/lib/getBlogs";
 
 export const metadata = {
   title: "Blog | Serene Heights Nathia Gali",
@@ -8,8 +8,8 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  const sortedPosts = [...blogPosts].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
+ const sortedPosts = [...getAllBlogs()].sort(
+  (a, b) => new Date(b.date) - new Date(a.date)
   );
 
   return (
