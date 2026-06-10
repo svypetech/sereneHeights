@@ -13,7 +13,7 @@ export default function BlogPage() {
   );
 
   return (
-    <div className="px-6 md:px-16 lg:px-36 py-20 text-[#222222]">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-[#222222]">
       <div className="text-center">
         <p className="text-sm uppercase tracking-[0.25em] text-[#37584F] inter">
           Serene Heights Nathia Gali

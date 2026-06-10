@@ -238,7 +238,7 @@ export default async function BlogPostPage({ params }) {
   }
 
   return (
-    <div className="px-6 md:px-16 lg:px-36 py-20 text-[#222222]">
+    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-[#222222]">
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm font-medium text-[#37584F] inter hover:gap-3 transition-all"
@@ -251,7 +251,7 @@ export default async function BlogPostPage({ params }) {
         <p className="text-sm uppercase tracking-[0.25em] text-[#37584F] inter">
           {post.category}
         </p>
-        <h1 className="sm:text-5xl text-4xl font-bold text-[#37584F] gravesendSans mt-4 max-w-4xl mx-auto">
+        <h1 className="sm:text-5xl text-4xl font-bold text-[#37584F] gravesendSans mt-4">
           {post.title}
         </h1>
         <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[#475467] inter text-sm">
@@ -268,11 +268,11 @@ export default async function BlogPostPage({ params }) {
           fill
           className="object-cover"
           priority
-          sizes="(max-width: 1200px) 100vw, 1200px"
+          sizes="(max-width: 1280px) 100vw, 1280px"
         />
       </div>
 
-      <div className="mt-12 max-w-3xl mx-auto space-y-8 inter text-lg leading-relaxed">
+      <div className="mt-12 w-full space-y-8 inter text-lg leading-relaxed">
         <p className="text-xl text-[#475467] font-medium border-l-4 border-[#37584F] pl-6">
           {post.excerpt}
         </p>
@@ -282,7 +282,7 @@ export default async function BlogPostPage({ params }) {
         ))}
       </div>
 
-      <div className="mt-16 max-w-3xl mx-auto bg-[#F3F2ED] rounded-2xl p-8 md:p-10 text-center">
+      <div className="mt-16 w-full bg-[#F3F2ED] rounded-2xl p-8 md:p-10 text-center">
         <h2 className="text-2xl font-semibold text-[#37584F] gravesendSans">
           Interested in Serene Heights?
         </h2>
