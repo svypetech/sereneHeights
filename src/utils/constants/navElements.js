@@ -138,6 +138,27 @@ export const elements = [
   },
 
   {
+    key: "blog",
+    name: "BLOG",
+    id: "blog",
+    submenu: [
+      {
+        sectionTitle: "LATEST",
+        items: [
+          { id: "blog", name: "ALL POSTS", section: "blog" },
+        ],
+      },
+      {
+        sectionTitle: "GET IN TOUCH",
+        items: [
+          { id: "contact", name: "CONTACT", section: "contact-us" },
+          { id: "location", name: "LOCATION", section: "contact-us" },
+        ],
+      },
+    ],
+  },
+
+  {
     key: "co-owner-ship",
     name: "SMART PROPERTY UNIT",
     id: "co-ownership",
