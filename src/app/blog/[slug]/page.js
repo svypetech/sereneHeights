@@ -34,6 +34,14 @@ function RichText({ content }) {
       );
     }
 
+    if (item.type === "bold") {
+      return (
+        <strong key={i} className="font-semibold">
+          {item.text}
+        </strong>
+      );
+    }
+
     return <span key={i}>{item.value}</span>;
   });
 }
