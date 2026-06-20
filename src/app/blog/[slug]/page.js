@@ -42,6 +42,14 @@ function RichText({ content }) {
       );
     }
 
+    if (item.type === "italic") {
+    return (
+    <em key={i}>
+      {item.text}
+    </em>
+  );
+}
+
     return <span key={i}>{item.value}</span>;
   });
 }
@@ -157,12 +165,23 @@ function PostSection({ section, index }) {
           <RichText content={section.text} />
         </p>
 
-     <Link
-        href={section.href}
-        className="inline-block  mt-6 rounded-lg bg-white px-5 py-3 text-base font-semibold text-[#37584F] border border-white transition-all duration-300 hover:bg-transparent hover:text-white hover:border-white"
-     >
-        {section.buttonText}
-    </Link>
+    <div className="mt-6 flex flex-wrap justify-center gap-4">
+        <Link
+          href={section.href}
+          className="inline-block rounded-lg bg-white px-5 py-3 text-base font-semibold text-[#37584F] border border-white transition-all duration-300 hover:bg-transparent hover:text-white hover:border-white"
+        >
+          {section.buttonText}
+        </Link>
+
+        {section.secondaryHref && (
+          <Link
+            href={section.secondaryHref}
+            className="inline-block rounded-lg bg-white px-5 py-3 text-base font-semibold text-[#37584F] border border-white transition-all duration-300 hover:bg-transparent hover:text-white hover:border-white"
+          >
+            {section.secondaryButtonText}
+          </Link>
+        )}
+        </div>
       </div>
     );
   }
