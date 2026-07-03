@@ -6,35 +6,70 @@ import {
   imageGroups,
   sideImage,
 } from "@/utils/constants/aboutElements";
+import {
+  ABOUT_FOUNDER,
+  ABOUT_LEADERSHIP,
+  ABOUT_PHILOSOPHY,
+  ABOUT_TRACK_RECORD,
+  ABOUT_WHY_CHOOSE,
+} from "@/utils/constants/aboutContent";
 import { Icon } from "@iconify-icon/react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import React from "react";
 import {
   ABOUT_FRAME_ALTS,
   ABOUT_OBJECTIVE_ALTS,
   ABOUT_OPPORTUNITY_ALTS,
 } from "@/utils/constants/imageAltText";
 
-function page() {
+function SectionHeading({ icon, children }) {
+  return (
+    <div className="flex items-center justify-center md:justify-start gap-3">
+      <Icon
+        icon={icon}
+        className="text-[#37584F] font-extrabold shrink-0"
+        width="32"
+        height="32"
+      />
+      <h2 className="sm:text-4xl text-3xl font-bold py-3 text-[#37584F] gravesendSans text-left">
+        {children}
+      </h2>
+    </div>
+  );
+}
+
+function WhyItMatters({ children }) {
+  return (
+    <div className="border-l-4 border-[#37584F] pl-5 mt-6">
+      <p className="text-base text-[#37584F] font-semibold inter mb-1">
+        Why This Matters to You
+      </p>
+      <p className="text-lg text-[#222] inter">{children}</p>
+    </div>
+  );
+}
+
+function AboutPage() {
   return (
     <div className="text-center px-6 md:px-16 lg:px-36 h-full" id="about">
-      <h1 className="sm:text-5xl text-4xl font-bold text-[#37584F]  gravesendSans ">
-        {" "}
-        About Us
+      <h1 className="sm:text-5xl text-4xl font-bold text-[#37584F] gravesendSans">
+        About Serene Heights Nathia Gali
       </h1>
-      <p className="py-10 text-[#222] text-lg inter">
-        Serene Holdings embodies a diverse portfolio of businesses,
-        strategically investing across multiple sectors including{" "}
-        textiles, travel, and real estate. Our unwavering commitment to
-        excellence drives our pursuit of success in each venture we undertake.
-        DM Consortium part of Serene Holdings is a real estate company with its
-        flagship project by the name of Serene Heights Hotel & Resorts.
-        <br /> Prior to commencing vertical construction, DM Consortium achieved
-        remarkable success with the completion of a{" "}
-        Horizontal Development Project named Serene Farms, situated on
-        Barki Road in Lahore.
-      </p>
+
+      <div className="py-10 text-left max-w-4xl mx-auto">
+        <SectionHeading icon="mdi:account-tie">Our Founder & Vision</SectionHeading>
+        {ABOUT_FOUNDER.paragraphs.map((paragraph, index) => (
+          <p key={index} className="text-lg text-[#222] inter mt-4">
+            {paragraph}
+          </p>
+        ))}
+        <blockquote className="border-l-4 border-[#37584F] pl-5 mt-6 italic text-lg text-[#37584F] inter">
+          &ldquo;{ABOUT_FOUNDER.quote}&rdquo;
+          <span className="block not-italic text-base text-[#222] mt-2">
+            — Muhammad Ali Khan, Founder
+          </span>
+        </blockquote>
+        <WhyItMatters>{ABOUT_FOUNDER.whyItMatters}</WhyItMatters>
+      </div>
 
       <div className="w-[100%]">
         <div className="flex flex-col md:flex-row gap-4 w-full">
@@ -59,28 +94,62 @@ function page() {
         </div>
       </div>
 
-      <div className="sm:py-32 py-20 flex flex-col md:flex-row gap-12 justify-center sm:justify-between items-center ">
-        <div className=" text-left w-full md:w-1/2">
-          <div className="flex items-center gap-3">
-            <Icon
-              icon="pajamas:issue-type-objective"
-              className="text-[#37584F] font-extrabold"
-              width="32"
-              height="32"
-            />
-            <p className="sm:text-4xl text-3xl font-bold py-3 text-[#37584F] gravesendSans">
-              Our Objective
-            </p>
+      <div className="sm:py-32 py-20 text-left max-w-5xl mx-auto">
+        <SectionHeading icon="mdi:account-group">Our Leadership Team</SectionHeading>
+        <div className="mt-8 space-y-14">
+          {ABOUT_LEADERSHIP.map((leader) => (
+            <div key={leader.name}>
+              <h3 className="text-2xl font-bold text-[#37584F] gravesendSans">
+                {leader.name}{" "}
+                <span className="text-lg font-medium text-[#222] inter">
+                  | {leader.role}
+                </span>
+              </h3>
+              {leader.paragraphs.map((paragraph, index) => (
+                <p key={index} className="text-lg text-[#222] inter mt-4">
+                  {paragraph}
+                </p>
+              ))}
+              {leader.highlights?.length > 0 && (
+                <ul className="list-disc pl-6 mt-4 space-y-2 text-lg text-[#222] inter">
+                  {leader.highlights.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {leader.quote && (
+                <blockquote className="border-l-4 border-[#37584F] pl-5 mt-4 italic text-lg text-[#37584F] inter">
+                  &ldquo;{leader.quote}&rdquo;
+                </blockquote>
+              )}
+              <WhyItMatters>{leader.whyItMatters}</WhyItMatters>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="sm:py-32 py-20 flex flex-col md:flex-row gap-12 justify-center sm:justify-between items-center">
+        <div className="text-left w-full md:w-1/2">
+          <SectionHeading icon="mdi:chart-timeline-variant">
+            Our Track Record
+          </SectionHeading>
+          <div className="space-y-8 mt-4">
+            {ABOUT_TRACK_RECORD.map((project) => (
+              <div key={project.name}>
+                <h3 className="text-xl font-bold text-[#37584F] gravesendSans">
+                  {project.name}
+                </h3>
+                <ul className="list-disc pl-6 mt-3 space-y-1 text-lg text-[#222] inter">
+                  {project.stats.map((stat) => (
+                    <li key={stat}>{stat}</li>
+                  ))}
+                </ul>
+                {project.summary && (
+                  <p className="text-lg text-[#222] inter mt-3">{project.summary}</p>
+                )}
+              </div>
+            ))}
           </div>
-          <p className="text-lg text-[#222] inter ">
-            DM Consortium is currently dedicated to{" "}
-            <b> crafting premium resorts in the Northern Areas of Pakistan.</b>{" "}
-            Our primary objective is to introduce an all-encompassing vacation
-            experience unparalleled in the nation&apos;s history. Through our
-            initiatives, we aspire to redefine the holiday landscape throughout
-            Pakistan, showcasing contemporary architectural marvels meticulously
-            designed to epitomize comfort and opulence.
-          </p>
         </div>
 
         <div className="w-full md:w-1/2 grid grid-cols-2 gap-2">
@@ -132,7 +201,6 @@ function page() {
       </div>
 
       <div className="sm:py-26 py-20 flex flex-col md:flex-row gap-12 justify-center sm:justify-between items-center">
-        {/* Image */}
         <div className="relative w-full md:w-1/2 order-2 md:order-1">
           <Image
             src="/assets/about/opportunity/opr1.png"
@@ -160,32 +228,36 @@ function page() {
           />
         </div>
 
-        {/* Text */}
         <div className="text-left w-full md:w-1/2 order-1 md:order-2">
-          <div className="flex items-center gap-2">
-            <Icon
-              icon="fa6-solid:lightbulb"
-              className="text-[#37584F]"
-              width="34"
-              height="32"
-            />
-            <p className="sm:text-4xl text-3xl font-bold py-3 text-[#37584F] gravesendSans">
-              Opportunity For You
-            </p>
+          <SectionHeading icon="fa6-solid:lightbulb">
+            Our Investment Philosophy
+          </SectionHeading>
+          <div className="space-y-6 mt-4">
+            {ABOUT_PHILOSOPHY.map((principle, index) => (
+              <div key={principle.title}>
+                <h3 className="text-xl font-bold text-[#37584F] gravesendSans">
+                  {index + 1}. {principle.title.toUpperCase()}
+                </h3>
+                <p className="text-lg text-[#222] inter mt-2">{principle.description}</p>
+              </div>
+            ))}
           </div>
-          <p className="text-lg text-[#222] inter">
-            Furthermore, our projects present a{" "}
-            <b>unique opportunity to invest in mountain real estate,</b>{" "}
-            promising significant{" "}
-            <b>capital appreciation and recurring monthly dividends.</b> We aim
-            to nurture and spoil you by bringing you closer to nature and purity
-            with zero compromise in comfort and quality of life.
-          </p>
         </div>
       </div>
 
+      <div className="sm:pb-32 pb-20 text-left max-w-4xl mx-auto">
+        <SectionHeading icon="mdi:shield-check">Why Choose Serene Heights</SectionHeading>
+        <ul className="mt-6 space-y-3 text-lg text-[#222] inter">
+          {ABOUT_WHY_CHOOSE.map((item) => (
+            <li key={item} className="flex gap-3">
+              <span className="text-[#37584F] font-bold shrink-0">✓</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
 
-export default page;
+export default AboutPage;

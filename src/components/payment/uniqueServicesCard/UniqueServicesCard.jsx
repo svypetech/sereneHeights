@@ -38,7 +38,11 @@ function UniqueServicesCard({ body, isExpanded, onClick, totalServices, index })
           {" "}
           {/* Allows text to take remaining space */}
           <p className="text-sm font-semibold text-[#101828]">{body[0]}</p>
-          {isExpanded && <p className="text-sm pt-2 font-normal text-[#475467]">{body[1]}</p>}
+          {isExpanded && (
+            <p className="text-sm pt-2 font-normal text-[#475467] whitespace-pre-line">
+              {body[1]}
+            </p>
+          )}
         </div>
         <div
           onClick={onClick}

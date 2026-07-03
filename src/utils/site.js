@@ -7,6 +7,22 @@ export const SITE_HOST = new URL(SITE_URL).host;
 export const APEX_HOST = SITE_HOST.replace(/^www\./, "");
 
 export const SITE_NAME = "Serene Heights Nathia Gali";
+export const HOME_TITLE =
+  "Serene Heights Nathia Gali | Pakistan's #1 Winter Resort & Investment";
+export const HOME_DESCRIPTION =
+  "Invest in Serene Heights - Pakistan's luxury 5-star winter resort. Earn PKR 80K-120K monthly rental income. Premium hotel apartments with verified returns and 24/7 management.";
+export const ABOUT_TITLE =
+  "About Serene Heights Nathia Gali | DM Consortium's Luxury Resort Vision";
+export const ABOUT_DESCRIPTION =
+  "Learn about Serene Heights' founder Muhammad Ali Khan, expert leadership team, and proven track record. Discover why 500+ investors trust our transparent approach to mountain resort development.";
+export const AMENITIES_TITLE =
+  "Luxury Amenities at Serene Heights Nathia Gali | 50+ World-Class Facilities";
+export const AMENITIES_DESCRIPTION =
+  "Explore 50+ premium amenities at Serene Heights. Infinity pool, rooftop restaurant, spa, fitness gym, adventure activities, business center, and more. World-class resort facilities for investors and guests.";
+export const PAYMENT_PLAN_TITLE =
+  "Payment Plans for Serene Heights Nathia Gali | PKR 37,000 Per Sq Ft with 36-Month Installments";
+export const PAYMENT_PLAN_DESCRIPTION =
+  "Investment payment plans at Serene Heights starting at PKR 37,000 per sq ft. 30% booking payment with 36-month installments. Managed hotel apartments with zero maintenance fees and profit sharing.";
 export const DEFAULT_DESCRIPTION =
   "Pakistan's first and largest winter resort in Nathia Gali offering luxury hotel apartments, Smart Property Units, and world-class amenities in the Galiyat highlands.";
 
@@ -19,23 +35,24 @@ export const OG_IMAGE = {
 
 const PAGE_SEO = {
   "/": {
-    title: SITE_NAME,
-    description: DEFAULT_DESCRIPTION,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
+    absoluteTitle: true,
   },
   "/about": {
-    title: "About Us",
-    description:
-      "Discover Serene Holdings and DM Consortium's flagship Serene Heights Hotel & Resorts development in Nathia Gali.",
+    title: ABOUT_TITLE,
+    description: ABOUT_DESCRIPTION,
+    absoluteTitle: true,
   },
   "/amenities": {
-    title: "Amenities",
-    description:
-      "Explore 50+ world-class amenities at Serene Heights including infinity pool, spa, rooftop restaurant, and more.",
+    title: AMENITIES_TITLE,
+    description: AMENITIES_DESCRIPTION,
+    absoluteTitle: true,
   },
   "/payment-plan": {
-    title: "Payment Plan",
-    description:
-      "Flexible payment plans for Serene Heights hotel apartments with affordable down payment and monthly installments.",
+    title: PAYMENT_PLAN_TITLE,
+    description: PAYMENT_PLAN_DESCRIPTION,
+    absoluteTitle: true,
   },
   "/floor-plans": {
     title: "Floor Plans",
@@ -75,11 +92,17 @@ const PAGE_SEO = {
 };
 
 function resolveTitle(title, path) {
+  const pageMeta = PAGE_SEO[path];
+
+  if (pageMeta?.absoluteTitle && (title || pageMeta.title)) {
+    return title || pageMeta.title;
+  }
+
   if (title) {
     return title === SITE_NAME ? SITE_NAME : `${title} | ${SITE_NAME}`;
   }
 
-  const pageTitle = PAGE_SEO[path]?.title;
+  const pageTitle = pageMeta?.title;
   if (!pageTitle || pageTitle === SITE_NAME) {
     return SITE_NAME;
   }
@@ -153,13 +176,13 @@ export function createPageMetadata({ title, description, path }) {
 export const rootMetadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: SITE_NAME,
+    default: HOME_TITLE,
     template: `%s | ${SITE_NAME}`,
   },
-  description: DEFAULT_DESCRIPTION,
+  description: HOME_DESCRIPTION,
   ...buildSocialMetadata({
-    title: SITE_NAME,
-    description: DEFAULT_DESCRIPTION,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     path: "/",
   }),
 };

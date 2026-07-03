@@ -155,11 +155,16 @@ export default function Home() {
               DISCOVER SERENE HEIGHTS <br /> IN NATHIA GALI
             </p>
             <p className="py-8 text-[#222222] inter">
-              Serene Heights Nathia Gali, nestled near PAFs Kalabagh Airbase,
-              offers secure, scenic living amidst alpine forests, with unobstructed
-              valley views. Minutes from Nathia Gali Main Bazar, this resort-style
-              retreat provides peace, modern amenities, and breathtaking sunsets,
-              making it your dream summer home.
+              Serene Heights Nathia Gali is Pakistan&apos;s premier investment
+              destination in luxury mountain hospitality. Located at 7,906ft with
+              direct Islamabad access (80km), our fully managed hotel apartments
+              generate verified monthly rental income of PKR 80,000–120,000. Unlike
+              traditional plots with slow appreciation, Serene Heights residents earn
+              immediate passive income while their investment appreciates 5–8%
+              annually. Backed by DM Consortium&apos;s successful track record of
+              15+ completed projects, our 150+ apartments with 24/7 concierge
+              service deliver the gold standard for Pakistani investors seeking
+              sustainable, transparent returns in the mountain resort market.
             </p>
 
             {/* Main Image Container */}

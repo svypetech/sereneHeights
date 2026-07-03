@@ -633,9 +633,10 @@ export default function ImgCarousel() {
   const Headings = useMemo(
     () => (
       <>
-        <p className="pt-6 xs:pt-4 text-4xl lg:text-5xl xl:text-6xl font-bold gravesendSans">
-          DISCOVER LUXURY <br /> EMBRACE NATURE
-        </p>
+        <h1 className="pt-6 xs:pt-4 text-4xl lg:text-5xl xl:text-6xl font-bold gravesendSans">
+          Pakistan&apos;s First &amp; Largest Winter Resort – <br /> Invest in
+          Luxury Mountain Living at Serene Heights Nathia Gali
+        </h1>
         <p className="py-2 xs:py-4 text-2xl lg:text-3xl xl:text-4xl pb-10 font-normal helveticaNeue">
           Serene Heights Nathia Gali <br /> Hotels & Resorts
         </p>

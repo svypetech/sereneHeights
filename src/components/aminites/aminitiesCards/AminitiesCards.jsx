@@ -33,7 +33,7 @@ function AminitiesCards({ src, text }) {
       {aminitiesElements.map((data, index) => (
         <div
           key={index}
-          className="rounded-md w-full md:w-[200px]  h-[210px] p-6 flex flex-col justify-center items-center text-center cursor-pointer 
+          className="rounded-md w-full md:w-[200px] min-h-[210px] h-auto p-6 flex flex-col justify-center items-center text-center cursor-pointer 
           shadow-[0_0_4px_0_#00000040] transition-all duration-300 
           hover:scale-105 hover:shadow-[0px_4px_15px_rgba(55,88,79,0.8)]"
         >
@@ -42,6 +42,11 @@ function AminitiesCards({ src, text }) {
             alt={amenityAlt(data.text)}
           />
           <p className="pt-3 text-[#222222] font-medium popping">{data.text}</p>
+          {data.description && (
+            <p className="pt-2 text-[#222222]/70 text-xs popping leading-relaxed">
+              {data.description}
+            </p>
+          )}
         </div>
       ))}
     </div>

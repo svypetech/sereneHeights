@@ -1,4 +1,5 @@
 import { aminitiesElements, featuresElements } from "@/utils/constants/aminitiesElements";
+import { paymentPlanFaqElements } from "@/utils/constants/paymentPlanFaq";
 import { SITE_URL } from "@/utils/site";
 
 export const BUSINESS = {
@@ -173,7 +174,7 @@ export function paymentPlanSchemas() {
       "@type": "Product",
       name: "Serene Heights Hotel Apartment",
       description:
-        "Fully furnished luxury hotel apartment at Serene Heights Nathia Gali with flexible payment plans.",
+        "Investment payment plans at Serene Heights starting at PKR 37,000 per sq ft. 30% booking payment with 36-month installments. Managed hotel apartments with zero maintenance fees and profit sharing.",
       brand: {
         "@type": "Brand",
         name: BUSINESS.name,
@@ -209,6 +210,18 @@ export function paymentPlanSchemas() {
           availability: "https://schema.org/InStock",
         },
       ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: paymentPlanFaqElements.map((item) => ({
+        "@type": "Question",
+        name: item.body[0],
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.body[1],
+        },
+      })),
     },
   ];
 }
