@@ -1,4 +1,5 @@
 import { aminitiesElements, featuresElements } from "@/utils/constants/aminitiesElements";
+import { investFaqItems } from "@/utils/constants/investContent";
 import { paymentPlanFaqElements } from "@/utils/constants/paymentPlanFaq";
 import { SITE_URL } from "@/utils/site";
 
@@ -215,6 +216,48 @@ export function paymentPlanSchemas() {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       mainEntity: paymentPlanFaqElements.map((item) => ({
+        "@type": "Question",
+        name: item.body[0],
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.body[1],
+        },
+      })),
+    },
+  ];
+}
+
+export function investSchemas() {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "RealEstateListing",
+      name: "Serene Heights Nathia Gali Investment Property",
+      description:
+        "Luxury resort property investment opportunity in Nathia Gali with 75% projected annual returns",
+      url: `${SITE_URL}/invest`,
+      priceRange: "PKR 25000000-40000000",
+      areaServed: "Pakistan",
+      location: {
+        "@type": "Place",
+        name: "Nathia Gali, Galiyat, KPK, Pakistan",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Nathia Gali",
+          addressRegion: "Khyber Pakhtunkhwa",
+          addressCountry: "PK",
+        },
+      },
+      offers: {
+        "@type": "Offer",
+        price: "25000000-40000000",
+        priceCurrency: "PKR",
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: investFaqItems.map((item) => ({
         "@type": "Question",
         name: item.body[0],
         acceptedAnswer: {

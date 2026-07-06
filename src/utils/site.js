@@ -23,6 +23,10 @@ export const PAYMENT_PLAN_TITLE =
   "Payment Plans for Serene Heights Nathia Gali | PKR 37,000 Per Sq Ft with 36-Month Installments";
 export const PAYMENT_PLAN_DESCRIPTION =
   "Investment payment plans at Serene Heights starting at PKR 37,000 per sq ft. 30% booking payment with 36-month installments. Managed hotel apartments with zero maintenance fees and profit sharing.";
+export const INVEST_TITLE =
+  "Invest with Serene Heights | 75% Annual Returns | Nathia Gali Property Investment";
+export const INVEST_DESCRIPTION =
+  "Invest in Serene Heights Nathia Gali. 75% annual returns. Professional resort management. Limited units at development price. Get your investment analysis.";
 export const DEFAULT_DESCRIPTION =
   "Pakistan's first and largest winter resort in Nathia Gali offering luxury hotel apartments, Smart Property Units, and world-class amenities in the Galiyat highlands.";
 
@@ -52,6 +56,11 @@ const PAGE_SEO = {
   "/payment-plan": {
     title: PAYMENT_PLAN_TITLE,
     description: PAYMENT_PLAN_DESCRIPTION,
+    absoluteTitle: true,
+  },
+  "/invest": {
+    title: INVEST_TITLE,
+    description: INVEST_DESCRIPTION,
     absoluteTitle: true,
   },
   "/floor-plans": {
