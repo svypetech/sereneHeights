@@ -64,6 +64,12 @@ function Footer() {
                   Payment Plans
                 </Link>
                 <Link
+                  href="/invest"
+                  className="hover:underline cursor-pointer text-sm"
+                >
+                  Investment
+                </Link>
+                <Link
                   href="/payment-plan#other-details"
                   className="hover:underline cursor-pointer text-sm"
                 >
