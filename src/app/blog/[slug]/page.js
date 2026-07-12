@@ -251,8 +251,8 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: `${post.title} | Serene Heights Nathia Gali`,
-    description: post.excerpt,
+    title: post.metaTitle || `${post.title} | Serene Heights Nathia Gali`,
+    description: post.metaDescription || post.excerpt,
   };
 }
 
@@ -285,6 +285,12 @@ export default async function BlogPostPage({ params }) {
           <time dateTime={post.date}>{formatDate(post.date)}</time>
           <span aria-hidden="true">&middot;</span>
           <span>{post.author}</span>
+          {post.readingTime && (
+            <>
+              <span aria-hidden="true">&middot;</span>
+              <span>{post.readingTime} read</span>
+            </>
+          )}
         </div>
       </div>
 
