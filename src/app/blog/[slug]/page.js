@@ -1,4 +1,7 @@
 import { getAllSlugs, getBlogBySlug } from "@/lib/getBlogs";
+import { SchemaScripts } from "@/components/seo/SchemaScripts";
+import { blogPostSchemas } from "@/utils/schema";
+import { createPageMetadata } from "@/utils/site";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -250,9 +253,30 @@ export async function generateMetadata({ params }) {
     return { title: "Post Not Found | Serene Heights Nathia Gali" };
   }
 
+  const title =
+    post.metaTitle || `${post.title} | Serene Heights Nathia Gali`;
+  const description = post.metaDescription || post.excerpt;
+  const path = `/blog/${slug}`;
+  const social = createPageMetadata({
+    title,
+    description,
+    path,
+  });
+
   return {
-    title: post.metaTitle || `${post.title} | Serene Heights Nathia Gali`,
-    description: post.metaDescription || post.excerpt,
+    ...social,
+    title: {
+      absolute: title,
+    },
+    openGraph: {
+      ...social.openGraph,
+      title,
+      type: "article",
+    },
+    twitter: {
+      ...social.twitter,
+      title,
+    },
   };
 }
 
@@ -265,7 +289,9 @@ export default async function BlogPostPage({ params }) {
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-[#222222]">
+    <>
+      <SchemaScripts schemas={blogPostSchemas(post)} />
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-20 text-[#222222]">
       <Link
         href="/blog"
         className="inline-flex items-center gap-2 text-sm font-medium text-[#37584F] inter hover:gap-3 transition-all"
@@ -331,5 +357,6 @@ export default async function BlogPostPage({ params }) {
         </Link>
       </div>
     </div>
+    </>
   );
 }

@@ -15,18 +15,16 @@ export const ABOUT_TITLE =
   "About Serene Heights Nathia Gali | DM Consortium's Luxury Resort Vision";
 export const ABOUT_DESCRIPTION =
   "Learn about Serene Heights' founder Muhammad Ali Khan, expert leadership team, and proven track record. Discover why 500+ investors trust our transparent approach to mountain resort development.";
-export const AMENITIES_TITLE =
-  "Luxury Amenities at Serene Heights Nathia Gali | 50+ World-Class Facilities";
-export const AMENITIES_DESCRIPTION =
-  "Explore 50+ premium amenities at Serene Heights. Infinity pool, rooftop restaurant, spa, fitness gym, adventure activities, business center, and more. World-class resort facilities for investors and guests.";
-export const PAYMENT_PLAN_TITLE =
-  "Payment Plans for Serene Heights Nathia Gali | PKR 37,000 Per Sq Ft with 36-Month Installments";
-export const PAYMENT_PLAN_DESCRIPTION =
-  "Investment payment plans at Serene Heights starting at PKR 37,000 per sq ft. 30% booking payment with 36-month installments. Managed hotel apartments with zero maintenance fees and profit sharing.";
 export const INVEST_TITLE =
-  "Invest with Serene Heights | 75% Annual Returns | Nathia Gali Property Investment";
+  "Invest with Serene Heights | Nathia Gali Property Investment";
 export const INVEST_DESCRIPTION =
-  "Invest in Serene Heights Nathia Gali. 75% annual returns. Professional resort management. Limited units at development price. Get your investment analysis.";
+  "Hotel apartment investment at Serene Heights Nathia Gali with professional resort management, quarterly income statements and a 36-month payment plan.";
+export const AMENITIES_TITLE = "Amenities | Serene Heights Nathia Gali";
+export const AMENITIES_DESCRIPTION =
+  "50+ world-class amenities at Serene Heights including infinity pool, spa, rooftop restaurant, fitness gym, adventure activities and 24/7 concierge.";
+export const PAYMENT_PLAN_TITLE = "Payment Plan | Serene Heights Nathia Gali";
+export const PAYMENT_PLAN_DESCRIPTION =
+  "Payment plan for Serene Heights hotel apartments: PKR 37,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.";
 export const DEFAULT_DESCRIPTION =
   "Pakistan's first and largest winter resort in Nathia Gali offering luxury hotel apartments, Smart Property Units, and world-class amenities in the Galiyat highlands.";
 
@@ -64,29 +62,40 @@ const PAGE_SEO = {
     absoluteTitle: true,
   },
   "/floor-plans": {
-    title: "Floor Plans",
+    title: "Floor Plans | Serene Heights Nathia Gali",
     description:
-      "View tower layouts and floor plans for Serene Heights Nathia Gali's luxury resort apartments.",
+      "Interactive tower layouts and floor plans for Serene Heights Nathia Gali's fully furnished 1, 2 and 3 bed hotel apartments across 3 towers.",
+    absoluteTitle: true,
   },
   "/floor-plans/floors": {
-    title: "Floor Plans",
+    title: "Floor Plans | Serene Heights Nathia Gali",
     description:
       "Detailed floor-by-floor plans for Serene Heights Nathia Gali resort towers.",
+    absoluteTitle: true,
   },
   "/progress": {
-    title: "Construction Progress",
+    title: "Construction Progress | Serene Heights Nathia Gali",
     description:
-      "Follow the latest construction milestones and development updates at Serene Heights Nathia Gali.",
+      "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to December 2025.",
+    absoluteTitle: true,
   },
   "/co-ownership": {
-    title: "Smart Property Unit",
+    title: "Smart Property Unit | Serene Heights Nathia Gali",
     description:
-      "Invest in Serene Heights with Smart Property Units — fractional ownership from 50 sq ft with rental income.",
+      "Smart Property Units at Serene Heights Nathia Gali: fractional co-ownership of luxury hotel apartments in standardized 50 sq ft units with managed rental income distribution by DM Consortium.",
+    absoluteTitle: true,
   },
   "/contact-us": {
-    title: "Contact Us",
+    title: "Contact Us | Serene Heights Nathia Gali",
     description:
-      "Get in touch with Serene Heights Nathia Gali for enquiries, site visits, and booking information.",
+      "Contact Serene Heights Nathia Gali by phone, WhatsApp or email, or visit the project site in Nathia Gali or the DM Consortium head office in Lahore.",
+    absoluteTitle: true,
+  },
+  "/blog": {
+    title: "Blog | Serene Heights Nathia Gali",
+    description:
+      "Stories, updates, and insights from the Serene Heights resort development in Nathia Gali: travel guides, investment analysis, and construction news.",
+    absoluteTitle: true,
   },
   "/privacy-policy": {
     title: "Privacy Policy",
@@ -164,21 +173,39 @@ function buildSocialMetadata({ title, description, path }) {
 
 export function canonicalMetadata(path) {
   const pageMeta = PAGE_SEO[path] || {};
+  const title = pageMeta.title;
+  const description = pageMeta.description || DEFAULT_DESCRIPTION;
+  const resolvedTitle = resolveTitle(title, path);
 
   return {
+    title: pageMeta.absoluteTitle
+      ? { absolute: resolvedTitle }
+      : resolvedTitle,
+    description,
     ...buildSocialMetadata({
-      title: pageMeta.title,
-      description: pageMeta.description,
+      title,
+      description,
       path,
     }),
   };
 }
 
 export function createPageMetadata({ title, description, path }) {
+  const pageMeta = PAGE_SEO[path] || {};
+  const resolvedTitle = resolveTitle(title || pageMeta.title, path);
+  const resolvedDescription =
+    description || pageMeta.description || DEFAULT_DESCRIPTION;
+
   return {
-    title,
-    description,
-    ...buildSocialMetadata({ title, description, path }),
+    title: pageMeta.absoluteTitle
+      ? { absolute: resolvedTitle }
+      : resolvedTitle,
+    description: resolvedDescription,
+    ...buildSocialMetadata({
+      title: title || pageMeta.title,
+      description: resolvedDescription,
+      path,
+    }),
   };
 }
 

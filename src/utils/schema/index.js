@@ -1,351 +1,700 @@
-import { aminitiesElements, featuresElements } from "@/utils/constants/aminitiesElements";
+import { aminitiesElements } from "@/utils/constants/aminitiesElements";
 import { investFaqItems } from "@/utils/constants/investContent";
-import { paymentPlanFaqElements } from "@/utils/constants/paymentPlanFaq";
 import { SITE_URL } from "@/utils/site";
 
-export const BUSINESS = {
-  name: "Serene Heights Nathia Gali",
-  legalName: "Serene Heights Hotel & Resorts",
-  url: SITE_URL,
-  logo: `${SITE_URL}/assets/logo/logo.png`,
-  email: "info@sereneheightsnathiagali.com",
-  phones: ["+92-42-111-111-744", "+92-300-8497999"],
-  projectAddress: {
-    streetAddress: "1.5KM, Kala Bagh Air Base Road",
-    addressLocality: "Nathiagali",
-    addressRegion: "Khyber Pakhtunkhwa",
-    addressCountry: "PK",
-  },
-  headOfficeAddress: {
-    streetAddress: "H. No. 71 C3 Gulberg III Park View Lane",
-    addressLocality: "Lahore",
-    addressRegion: "Punjab",
-    addressCountry: "PK",
-  },
-  geo: {
-    latitude: 34.064834,
-    longitude: 73.366237,
-  },
-  description:
-    "Pakistan's first and largest winter resort in Nathia Gali offering luxury hotel apartments, Smart Property Unit co-ownership, and world-class amenities in the Galiyat highlands.",
-};
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const DM_CONSORTIUM_ID = `${SITE_URL}/#dm-consortium`;
+const RESORT_ID = `${SITE_URL}/#resort`;
+const WEBSITE_ID = `${SITE_URL}/#website`;
+const FOUNDER_ID = `${SITE_URL}/about#muhammad-ali-khan`;
+const BLOG_ID = `${SITE_URL}/blog#blog`;
+const LOGO_URL = `${SITE_URL}/assets/logo/logo.png`;
+const OG_IMAGE_URL = `${SITE_URL}/assets/og/og-image.png`;
 
-function postalAddress(address) {
-  return {
-    "@type": "PostalAddress",
-    ...address,
-  };
-}
+const RESORT_AMENITIES = [
+  "Infinity Pool",
+  "Rooftop Restaurant",
+  "Sauna, Jacuzzi & Massage",
+  "Fitness Gym",
+  "24/7 Front Desk & Concierge",
+  "24/7 CCTV Surveillance",
+  "Power Backup",
+  "Dedicated Parking Floor",
+  "Business & Executive Center",
+  "Conference Room",
+  "Banquet Hall",
+  "Mosque / Prayer Room",
+  "Mini Golf Course",
+  "Archery",
+  "Zipline",
+  "Rock Climbing",
+  "Air Gun Shooting Range",
+  "Refractor Telescope",
+  "Italian Central Heating & Heated Flooring",
+];
 
-function geoCoordinates() {
-  return {
-    "@type": "GeoCoordinates",
-    latitude: BUSINESS.geo.latitude,
-    longitude: BUSINESS.geo.longitude,
-  };
-}
+export const PROGRESS_VIDEOS = [
+  {
+    label: "December 2025",
+    id: "HIewLGoRr2g",
+    uploadDate: "2025-12-01",
+  },
+  {
+    label: "September 2025",
+    id: "_b7QhNjmldk",
+    uploadDate: "2025-09-01",
+  },
+  {
+    label: "April 2025",
+    id: "zih0inhf1hM",
+    uploadDate: "2025-04-01",
+  },
+  {
+    label: "July 2024",
+    id: "_RjucM01Vp8",
+    uploadDate: "2024-07-01",
+  },
+  {
+    label: "February 2024",
+    id: "J_EAtfLGICw",
+    uploadDate: "2024-02-01",
+  },
+  {
+    label: "November 2023",
+    id: "YbcwSm0l4Es",
+    uploadDate: "2023-11-01",
+  },
+  {
+    label: "July 2023",
+    id: "deh7Edv0cFM",
+    uploadDate: "2023-07-01",
+  },
+  {
+    label: "October 2022",
+    id: "_ArGeucKghA",
+    uploadDate: "2022-10-01",
+  },
+  {
+    label: "December 2021",
+    id: "-j6c51b2Dis",
+    uploadDate: "2021-12-01",
+  },
+];
 
-function amenityFeatures() {
-  const amenityNames = [
-    ...aminitiesElements.map((item) => item.text.trim()),
-    ...featuresElements
-      .filter((item) => item.heading)
-      .map((item) => item.heading.trim()),
+function graph(nodes) {
+  return [
+    {
+      "@context": "https://schema.org",
+      "@graph": nodes,
+    },
   ];
+}
 
-  return [...new Set(amenityNames)].map((name) => ({
-    "@type": "LocationFeatureSpecification",
-    name,
-    value: true,
+function organizationRef() {
+  return { "@id": ORGANIZATION_ID };
+}
+
+function resortRef() {
+  return { "@id": RESORT_ID };
+}
+
+function websiteRef() {
+  return { "@id": WEBSITE_ID };
+}
+
+function breadcrumb(id, items) {
+  return {
+    "@type": "BreadcrumbList",
+    "@id": id,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.item,
+    })),
+  };
+}
+
+function flattenText(content) {
+  if (typeof content === "string") {
+    return content.replace(/\s+/g, " ").trim();
+  }
+
+  if (Array.isArray(content)) {
+    return content
+      .map((part) => {
+        if (typeof part === "string") return part;
+        if (part?.type === "link") return part.text || "";
+        if (part?.type === "bold" || part?.type === "italic") return part.text || "";
+        return part?.value || "";
+      })
+      .join("")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  return "";
+}
+
+function faqMainEntity(items) {
+  return items.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.answer,
+    },
   }));
 }
 
-function hotelBase(overrides = {}) {
-  return {
-    "@type": "Hotel",
-    "@id": `${SITE_URL}/#hotel`,
-    name: BUSINESS.name,
-    alternateName: BUSINESS.legalName,
-    url: BUSINESS.url,
-    logo: BUSINESS.logo,
-    image: BUSINESS.logo,
-    description: BUSINESS.description,
-    email: BUSINESS.email,
-    telephone: BUSINESS.phones,
-    address: postalAddress(BUSINESS.projectAddress),
-    geo: geoCoordinates(),
-    priceRange: "$$$$",
-    ...overrides,
-  };
+function absoluteUrl(path) {
+  if (!path) return OG_IMAGE_URL;
+  if (path.startsWith("http")) return path;
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function homeSchemas() {
-  return [
+  return graph([
     {
-      "@context": "https://schema.org",
-      ...hotelBase(),
-      additionalType: "https://schema.org/LocalBusiness",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${SITE_URL}/#localbusiness`,
-      name: BUSINESS.name,
-      url: BUSINESS.url,
-      logo: BUSINESS.logo,
-      image: BUSINESS.logo,
-      description: BUSINESS.description,
-      email: BUSINESS.email,
-      telephone: BUSINESS.phones,
-      address: postalAddress(BUSINESS.projectAddress),
-      geo: geoCoordinates(),
-      parentOrganization: {
-        "@type": "Organization",
-        name: "DM Consortium",
+      "@type": "Organization",
+      "@id": ORGANIZATION_ID,
+      name: "Serene Heights Nathia Gali",
+      alternateName: "Serene Heights Hotels & Resorts",
+      url: `${SITE_URL}/`,
+      logo: {
+        "@type": "ImageObject",
+        "@id": `${SITE_URL}/#logo`,
+        url: LOGO_URL,
+        contentUrl: LOGO_URL,
+        caption: "Serene Heights Nathia Gali Hotel and Resort",
       },
-    },
-  ];
-}
-
-export function contactSchemas() {
-  return [
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "@id": `${SITE_URL}/contact-us#localbusiness`,
-      name: BUSINESS.name,
-      url: `${SITE_URL}/contact-us`,
-      logo: BUSINESS.logo,
-      description: BUSINESS.description,
-      email: BUSINESS.email,
-      telephone: BUSINESS.phones,
-      address: postalAddress(BUSINESS.projectAddress),
-      geo: geoCoordinates(),
+      image: OG_IMAGE_URL,
+      description:
+        "Serene Heights Nathia Gali is a winter resort and hotel apartment development at 7,906 ft in Nathia Gali, Khyber Pakhtunkhwa, offering fully furnished 1, 2 and 3 bed hotel apartments and Smart Property Units, developed and managed by DM Consortium.",
+      telephone: "+92-42-111-111-744",
+      email: "info@sereneheightsnathiagali.com",
       contactPoint: [
         {
           "@type": "ContactPoint",
-          telephone: BUSINESS.phones[0],
-          contactType: "customer service",
-          email: BUSINESS.email,
-          areaServed: "PK",
+          contactType: "sales",
+          telephone: "+92-300-8497999",
           availableLanguage: ["English", "Urdu"],
         },
         {
           "@type": "ContactPoint",
-          telephone: BUSINESS.phones[1],
-          contactType: "sales",
-          email: BUSINESS.email,
-          areaServed: "PK",
+          contactType: "customer service",
+          telephone: "+92-321-4979447",
+          availableLanguage: ["English", "Urdu"],
         },
       ],
-      location: [
+      parentOrganization: { "@id": DM_CONSORTIUM_ID },
+      sameAs: [
+        "https://www.linkedin.com/company/serene-heights-hotel-resort",
+        "https://www.instagram.com/sereneheightshotelsandresorts/",
+        "https://www.facebook.com/sereneheightshotelsandresorts",
+        "https://youtube.com/@sereneheightsnathiagali5573",
+      ],
+    },
+    {
+      "@type": "Organization",
+      "@id": DM_CONSORTIUM_ID,
+      name: "DM Consortium",
+      foundingDate: "2018",
+      founder: { "@id": FOUNDER_ID },
+      description:
+        "Real estate development company founded in 2018, developer and operator of Serene Heights Nathia Gali and the Serene Farms development in Lahore.",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "H. No. 71 C3, Gulberg III, Park View Lane",
+        addressLocality: "Lahore",
+        addressRegion: "Punjab",
+        addressCountry: "PK",
+      },
+    },
+    {
+      "@type": "Resort",
+      "@id": RESORT_ID,
+      name: "Serene Heights Nathia Gali",
+      url: `${SITE_URL}/`,
+      image: OG_IMAGE_URL,
+      description:
+        "Winter resort development at 7,906 ft elevation in Nathia Gali on a 30+ kanal campus, comprising 3 towers with 150+ fully furnished hotel apartments and 50+ planned amenities including an infinity pool, rooftop restaurant, spa and adventure activities. Currently under construction and managed by DM Consortium.",
+      brand: organizationRef(),
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "1.5 KM, Kala Bagh Air Base Road",
+        addressLocality: "Nathia Gali",
+        addressRegion: "Khyber Pakhtunkhwa",
+        addressCountry: "PK",
+      },
+      telephone: "+92-300-8497999",
+      containedInPlace: {
+        "@type": "Place",
+        name: "Nathia Gali, Galiyat, Khyber Pakhtunkhwa",
+      },
+      amenityFeature: RESORT_AMENITIES.map((name) => ({
+        "@type": "LocationFeatureSpecification",
+        name,
+        value: true,
+      })),
+    },
+    {
+      "@type": "WebSite",
+      "@id": WEBSITE_ID,
+      url: `${SITE_URL}/`,
+      name: "Serene Heights Nathia Gali",
+      publisher: organizationRef(),
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/#webpage`,
+      url: `${SITE_URL}/`,
+      name: "Serene Heights Nathia Gali | Pakistan's Winter Resort & Investment",
+      isPartOf: websiteRef(),
+      about: resortRef(),
+      inLanguage: "en",
+      primaryImageOfPage: {
+        "@type": "ImageObject",
+        url: OG_IMAGE_URL,
+      },
+    },
+  ]);
+}
+
+export function aboutSchemas() {
+  return graph([
+    {
+      "@type": "AboutPage",
+      "@id": `${SITE_URL}/about#webpage`,
+      url: `${SITE_URL}/about`,
+      name: "About Serene Heights Nathia Gali | DM Consortium's Luxury Resort Vision",
+      isPartOf: websiteRef(),
+      about: organizationRef(),
+      breadcrumb: { "@id": `${SITE_URL}/about#breadcrumb` },
+      inLanguage: "en",
+    },
+    breadcrumb(`${SITE_URL}/about#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "About", item: `${SITE_URL}/about` },
+    ]),
+    {
+      "@type": "Person",
+      "@id": FOUNDER_ID,
+      name: "Muhammad Ali Khan",
+      jobTitle: "Founder, DM Consortium",
+      description:
+        "Founder of DM Consortium (2018) with 25 years of real estate development experience and 15+ delivered commercial projects across Pakistan, including the Serene Farms development in Lahore.",
+      worksFor: { "@id": DM_CONSORTIUM_ID },
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Lahore University of Management Sciences (LUMS)",
+      },
+      hasCredential: {
+        "@type": "EducationalOccupationalCredential",
+        credentialCategory: "degree",
+        name: "Master's degree in Real Estate Development, LUMS",
+      },
+      memberOf: {
+        "@type": "Organization",
+        name: "Association of Building and Real Estate Developers Pakistan (ABAD)",
+      },
+      knowsAbout: [
+        "Real estate development",
+        "Hospitality operations",
+        "Investor relations",
+      ],
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#fatima-malik`,
+      name: "Fatima Malik",
+      jobTitle: "Chief Architect & Design Director",
+      description:
+        "Architect with 18 years of luxury resort architecture experience, graduate of ETH Zurich specializing in hospitality design and sustainable mountain development.",
+      worksFor: organizationRef(),
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "ETH Zurich (Swiss Federal Institute of Technology)",
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#hassan-ahmed`,
+      name: "Hassan Ahmed",
+      jobTitle: "Director of Hospitality & Guest Services",
+      description:
+        "Hospitality director with 12 years of 5-star hotel management experience, including general manager roles at Pearl Continental Hotel Rawalpindi and Serena Hotel Swat.",
+      worksFor: organizationRef(),
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#ayesha-khan`,
+      name: "Ayesha Khan",
+      jobTitle: "Head of Investor Relations & Financial Transparency",
+      description:
+        "MBA (Finance & Investment) from LUMS with 8 years of corporate finance experience at HBL Securities, the Pakistan Stock Exchange and Grant Thornton.",
+      worksFor: organizationRef(),
+      alumniOf: {
+        "@type": "CollegeOrUniversity",
+        name: "Lahore University of Management Sciences (LUMS)",
+      },
+    },
+    {
+      "@type": "Person",
+      "@id": `${SITE_URL}/about#khalid-raza`,
+      name: "Khalid Raza",
+      jobTitle: "Construction & Quality Assurance",
+      description:
+        "PEC-certified Professional Engineer with 20+ years of high-rise construction expertise, International Construction Management Certification and seismic design specialization.",
+      worksFor: organizationRef(),
+      hasCredential: [
         {
-          "@type": "Place",
-          name: `${BUSINESS.name} Project Site`,
-          address: postalAddress(BUSINESS.projectAddress),
-          geo: geoCoordinates(),
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "certification",
+          name: "PEC (Pakistan Engineering Council) Professional Engineer",
         },
         {
-          "@type": "Place",
-          name: "DM Consortium Head Office",
-          address: postalAddress(BUSINESS.headOfficeAddress),
+          "@type": "EducationalOccupationalCredential",
+          credentialCategory: "certification",
+          name: "International Construction Management Certification (ICMA)",
         },
       ],
     },
-  ];
+  ]);
 }
 
 export function amenitiesSchemas() {
-  return [
+  const amenityNames = aminitiesElements.map((item) => item.text.trim());
+
+  return graph([
     {
-      "@context": "https://schema.org",
-      ...hotelBase({
-        url: `${SITE_URL}/amenities`,
-        "@id": `${SITE_URL}/amenities#hotel`,
-        amenityFeature: amenityFeatures(),
-      }),
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/amenities#webpage`,
+      url: `${SITE_URL}/amenities`,
+      name: "Amenities | Serene Heights Nathia Gali",
+      description:
+        "50+ world-class amenities at Serene Heights including infinity pool, spa, rooftop restaurant, fitness gym, adventure activities and 24/7 concierge.",
+      isPartOf: websiteRef(),
+      about: resortRef(),
+      breadcrumb: { "@id": `${SITE_URL}/amenities#breadcrumb` },
+      inLanguage: "en",
+      mainEntity: { "@id": `${SITE_URL}/amenities#list` },
     },
-  ];
+    breadcrumb(`${SITE_URL}/amenities#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Amenities", item: `${SITE_URL}/amenities` },
+    ]),
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/amenities#list`,
+      name: "Serene Heights Amenities",
+      itemListElement: amenityNames.map((name, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name,
+      })),
+    },
+  ]);
 }
 
 export function paymentPlanSchemas() {
-  return [
+  return graph([
     {
-      "@context": "https://schema.org",
-      "@type": "Product",
-      name: "Serene Heights Hotel Apartment",
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/payment-plan#webpage`,
+      url: `${SITE_URL}/payment-plan`,
+      name: "Payment Plan | Serene Heights Nathia Gali",
       description:
-        "Investment payment plans at Serene Heights starting at PKR 37,000 per sq ft. 30% booking payment with 36-month installments. Managed hotel apartments with zero maintenance fees and profit sharing.",
-      brand: {
-        "@type": "Brand",
-        name: BUSINESS.name,
-      },
-      category: "Real Estate",
-      offers: [
-        {
-          "@type": "Offer",
-          name: "Basic Price",
-          price: 37000,
-          priceCurrency: "PKR",
-          description: "Basic price per square foot for Serene Heights apartments.",
-          url: `${SITE_URL}/payment-plan`,
-          availability: "https://schema.org/InStock",
-          seller: {
-            "@type": "Organization",
-            name: "DM Consortium",
-          },
-        },
-        {
-          "@type": "Offer",
-          name: "Booking Down Payment",
-          description: "30% down payment payable within 5 days of booking.",
-          url: `${SITE_URL}/payment-plan`,
-          availability: "https://schema.org/InStock",
-        },
-        {
-          "@type": "Offer",
-          name: "36-Month Installment Plan",
-          description:
-            "Possession in 36 months with monthly installments. Detailed plan shared at booking.",
-          url: `${SITE_URL}/payment-plan`,
-          availability: "https://schema.org/InStock",
-        },
-      ],
+        "Payment plan for Serene Heights hotel apartments: PKR 37,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.",
+      isPartOf: websiteRef(),
+      breadcrumb: { "@id": `${SITE_URL}/payment-plan#breadcrumb` },
+      inLanguage: "en",
+      mainEntity: { "@id": `${SITE_URL}/payment-plan#offer` },
     },
+    breadcrumb(`${SITE_URL}/payment-plan#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Payment Plan", item: `${SITE_URL}/payment-plan` },
+    ]),
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: paymentPlanFaqElements.map((item) => ({
-        "@type": "Question",
-        name: item.body[0],
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.body[1],
+      "@type": "Offer",
+      "@id": `${SITE_URL}/payment-plan#offer`,
+      name: "Serene Heights Hotel Apartments",
+      description:
+        "Fully furnished 1, 2 and 3 bed hotel apartments at Serene Heights Nathia Gali. Booking from 30% with a 36-month installment plan.",
+      url: `${SITE_URL}/payment-plan`,
+      seller: organizationRef(),
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        price: 37000,
+        priceCurrency: "PKR",
+        unitText: "per square foot",
+        referenceQuantity: {
+          "@type": "QuantitativeValue",
+          value: 1,
+          unitText: "SQFT",
         },
-      })),
+      },
+      itemOffered: {
+        "@type": "Apartment",
+        name: "Serene Heights Fully Furnished Hotel Apartment",
+        containedInPlace: resortRef(),
+      },
+      availability: "https://schema.org/PreOrder",
     },
-  ];
+  ]);
 }
 
 export function investSchemas() {
-  return [
+  const faqItems = investFaqItems.map((item) => ({
+    question: item.body[0],
+    answer: flattenText(item.body[1]),
+  }));
+
+  return graph([
     {
-      "@context": "https://schema.org",
-      "@type": "RealEstateListing",
-      name: "Serene Heights Nathia Gali Investment Property",
-      description:
-        "Luxury resort property investment opportunity in Nathia Gali with 75% projected annual returns",
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/invest#webpage`,
       url: `${SITE_URL}/invest`,
-      priceRange: "PKR 25000000-40000000",
-      areaServed: "Pakistan",
-      location: {
-        "@type": "Place",
-        name: "Nathia Gali, Galiyat, KPK, Pakistan",
-        address: {
-          "@type": "PostalAddress",
-          addressLocality: "Nathia Gali",
-          addressRegion: "Khyber Pakhtunkhwa",
-          addressCountry: "PK",
-        },
-      },
-      offers: {
-        "@type": "Offer",
-        price: "25000000-40000000",
-        priceCurrency: "PKR",
-      },
+      name: "Invest with Serene Heights | Nathia Gali Property Investment",
+      description:
+        "Hotel apartment investment at Serene Heights Nathia Gali with professional resort management, quarterly income statements and a 36-month payment plan.",
+      isPartOf: websiteRef(),
+      about: resortRef(),
+      breadcrumb: { "@id": `${SITE_URL}/invest#breadcrumb` },
+      inLanguage: "en",
     },
+    breadcrumb(`${SITE_URL}/invest#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Investment", item: `${SITE_URL}/invest` },
+    ]),
     {
-      "@context": "https://schema.org",
       "@type": "FAQPage",
-      mainEntity: investFaqItems.map((item) => ({
-        "@type": "Question",
-        name: item.body[0],
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.body[1],
-        },
-      })),
+      "@id": `${SITE_URL}/invest#faq`,
+      mainEntity: faqMainEntity(faqItems),
     },
-  ];
+  ]);
 }
 
-const howToSteps = [
-  {
-    name: "Fill booking form",
-    text: "Apply easily with just a few personal and financial details.",
-  },
-  {
-    name: "Choose payment plan",
-    text: "Select an affordable down payment and easy monthly installments.",
-  },
-  {
-    name: "Confirm ownership",
-    text: "Once payments are complete, your Smart Property Unit in Serene Heights is secured.",
-  },
-  {
-    name: "Managed by experts",
-    text: "DM Consortium takes care of rentals, maintenance, and returns.",
-  },
-  {
-    name: "Transferable units",
-    text: "Sell or transfer your ownership anytime.",
-  },
-];
+export function floorPlansSchemas() {
+  return graph([
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/floor-plans#webpage`,
+      url: `${SITE_URL}/floor-plans`,
+      name: "Floor Plans | Serene Heights Nathia Gali",
+      description:
+        "Interactive tower layouts and floor plans for Serene Heights Nathia Gali's fully furnished 1, 2 and 3 bed hotel apartments across 3 towers.",
+      isPartOf: websiteRef(),
+      about: resortRef(),
+      breadcrumb: { "@id": `${SITE_URL}/floor-plans#breadcrumb` },
+      inLanguage: "en",
+    },
+    breadcrumb(`${SITE_URL}/floor-plans#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Floor Plans", item: `${SITE_URL}/floor-plans` },
+    ]),
+  ]);
+}
 
-const faqItems = [
-  {
-    question: "What is a Smart Property Unit?",
-    answer:
-      "Smart Property Unit is a co-ownership model that lets you invest in premium Serene Heights real estate with units of 50 sq ft instead of purchasing an entire apartment.",
-  },
-  {
-    question: "How does rental income work?",
-    answer:
-      "On project completion, apartments are rented by DM Consortium and rental income is distributed according to your unit share.",
-  },
-  {
-    question: "What is the minimum investment?",
-    answer:
-      "One Smart Property Unit covers 50 sq ft with a unit value of PKR 2,250,000 and a 30% down payment of PKR 675,000.",
-  },
-  {
-    question: "What ROI can investors expect?",
-    answer:
-      "Expected annual rental income is PKR 300,000 with an estimated ROI of 13–15% including rental income and capital gain.",
-  },
-  {
-    question: "Can I transfer my Smart Property Unit?",
-    answer:
-      "Yes. Smart Property Units are transferable and can be sold or transferred at any time.",
-  },
-];
+export function progressSchemas() {
+  return graph([
+    {
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/progress#webpage`,
+      url: `${SITE_URL}/progress`,
+      name: "Construction Progress | Serene Heights Nathia Gali",
+      description:
+        "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to December 2025.",
+      isPartOf: websiteRef(),
+      about: resortRef(),
+      breadcrumb: { "@id": `${SITE_URL}/progress#breadcrumb` },
+      inLanguage: "en",
+    },
+    breadcrumb(`${SITE_URL}/progress#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Construction Progress", item: `${SITE_URL}/progress` },
+    ]),
+    {
+      "@type": "ItemList",
+      "@id": `${SITE_URL}/progress#videos`,
+      name: "Serene Heights Construction Progress Videos",
+      itemListElement: PROGRESS_VIDEOS.map((video, index) => ({
+        "@type": "VideoObject",
+        position: index + 1,
+        name: `Serene Heights Nathia Gali Construction Progress - ${video.label}`,
+        description: `Construction progress update for Serene Heights Nathia Gali, ${video.label}.`,
+        embedUrl: `https://www.youtube.com/embed/${video.id}`,
+        contentUrl: `https://www.youtube.com/watch?v=${video.id}`,
+        thumbnailUrl: `https://i.ytimg.com/vi/${video.id}/hqdefault.jpg`,
+        uploadDate: video.uploadDate,
+        publisher: organizationRef(),
+      })),
+    },
+  ]);
+}
 
 export function coOwnershipSchemas() {
-  return [
+  return graph([
     {
-      "@context": "https://schema.org",
-      "@type": "HowTo",
-      name: "How to own a Smart Property Unit at Serene Heights",
+      "@type": "WebPage",
+      "@id": `${SITE_URL}/co-ownership#webpage`,
+      url: `${SITE_URL}/co-ownership`,
+      name: "Smart Property Unit | Serene Heights Nathia Gali",
       description:
-        "Step-by-step guide to booking and securing a Smart Property Unit at Serene Heights Nathia Gali.",
-      step: howToSteps.map((step, index) => ({
-        "@type": "HowToStep",
-        position: index + 1,
-        name: step.name,
-        text: step.text,
-      })),
+        "Smart Property Units at Serene Heights Nathia Gali: fractional co-ownership of luxury hotel apartments in standardized 50 sq ft units with managed rental income distribution by DM Consortium.",
+      isPartOf: websiteRef(),
+      breadcrumb: { "@id": `${SITE_URL}/co-ownership#breadcrumb` },
+      inLanguage: "en",
+      mainEntity: { "@id": `${SITE_URL}/co-ownership#product` },
+    },
+    breadcrumb(`${SITE_URL}/co-ownership#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Smart Property Unit", item: `${SITE_URL}/co-ownership` },
+    ]),
+    {
+      "@type": "Product",
+      "@id": `${SITE_URL}/co-ownership#product`,
+      name: "Smart Property Unit at Serene Heights Nathia Gali",
+      description:
+        "Fractional co-ownership unit of 50 sq ft in a luxury hotel apartment at Serene Heights Nathia Gali. On project completion the apartment is rented out by DM Consortium and rental income is distributed according to units held. Units are transferable and protected by legal agreements.",
+      url: `${SITE_URL}/co-ownership`,
+      image: OG_IMAGE_URL,
+      brand: organizationRef(),
+      offers: {
+        "@type": "Offer",
+        price: 2250000,
+        priceCurrency: "PKR",
+        url: `${SITE_URL}/co-ownership`,
+        seller: organizationRef(),
+        availability: "https://schema.org/PreOrder",
+        eligibleQuantity: {
+          "@type": "QuantitativeValue",
+          value: 50,
+          unitText: "SQFT per unit",
+        },
+      },
+    },
+  ]);
+}
+
+export function blogIndexSchemas() {
+  return graph([
+    {
+      "@type": "Blog",
+      "@id": BLOG_ID,
+      url: `${SITE_URL}/blog`,
+      name: "Serene Heights Nathia Gali Blog",
+      description:
+        "Stories, updates, and insights from the Serene Heights resort development in Nathia Gali: travel guides, investment analysis, and construction news.",
+      publisher: organizationRef(),
+      inLanguage: "en",
     },
     {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqItems.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
-        },
-      })),
+      "@type": "CollectionPage",
+      "@id": `${SITE_URL}/blog#webpage`,
+      url: `${SITE_URL}/blog`,
+      name: "Blog | Serene Heights Nathia Gali",
+      isPartOf: websiteRef(),
+      breadcrumb: { "@id": `${SITE_URL}/blog#breadcrumb` },
+      mainEntity: { "@id": BLOG_ID },
+      inLanguage: "en",
     },
+    breadcrumb(`${SITE_URL}/blog#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Blog", item: `${SITE_URL}/blog` },
+    ]),
+  ]);
+}
+
+export function blogPostSchemas(post) {
+  const postUrl = `${SITE_URL}/blog/${post.slug}`;
+  const nodes = [
+    {
+      "@type": "BlogPosting",
+      "@id": `${postUrl}#article`,
+      headline: post.title,
+      description: post.metaDescription || post.excerpt,
+      url: postUrl,
+      mainEntityOfPage: postUrl,
+      datePublished: post.date,
+      dateModified: post.date,
+      author: organizationRef(),
+      publisher: organizationRef(),
+      image: absoluteUrl(post.image),
+      isPartOf: { "@id": BLOG_ID },
+      articleSection: post.category,
+      inLanguage: "en",
+    },
+    breadcrumb(`${postUrl}#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Blog", item: `${SITE_URL}/blog` },
+      { name: post.title, item: postUrl },
+    ]),
   ];
+
+  const faqSection = (post.sections || []).find((section) => section.type === "faq");
+  if (faqSection?.items?.length) {
+    nodes.push({
+      "@type": "FAQPage",
+      "@id": `${postUrl}#faq`,
+      mainEntity: faqMainEntity(
+        faqSection.items.map((item) => ({
+          question: flattenText(item.question),
+          answer: flattenText(item.answer),
+        }))
+      ),
+    });
+  }
+
+  return graph(nodes);
+}
+
+export function contactSchemas() {
+  return graph([
+    {
+      "@type": "ContactPage",
+      "@id": `${SITE_URL}/contact-us#webpage`,
+      url: `${SITE_URL}/contact-us`,
+      name: "Contact Us | Serene Heights Nathia Gali",
+      description:
+        "Contact Serene Heights Nathia Gali by phone, WhatsApp or email, or visit the project site in Nathia Gali or the DM Consortium head office in Lahore.",
+      isPartOf: websiteRef(),
+      about: organizationRef(),
+      breadcrumb: { "@id": `${SITE_URL}/contact-us#breadcrumb` },
+      inLanguage: "en",
+      mainEntity: {
+        "@type": "Organization",
+        "@id": ORGANIZATION_ID,
+        location: [
+          {
+            "@type": "Place",
+            name: "Serene Heights Project Site",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "1.5 KM, Kala Bagh Air Base Road",
+              addressLocality: "Nathia Gali",
+              addressRegion: "Khyber Pakhtunkhwa",
+              addressCountry: "PK",
+            },
+          },
+          {
+            "@type": "Place",
+            name: "DM Consortium Head Office",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: "H. No. 71 C3, Gulberg III, Park View Lane",
+              addressLocality: "Lahore",
+              addressRegion: "Punjab",
+              addressCountry: "PK",
+            },
+          },
+        ],
+      },
+    },
+    breadcrumb(`${SITE_URL}/contact-us#breadcrumb`, [
+      { name: "Home", item: `${SITE_URL}/` },
+      { name: "Contact Us", item: `${SITE_URL}/contact-us` },
+    ]),
+  ]);
 }
