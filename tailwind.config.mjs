@@ -10,6 +10,8 @@ export default {
       animation: {
         "left-loop-scroll": "left-loop-scroll 60s linear infinite",
         "right-loop-scroll": "right-loop-scroll 60s linear infinite",
+        float: "float 4s ease-in-out infinite",
+        "float-delayed": "float 4s ease-in-out 1.2s infinite",
       },
       keyframes: {
         "left-loop-scroll": {
@@ -19,6 +21,10 @@ export default {
         "right-loop-scroll": {
           from: { transform: "translateX(-100%)" },
           to: { transform: "translateX(0)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
       backgroundImage: {

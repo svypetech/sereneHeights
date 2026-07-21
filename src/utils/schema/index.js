@@ -6,7 +6,7 @@ const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const DM_CONSORTIUM_ID = `${SITE_URL}/#dm-consortium`;
 const RESORT_ID = `${SITE_URL}/#resort`;
 const WEBSITE_ID = `${SITE_URL}/#website`;
-const FOUNDER_ID = `${SITE_URL}/about#muhammad-ali-khan`;
+const FOUNDER_ID = `${SITE_URL}/about#fahad-masud-lone`;
 const BLOG_ID = `${SITE_URL}/blog#blog`;
 const LOGO_URL = `${SITE_URL}/assets/logo/logo.png`;
 const OG_IMAGE_URL = `${SITE_URL}/assets/og/og-image.png`;
@@ -268,7 +268,7 @@ export function aboutSchemas() {
       "@type": "AboutPage",
       "@id": `${SITE_URL}/about#webpage`,
       url: `${SITE_URL}/about`,
-      name: "About Serene Heights Nathia Gali | DM Consortium's Luxury Resort Vision",
+      name: "About Serene Heights Nathia Gali | Founder Fahad Masud Lone",
       isPartOf: websiteRef(),
       about: organizationRef(),
       breadcrumb: { "@id": `${SITE_URL}/about#breadcrumb` },
@@ -281,84 +281,16 @@ export function aboutSchemas() {
     {
       "@type": "Person",
       "@id": FOUNDER_ID,
-      name: "Muhammad Ali Khan",
-      jobTitle: "Founder, DM Consortium",
+      name: "Fahad Masud Lone",
+      jobTitle: "Founder & CEO, Serene Heights Nathia Gali",
       description:
-        "Founder of DM Consortium (2018) with 25 years of real estate development experience and 15+ delivered commercial projects across Pakistan, including the Serene Farms development in Lahore.",
-      worksFor: { "@id": DM_CONSORTIUM_ID },
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "Lahore University of Management Sciences (LUMS)",
-      },
-      hasCredential: {
-        "@type": "EducationalOccupationalCredential",
-        credentialCategory: "degree",
-        name: "Master's degree in Real Estate Development, LUMS",
-      },
-      memberOf: {
-        "@type": "Organization",
-        name: "Association of Building and Real Estate Developers Pakistan (ABAD)",
-      },
+        "Accountant turned real estate developer and visionary CEO behind Serene Heights Nathia Gali, a 6 billion PKR mountain resort introducing premium ownership with zero maintenance charges and no hidden costs. Creator of The Art of Being a CEO.",
+      worksFor: organizationRef(),
       knowsAbout: [
         "Real estate development",
-        "Hospitality operations",
-        "Investor relations",
-      ],
-    },
-    {
-      "@type": "Person",
-      "@id": `${SITE_URL}/about#fatima-malik`,
-      name: "Fatima Malik",
-      jobTitle: "Chief Architect & Design Director",
-      description:
-        "Architect with 18 years of luxury resort architecture experience, graduate of ETH Zurich specializing in hospitality design and sustainable mountain development.",
-      worksFor: organizationRef(),
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "ETH Zurich (Swiss Federal Institute of Technology)",
-      },
-    },
-    {
-      "@type": "Person",
-      "@id": `${SITE_URL}/about#hassan-ahmed`,
-      name: "Hassan Ahmed",
-      jobTitle: "Director of Hospitality & Guest Services",
-      description:
-        "Hospitality director with 12 years of 5-star hotel management experience, including general manager roles at Pearl Continental Hotel Rawalpindi and Serena Hotel Swat.",
-      worksFor: organizationRef(),
-    },
-    {
-      "@type": "Person",
-      "@id": `${SITE_URL}/about#ayesha-khan`,
-      name: "Ayesha Khan",
-      jobTitle: "Head of Investor Relations & Financial Transparency",
-      description:
-        "MBA (Finance & Investment) from LUMS with 8 years of corporate finance experience at HBL Securities, the Pakistan Stock Exchange and Grant Thornton.",
-      worksFor: organizationRef(),
-      alumniOf: {
-        "@type": "CollegeOrUniversity",
-        name: "Lahore University of Management Sciences (LUMS)",
-      },
-    },
-    {
-      "@type": "Person",
-      "@id": `${SITE_URL}/about#khalid-raza`,
-      name: "Khalid Raza",
-      jobTitle: "Construction & Quality Assurance",
-      description:
-        "PEC-certified Professional Engineer with 20+ years of high-rise construction expertise, International Construction Management Certification and seismic design specialization.",
-      worksFor: organizationRef(),
-      hasCredential: [
-        {
-          "@type": "EducationalOccupationalCredential",
-          credentialCategory: "certification",
-          name: "PEC (Pakistan Engineering Council) Professional Engineer",
-        },
-        {
-          "@type": "EducationalOccupationalCredential",
-          credentialCategory: "certification",
-          name: "International Construction Management Certification (ICMA)",
-        },
+        "Mountain hospitality",
+        "Entrepreneurship",
+        "Leadership education",
       ],
     },
   ]);

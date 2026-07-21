@@ -12,9 +12,9 @@ export const HOME_TITLE =
 export const HOME_DESCRIPTION =
   "Invest in Serene Heights - Pakistan's luxury 5-star winter resort. Earn PKR 80K-120K monthly rental income. Premium hotel apartments with verified returns and 24/7 management.";
 export const ABOUT_TITLE =
-  "About Serene Heights Nathia Gali | DM Consortium's Luxury Resort Vision";
+  "About Serene Heights Nathia Gali | Founder Fahad Masud Lone";
 export const ABOUT_DESCRIPTION =
-  "Learn about Serene Heights' founder Muhammad Ali Khan, expert leadership team, and proven track record. Discover why 500+ investors trust our transparent approach to mountain resort development.";
+  "Meet Fahad Masud Lone, Founder & CEO of Serene Heights Nathia Gali — a 6 billion PKR mountain resort with zero maintenance charges and no hidden costs.";
 export const INVEST_TITLE =
   "Invest with Serene Heights | Nathia Gali Property Investment";
 export const INVEST_DESCRIPTION =

@@ -3,6 +3,7 @@ import { SITE_URL } from "@/utils/site";
 
 const STATIC_ROUTES = [
   { path: "/", priority: 1, changeFrequency: "daily" },
+  { path: "/about", priority: 0.9, changeFrequency: "weekly" },
   { path: "/amenities", priority: 0.8, changeFrequency: "weekly" },
   { path: "/payment-plan", priority: 0.8, changeFrequency: "weekly" },
   { path: "/invest", priority: 0.9, changeFrequency: "weekly" },
