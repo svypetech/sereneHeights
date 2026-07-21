@@ -8,6 +8,16 @@ const nextConfig = {
         destination: "/sitemap.xml",
         permanent: true,
       },
+      {
+        source: "/about",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/invest",
+        destination: "/",
+        permanent: false,
+      },
     ];
   },
 };
