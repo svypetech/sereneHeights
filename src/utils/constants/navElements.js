@@ -67,27 +67,27 @@ export const elements = [
     ],
   },
 
-  {
-    key: "invest",
-    name: "INVESTMENT",
-    id: "invest",
-    submenu: [
-      {
-        sectionTitle: "INVESTMENT",
-        items: [
-          { id: "invest-form", name: "GET ANALYSIS", section: "invest" },
-          { id: "invest-faq", name: "INVESTOR FAQ", section: "invest" },
-        ],
-      },
-      {
-        sectionTitle: "GET IN TOUCH",
-        items: [
-          { id: "contact-us", name: "CONTACT", section: "contact-us" },
-          { id: "location", name: "LOCATION", section: "contact-us" },
-        ],
-      },
-    ],
-  },
+  // {
+  //   key: "invest",
+  //   name: "INVESTMENT",
+  //   id: "invest",
+  //   submenu: [
+  //     {
+  //       sectionTitle: "INVESTMENT",
+  //       items: [
+  //         { id: "invest-form", name: "GET ANALYSIS", section: "invest" },
+  //         { id: "invest-faq", name: "INVESTOR FAQ", section: "invest" },
+  //       ],
+  //     },
+  //     {
+  //       sectionTitle: "GET IN TOUCH",
+  //       items: [
+  //         { id: "contact-us", name: "CONTACT", section: "contact-us" },
+  //         { id: "location", name: "LOCATION", section: "contact-us" },
+  //       ],
+  //     },
+  //   ],
+  // },
 
   {
     key: "floor-plans",
