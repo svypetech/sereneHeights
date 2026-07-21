@@ -4,10 +4,10 @@ export const elements = [
     name: "ABOUT",
     id: "about",
     submenu: [
-      {
-        sectionTitle: "DISCOVER",
-        items: [{ id: "about", name: "ABOUT US", section: "about" }],
-      },
+      // {
+      //   sectionTitle: "DISCOVER",
+      //   items: [{ id: "about", name: "ABOUT US", section: "about" }],
+      // },
       {
         sectionTitle: "GET IN TOUCH",
         items: [
