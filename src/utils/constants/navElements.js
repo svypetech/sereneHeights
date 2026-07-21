@@ -1,24 +1,5 @@
 export const elements = [
   {
-    key: "about",
-    name: "ABOUT",
-    id: "about",
-    submenu: [
-      {
-        sectionTitle: "DISCOVER",
-        items: [{ id: "about", name: "ABOUT US", section: "about" }],
-      },
-      {
-        sectionTitle: "GET IN TOUCH",
-        items: [
-          { id: "contact-us", name: "CONTACT", section: "contact-us" },
-          { id: "location", name: "LOCATION", section: "contact-us" },
-        ],
-      },
-    ],
-  },
-
-  {
     key: "amenities",
     name: "AMENITIES",
     id: "amenities",

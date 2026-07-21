@@ -46,12 +46,6 @@ function Footer() {
               <div className="flex flex-col gap-4">
                 <h3 className="text-lg font-semibold mb-2">Details</h3>
                 <Link
-                  href="/about#about"
-                  className="hover:underline cursor-pointer text-sm"
-                >
-                  About us
-                </Link>
-                <Link
                   href="/amenities#amenities"
                   className="hover:underline cursor-pointer text-sm"
                 >
