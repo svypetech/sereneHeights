@@ -117,7 +117,7 @@ function InvestContactForm() {
 
           <p className="text-center text-sm text-[#475467] inter mt-4">
             ✓ No pressure. ✓ No calls unless you request. ✓ Analysis sent within
-            2 hours.
+            24 hours.
           </p>
         </Form>
       )}
