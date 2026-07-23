@@ -9,11 +9,6 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: "/about",
-        destination: "/",
-        permanent: false,
-      },
-      {
         source: "/invest",
         destination: "/",
         permanent: false,

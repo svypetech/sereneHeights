@@ -14,7 +14,7 @@ export const HOME_DESCRIPTION =
 export const ABOUT_TITLE =
   "About Serene Heights Nathia Gali | Founder Fahad Masud Lone";
 export const ABOUT_DESCRIPTION =
-  "Meet Fahad Masud Lone, Founder & CEO of Serene Heights Nathia Gali — a 6 billion PKR mountain resort with zero maintenance charges and no hidden costs.";
+  "About Serene Heights Nathia Gali — Pakistan’s first winter resort concept in Galyat. Meet visionary CEO Fahad Masud Lone and explore project location, details, and our founder’s philosophy.";
 export const INVEST_TITLE =
   "Invest with Serene Heights | Nathia Gali Property Investment";
 export const INVEST_DESCRIPTION =

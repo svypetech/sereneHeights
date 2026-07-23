@@ -282,9 +282,9 @@ export function aboutSchemas() {
       "@type": "Person",
       "@id": FOUNDER_ID,
       name: "Fahad Masud Lone",
-      jobTitle: "Founder & CEO, Serene Heights Nathia Gali",
+      jobTitle: "Visionary CEO, Serene Heights Nathia Gali",
       description:
-        "Accountant turned real estate developer and visionary CEO behind Serene Heights Nathia Gali, a 6 billion PKR mountain resort introducing premium ownership with zero maintenance charges and no hidden costs. Creator of The Art of Being a CEO.",
+        "Visionary CEO behind Serene Heights Nathia Gali, redefining luxury resort living in Galyat with Pakistan’s first winter resort concept, innovative financial models, and transparent ownership with zero maintenance charges.",
       worksFor: organizationRef(),
       knowsAbout: [
         "Real estate development",
