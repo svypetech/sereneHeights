@@ -268,7 +268,9 @@ export function aboutSchemas() {
       "@type": "AboutPage",
       "@id": `${SITE_URL}/about#webpage`,
       url: `${SITE_URL}/about`,
-      name: "About Serene Heights Nathia Gali | Founder Fahad Masud Lone",
+      name: "Serene Heights Nathia Gali | Luxury Hotel Apartments & Resort",
+      description:
+        "Learn about Serene Heights Nathia Gali, a luxury hotel & resort led by owner Fahad Masud Lone, offering fully furnished 1, 2 & 3 bed apartments with 50+ amenities in the Galyat hills.",
       isPartOf: websiteRef(),
       about: organizationRef(),
       breadcrumb: { "@id": `${SITE_URL}/about#breadcrumb` },

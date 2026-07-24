@@ -12,9 +12,9 @@ export const HOME_TITLE =
 export const HOME_DESCRIPTION =
   "Invest in Serene Heights - Pakistan's luxury 5-star winter resort. Earn PKR 80K-120K monthly rental income. Premium hotel apartments with verified returns and 24/7 management.";
 export const ABOUT_TITLE =
-  "About Serene Heights Nathia Gali | Founder Fahad Masud Lone";
+  "Serene Heights Nathia Gali | Luxury Hotel Apartments & Resort";
 export const ABOUT_DESCRIPTION =
-  "About Serene Heights Nathia Gali — Pakistan’s first winter resort concept in Galyat. Meet visionary CEO Fahad Masud Lone and explore project location, details, and our founder’s philosophy.";
+  "Learn about Serene Heights Nathia Gali, a luxury hotel & resort led by owner Fahad Masud Lone, offering fully furnished 1, 2 & 3 bed apartments with 50+ amenities in the Galyat hills.";
 export const INVEST_TITLE =
   "Invest with Serene Heights | Nathia Gali Property Investment";
 export const INVEST_DESCRIPTION =
