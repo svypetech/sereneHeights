@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
+export const revalidate = 3600;
+
 function formatDate(dateString) {
   return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
@@ -268,14 +270,24 @@ export async function generateMetadata({ params }) {
     title: {
       absolute: title,
     },
+    keywords: post.keywords,
     openGraph: {
       ...social.openGraph,
       title,
       type: "article",
+      images: post.image
+        ? [
+            {
+              url: post.image,
+              alt: post.title,
+            },
+          ]
+        : social.openGraph?.images,
     },
     twitter: {
       ...social.twitter,
       title,
+      images: post.image ? [post.image] : social.twitter?.images,
     },
   };
 }
