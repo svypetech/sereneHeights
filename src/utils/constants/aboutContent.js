@@ -9,6 +9,8 @@ export const ABOUT_INTRO = {
   },
 };
 
+//about project
+
 export const ABOUT_PROJECT = {
   heading: "Serene Heights Project Details",
   paragraph:
