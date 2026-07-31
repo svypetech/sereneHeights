@@ -340,7 +340,7 @@ export function paymentPlanSchemas() {
       url: `${SITE_URL}/payment-plan`,
       name: "Payment Plan | Serene Heights Nathia Gali",
       description:
-        "Payment plan for Serene Heights hotel apartments: PKR 37,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.",
+        "Payment plan for Serene Heights hotel apartments: PKR 40,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.",
       isPartOf: websiteRef(),
       breadcrumb: { "@id": `${SITE_URL}/payment-plan#breadcrumb` },
       inLanguage: "en",
@@ -360,7 +360,7 @@ export function paymentPlanSchemas() {
       seller: organizationRef(),
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: 37000,
+        price: 40000,
         priceCurrency: "PKR",
         unitText: "per square foot",
         referenceQuantity: {
