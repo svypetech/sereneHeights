@@ -67,7 +67,7 @@ function Page() {
 
       <div className="text-center" id="other-details">
         <p className="sm:text-4xl text-3xl font-bold pt-20 text-[#37584F] gravesendSans">
-          OUR UNIQUE SERVICED <br /> APARTMENT MODEL
+          OUR UNIQUE HOTEL <br /> APARTMENTS MODEL
         </p>
         <p className="py-2 text-sm pb-8 inter text-[#475467]">
           Everything you need to know about Serene Heights
