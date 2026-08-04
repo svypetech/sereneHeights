@@ -4,6 +4,8 @@ import { getAllBlogs } from "@/lib/getBlogs";
 import { blogIndexSchemas } from "@/utils/schema";
 import { createPageMetadata } from "@/utils/site";
 
+export const revalidate = 3600;
+
 export const metadata = createPageMetadata({
   title: "Blog | Serene Heights Nathia Gali",
   description:

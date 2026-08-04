@@ -1,22 +1,27 @@
-export const ABOUT_FOUNDER = {
-  heading: "Our Founder & Vision",
+export const ABOUT_INTRO = {
+  heading: "Welcome to Serene Heights",
   paragraphs: [
-    "Fahad Masud Lone is the visionary CEO behind Serene Heights Nathia Gali. An accountant turned real estate developer, Fahad left his family business to pursue a more productive and sustainable path in real estate — one built on purpose-driven, lasting impact rather than short-term gain.",
-    "Today, Fahad is the primary force behind Serene Heights Nathia Gali, a 6 billion PKR mountain resort that is redefining tourism in Pakistan. The project introduces a novel property ownership model to the Pakistani market, giving buyers the ability to own premium real estate with zero maintenance charges and no hidden costs.",
-    "His entrepreneurial journey spans more than eight years, with a consistent focus on building purpose-driven businesses that create lasting impact across industries.",
-    'Drawing on this cross-industry experience, Fahad also developed "The Art of Being a CEO," a course teaching leadership, decision-making, and business scaling to the next generation of entrepreneurs.',
+    "Welcome to Serene Heights, where we are redefining luxury resort living in the heart of Galyat. We are thrilled to introduce the first resort in Pakistan that blends modern comfort with breathtaking mountain views. Serene Heights is not just an accommodation but a lifestyle destination with world-class amenities and activities. With our innovative financial models, we are transforming Real Estate in Pakistan, making it more liquid and more accessible for everyone. Join us as we enrich your investments and revolutionize the industry. Stay tuned for exciting future projects as we go beyond mountains and borders!",
   ],
-  quote:
-    "Building Serene Heights isn't just about real estate — it's about creating a more productive, sustainable model for how people invest and experience Pakistan's mountains.",
-  quoteAttribution: "Fahad Masud Lone, Founder & CEO",
-  whyItMatters:
-    "When you invest with Serene Heights, you're partnering with a founder who walked away from an established family business to build something more sustainable — a developer whose entire model is designed around zero maintenance charges and zero hidden costs for owners.",
+  attribution: {
+    name: "Fahad Masud Lone",
+    title: "Visionary CEO behind Serene Heights Nathia Gali",
+  },
 };
 
+//about project
+
 export const ABOUT_PROJECT = {
-  heading: "About the Project",
+  heading: "Serene Heights Project Details",
   paragraph:
-    "Serene Heights Nathia Gali is a 6 billion PKR mountain resort development led by Fahad Masud Lone, designed to introduce a new standard of property ownership in Pakistan — one where owners hold premium real estate without the burden of maintenance fees or hidden costs.",
+    "Serene Heights Nathia Gali is positioned as Pakistan’s first winter resort concept, offering a blend of luxury apartments, resort activities, and high-end hospitality services. With 30+ kanals of project area, 150+ apartments, 3 towers, 50+ amenities, and a location altitude of 7906 feet, the project is planned to deliver a premium lifestyle experience in Nathia Gali.",
+  stats: [
+    { value: "30+", label: "Kanals of Project Area" },
+    { value: "150+", label: "Apartments" },
+    { value: "3", label: "Towers" },
+    { value: "50+", label: "Amenities" },
+    { value: "7906 ft", label: "Location Altitude" },
+  ],
 };
 
 export const ABOUT_PHILOSOPHY = [
@@ -35,11 +40,4 @@ export const ABOUT_PHILOSOPHY = [
     description:
       'Through "The Art of Being a CEO," Fahad shares the leadership, decision-making, and scaling principles behind his own entrepreneurial journey — extending his impact beyond the resort itself.',
   },
-];
-
-export const ABOUT_WHY_CHOOSE = [
-  "Founder-Led: Fahad Masud Lone personally drives the vision behind a 6 billion PKR mountain resort",
-  "Novel Ownership Model: Premium real estate with zero maintenance charges or hidden costs",
-  "Purpose-Driven Track Record: Over eight years spent building businesses focused on lasting impact",
-  'Thought Leadership: Creator of "The Art of Being a CEO," a course on leadership and scaling businesses',
 ];

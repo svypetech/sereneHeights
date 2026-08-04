@@ -5,13 +5,13 @@ export const paymentPlanFaqSections = [
       {
         body: [
           "What is the base price per square foot?",
-          "The base price is PKR 37,000 per square foot for all apartments at Serene Heights, Nathia Gali.",
+          "The base price is PKR 40,000 per square foot for all apartments at Serene Heights, Nathia Gali.",
         ],
       },
       {
         body: [
           "What is the total cost to calculate my apartment price?",
-          "Multiply your apartment's square footage by PKR 37,000 per sq ft. Example: 700 sq ft apartment = 700 × PKR 37,000 = Total price.",
+          "Multiply your apartment's square footage by PKR 40,000 per sq ft. Example: 700 sq ft apartment = 700 × PKR 40,000 = Total price.",
         ],
       },
       {
@@ -81,8 +81,8 @@ export const paymentPlanFaqSections = [
       },
       {
         body: [
-          "Is the PKR 37,000 per sq ft price fixed or does it change?",
-          "The page presents PKR 37,000 as the base price. Whether this changes over time is not specified.",
+          "Is the PKR 40,000 per sq ft price fixed or does it change?",
+          "The page presents PKR 40,000 as the base price. Whether this changes over time is not specified.",
         ],
       },
     ],

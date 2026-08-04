@@ -59,7 +59,7 @@ function Page() {
         </h2>
         <p className="py-2 text-sm pb-4 inter text-[#475467]">Base Pricing</p>
         <ul className="text-left text-lg text-[#222] inter space-y-2 list-disc pl-6">
-          <li>Price per Square Foot: PKR 37,000</li>
+          <li>Price per Square Foot: PKR 40,000</li>
           <li>Booking Payment: From 30%</li>
           <li>Remaining Balance: 36 Monthly Installments</li>
         </ul>

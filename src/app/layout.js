@@ -13,7 +13,6 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import localFont from "next/font/local";
 import ConIcon from "@/components/conIcon/ConIcon";
-import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import { rootMetadata } from "@/utils/site";
 
@@ -146,7 +145,6 @@ export default function RootLayout({ children }) {
           }
              }
         `}</style>
-        <Analytics />
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ export const paymentCardsElements = [
   {
     keys: "basicprice",
     heading: "BASIC <br/> PRICE",
-    price: "37,000",
+    price: "40,000",
     body: [],
     basic: "true",
   },

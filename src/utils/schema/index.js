@@ -268,7 +268,9 @@ export function aboutSchemas() {
       "@type": "AboutPage",
       "@id": `${SITE_URL}/about#webpage`,
       url: `${SITE_URL}/about`,
-      name: "About Serene Heights Nathia Gali | Founder Fahad Masud Lone",
+      name: "Serene Heights Nathia Gali | Luxury Hotel Apartments & Resort",
+      description:
+        "Learn about Serene Heights Nathia Gali, a luxury hotel & resort led by owner Fahad Masud Lone, offering fully furnished 1, 2 & 3 bed apartments with 50+ amenities in the Galyat hills.",
       isPartOf: websiteRef(),
       about: organizationRef(),
       breadcrumb: { "@id": `${SITE_URL}/about#breadcrumb` },
@@ -282,9 +284,9 @@ export function aboutSchemas() {
       "@type": "Person",
       "@id": FOUNDER_ID,
       name: "Fahad Masud Lone",
-      jobTitle: "Founder & CEO, Serene Heights Nathia Gali",
+      jobTitle: "Visionary CEO, Serene Heights Nathia Gali",
       description:
-        "Accountant turned real estate developer and visionary CEO behind Serene Heights Nathia Gali, a 6 billion PKR mountain resort introducing premium ownership with zero maintenance charges and no hidden costs. Creator of The Art of Being a CEO.",
+        "Visionary CEO behind Serene Heights Nathia Gali, redefining luxury resort living in Galyat with Pakistan’s first winter resort concept, innovative financial models, and transparent ownership with zero maintenance charges.",
       worksFor: organizationRef(),
       knowsAbout: [
         "Real estate development",
@@ -338,7 +340,7 @@ export function paymentPlanSchemas() {
       url: `${SITE_URL}/payment-plan`,
       name: "Payment Plan | Serene Heights Nathia Gali",
       description:
-        "Payment plan for Serene Heights hotel apartments: PKR 37,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.",
+        "Payment plan for Serene Heights hotel apartments: PKR 40,000 per sq ft base price, booking from 30%, 36 monthly installments, managed by DM Consortium with hotel-apartment revenue sharing for owners.",
       isPartOf: websiteRef(),
       breadcrumb: { "@id": `${SITE_URL}/payment-plan#breadcrumb` },
       inLanguage: "en",
@@ -358,7 +360,7 @@ export function paymentPlanSchemas() {
       seller: organizationRef(),
       priceSpecification: {
         "@type": "UnitPriceSpecification",
-        price: 37000,
+        price: 40000,
         priceCurrency: "PKR",
         unitText: "per square foot",
         referenceQuantity: {
