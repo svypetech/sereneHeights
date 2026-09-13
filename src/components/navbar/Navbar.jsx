@@ -6,6 +6,7 @@ import { elements } from "@/utils/constants/navElements";
 import { BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
 import { usePathname, useRouter } from "next/navigation";
 import ResponsiveNavbar from "../responsiveNavbar/ResponsiveNavbar";
+import { trackEvent } from "@/lib/analytics";
 
 function Navbar() {
   const [show, setShow] = useState(false);
@@ -214,6 +215,12 @@ function Navbar() {
               <Link
                 href="/contact-us#contact-us"
                 className="text-decoration-none   "
+                onClick={() =>
+                  trackEvent("enquire_click", {
+                    location: "navbar",
+                    page_path: pathname,
+                  })
+                }
               >
                 <button className="hidden items-center gap-2 rounded-lg bg-[#37584F] hover:bg-transparent hover:border hover:border-[#37584F] px-5 md:px-6 py-3 text-sm text-white hover:text-[#37584F] hover:shadow-none shadow-lg sm:flex">
                   Enquire

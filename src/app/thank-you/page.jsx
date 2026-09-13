@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import React from "react";
+import ThankYouTracker from "@/components/analytics/ThankYouTracker";
 
 const page = () => {
   const router = useRouter();
@@ -13,6 +14,7 @@ const page = () => {
       transition={{ duration: 0.5, ease: "easeOut" }}
       className="flex flex-col justify-center items-center text-center gap-6 min-h-[85vh]"
     >
+      <ThankYouTracker />
       <p className="text-4xl text-[#37584F] sm:text-5xl  font-bold tracking-wide  gravesendSans">
         Thank you for choosing Serene Heights.
       </p>

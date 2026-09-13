@@ -4,6 +4,7 @@ import UniqueServicesCard from "@/components/payment/uniqueServicesCard/UniqueSe
 import { paymentPlanFaqSections } from "@/utils/constants/paymentPlanFaq";
 import { paymentCardsElements } from "@/utils/constants/paymentCardElements";
 import { uniqueServicesElements } from "@/utils/constants/uniqueServicesElement";
+import PaymentPlanTracker from "@/components/analytics/PaymentPlanTracker";
 import React, { useState } from "react";
 
 function Page() {
@@ -26,6 +27,7 @@ function Page() {
 
   return (
     <div className="lg:px-36 md:px-20 px-6">
+      <PaymentPlanTracker />
       <h1
         className="sm:text-5xl text-4xl text-[#37584F] font-semibold text-center pb-12 gravesendSans"
         id="payment-plan"

@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { RingLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { trackGenerateLead } from "@/lib/analytics";
 
 function InvestContactForm() {
   const [loading, setLoading] = useState(false);
@@ -49,6 +50,10 @@ function InvestContactForm() {
         throw new Error("Failed to submit form");
       }
 
+      trackGenerateLead({
+        method: "invest_form",
+        interested_in: "Investment",
+      });
       resetForm();
       router.push("/thank-you");
     } catch {

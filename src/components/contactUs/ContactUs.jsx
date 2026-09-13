@@ -6,6 +6,7 @@ import DropdownRadio from "./DropdownRadio";
 import InputField from "./InputField";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
+import { trackGenerateLead } from "@/lib/analytics";
 
 function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -74,22 +75,16 @@ function ContactUs() {
       });
 
       if (response.ok) {
+        trackGenerateLead({
+          method: "contact_form",
+          interested_in: dropdownValues.interestedIn || undefined,
+          sub_interest: dropdownValues.subInterest || undefined,
+        });
         resetForm();
         setDropdownValues({
           interestedIn: "",
           subInterest: "",
         });
-
-        // Mock success alert (replace with your SweetAlert2)
-        // alert("Message Sent! Your message has been submitted successfully!");
-        // Swal.fire({
-        //   title: "Message Sent!",
-        //   text: "Your message has been submitted successfully!",
-        //   icon: "success",
-        //   confirmButtonText: "OK",
-        //   backdrop: true,
-        //   scrollbarPadding: false,
-        // });
         router.push("/thank-you");
       } else {
         throw new Error("Failed to submit form");
