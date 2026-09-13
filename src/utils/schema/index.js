@@ -35,6 +35,11 @@ const RESORT_AMENITIES = [
 
 export const PROGRESS_VIDEOS = [
   {
+    label: "April 2026",
+    id: "lxc9yQty3BA",
+    uploadDate: "2026-04-01",
+  },
+  {
     label: "December 2025",
     id: "HIewLGoRr2g",
     uploadDate: "2025-12-01",
@@ -439,7 +444,7 @@ export function progressSchemas() {
       url: `${SITE_URL}/progress`,
       name: "Construction Progress | Serene Heights Nathia Gali",
       description:
-        "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to December 2025.",
+        "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to April 2026.",
       isPartOf: websiteRef(),
       about: resortRef(),
       breadcrumb: { "@id": `${SITE_URL}/progress#breadcrumb` },

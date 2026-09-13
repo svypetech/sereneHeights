@@ -76,7 +76,7 @@ const PAGE_SEO = {
   "/progress": {
     title: "Construction Progress | Serene Heights Nathia Gali",
     description:
-      "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to December 2025.",
+      "Dated video updates documenting construction progress at Serene Heights Nathia Gali from December 2021 to April 2026.",
     absoluteTitle: true,
   },
   "/co-ownership": {

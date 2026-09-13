@@ -138,6 +138,7 @@ export const elements = [
       {
         sectionTitle: "TIMELINES",
         items: [
+          { id: "april-2026", name: "APRIL 2026", section: "progress" },
           { id: "december-2025", name: "DECEMBER 2025", section: "progress" },
           { id: "september-2025", name: "SEPTEMBER 2025", section: "progress" },
           { id: "april-2025", name: "APRIL 2025", section: "progress" },
