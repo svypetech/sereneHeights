@@ -30,6 +30,17 @@ function getRequestProto(req) {
   return (req.nextUrl.protocol || "http:").replace(":", "").toLowerCase();
 }
 
+/** Skip host redirects for Next internals and static files (basePath-safe). */
+function isStaticOrNextPath(pathname) {
+  return (
+    pathname.includes("/_next/") ||
+    pathname.startsWith("/_next/") ||
+    /\.(?:png|jpe?g|gif|webp|svg|ico|mp4|webm|css|js|map|txt|xml|woff2?|ttf|otf)$/i.test(
+      pathname
+    )
+  );
+}
+
 /** Map a path on a legacy root-domain host onto the new SITE_URL (+ base path). */
 function buildLegacyDestination(req) {
   const url = new URL(req.url);
@@ -49,6 +60,11 @@ function buildLegacyDestination(req) {
 export function middleware(req) {
   const host = getRequestHost(req);
   const pathname = req.nextUrl.pathname;
+
+  // Never redirect images, videos, fonts, or Next build assets.
+  if (isStaticOrNextPath(pathname)) {
+    return NextResponse.next();
+  }
 
   if (!isLocalHost(host)) {
     const proto = getRequestProto(req);
@@ -91,5 +107,9 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  // Include basePath-prefixed Next paths; also skip files with extensions.
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
+    "/nathiagali/((?!_next/static|_next/image|favicon.ico|.*\\..*).*)",
+  ],
 };

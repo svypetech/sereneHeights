@@ -45,6 +45,18 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    // Raw <img src="/assets/..."> and CSS url('/assets/...') do not get
+    // basePath automatically. Map them onto the mounted public folder.
+    if (!basePath) return [];
+    return [
+      {
+        source: "/assets/:path*",
+        destination: `${basePath}/assets/:path*`,
+        basePath: false,
+      },
+    ];
+  },
   async headers() {
     return [
       {

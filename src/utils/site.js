@@ -37,6 +37,11 @@ export const ALLOWED_HOSTS = new Set(
   [
     SITE_HOST,
     APEX_HOST,
+    // Always allow the original Nathia domain while it still serves this app.
+    "www.sereneheightsnathiagali.com",
+    "sereneheightsnathiagali.com",
+    "www.sereneheightsgroup.com",
+    "sereneheightsgroup.com",
     ...(process.env.NEXT_PUBLIC_ALLOWED_HOSTS || "")
       .split(",")
       .map((h) => h.trim().toLowerCase())
