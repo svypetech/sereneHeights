@@ -10,11 +10,11 @@
   "rewrites": [
     {
       "source": "/nathiagali",
-      "destination": "https://serene-heights.vercel.app/nathiagali"
+      "destination": "https://www.sereneheightsnathiagali.com/nathiagali"
     },
     {
       "source": "/nathiagali/:path*",
-      "destination": "https://serene-heights.vercel.app/nathiagali/:path*"
+      "destination": "https://www.sereneheightsnathiagali.com/nathiagali/:path*"
     }
   ]
 }

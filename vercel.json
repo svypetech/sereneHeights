@@ -1,6 +1,76 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "destination": "/nathiagali",
+      "permanent": true
+    },
+    {
+      "source": "/home",
+      "destination": "/nathiagali",
+      "permanent": true
+    },
+    {
+      "source": "/payment-plan",
+      "destination": "/nathiagali/payment-plan",
+      "permanent": true
+    },
+    {
+      "source": "/paymentplan",
+      "destination": "/nathiagali/payment-plan",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/nathiagali/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blogs",
+      "destination": "/nathiagali/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "/nathiagali/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/:path*",
+      "destination": "/nathiagali/blog/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/about",
+      "destination": "/nathiagali/about",
+      "permanent": true
+    },
+    {
+      "source": "/amenities",
+      "destination": "/nathiagali/amenities",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us",
+      "destination": "/nathiagali/contact-us",
+      "permanent": true
+    },
+    {
+      "source": "/floor-plans",
+      "destination": "/nathiagali/floor-plans",
+      "permanent": true
+    },
+    {
+      "source": "/progress",
+      "destination": "/nathiagali/progress",
+      "permanent": true
+    },
+    {
+      "source": "/co-ownership",
+      "destination": "/nathiagali/co-ownership",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "sereneheightsnathiagali.com" }],
       "destination": "https://www.sereneheightsnathiagali.com/:path*",
@@ -11,16 +81,6 @@
       "has": [{ "type": "host", "value": "sereneheightsgroup.com" }],
       "destination": "https://www.sereneheightsgroup.com/:path*",
       "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/nathiagali",
-      "destination": "https://serene-heights.vercel.app/nathiagali"
-    },
-    {
-      "source": "/nathiagali/:path*",
-      "destination": "https://serene-heights.vercel.app/nathiagali/:path*"
     }
   ],
   "headers": [
