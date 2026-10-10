@@ -3,11 +3,15 @@
 import LocationCards from "@/components/locationCards/LocationCards";
 import SimpleMap from "@/components/map/Map";
 import { locationElements } from "@/utils/constants/locationElements";
+import { assetPath } from "@/utils/assetPath";
 
 function LocationSection({ className = "" }) {
   return (
     <div
-      className={`text-center bg-[url('/assets/home/location/bgMap.png')] bg-cover bg-no-repeat w-full lg:px-36 md:px-20 xs:px-6 mb-20 pt-20 pb-20 ${className}`}
+      className={`text-center bg-cover bg-no-repeat w-full lg:px-36 md:px-20 xs:px-6 mb-20 pt-20 pb-20 ${className}`}
+      style={{
+        backgroundImage: `url(${assetPath("/assets/home/location/bgMap.png")})`,
+      }}
     >
       <p className="sm:text-5xl text-4xl font-bold py-10 gravesendSans">
         Location

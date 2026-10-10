@@ -9,6 +9,7 @@ import { Icon } from "@iconify-icon/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { HOME_DISCOVER_ALTS } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 export default function Home() {
   return (
@@ -122,7 +123,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: "easeInOut", delay: 0.3 }}
           >
             <video
-              src="/assets/home/videoL/laerialnew.mp4"
+              src={assetPath("/assets/home/videoL/laerialnew.mp4")}
               width="1300"
               height="600"
               controls

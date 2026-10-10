@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { FLOOR_PLAN_ALTS } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 const data = [
   { label: "ground-floor", image: "/assets/floorPlan/ground1.png" },
@@ -53,7 +54,7 @@ function Page() {
                 style={{
                   cursor:
                     hoveredIndex === index
-                      ? 'url("/assets/magnifier.png") 20 20, zoom-in'
+                      ? `url("${assetPath("/assets/magnifier.png")}") 20 20, zoom-in`
                       : "default",
                 }}
               >

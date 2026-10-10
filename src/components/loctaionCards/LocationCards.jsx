@@ -20,12 +20,13 @@
 
 import React from "react";
 import { locationAlt } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 function LocationCards({ title, distance }) {
   return (
     <div className="w-full h-full text-left flex gap-4 pl-6 items-center rounded-md shadow-[rgba(0,_0,_0,_0.24)_0px_3px_8px] flex-shrink-0 flex-grow">
       <img
-        src="/assets/home/location/locationIcon.png"
+        src={assetPath("/assets/home/location/locationIcon.png")}
         className="h-14 object-cover flex-shrink-0"
         alt={locationAlt(title)}
       />

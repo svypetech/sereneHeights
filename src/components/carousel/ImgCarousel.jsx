@@ -491,6 +491,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { motion } from "framer-motion";
 import { CAROUSEL_RESORT_ALT, DM_CONSORTIUM_ALT } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 export default function ImgCarousel() {
   const [selectedSlide, setSelectedSlide] = useState(0);
@@ -731,7 +732,7 @@ export default function ImgCarousel() {
         <div className="relative h-[100vh]" key={`image-0-${selectedSlide}`}>
           <img
             className="h-full w-full object-cover"
-            src="/assets/carousel/carouselImg1.png"
+            src={assetPath("/assets/carousel/carouselImg1.png")}
             alt={CAROUSEL_RESORT_ALT}
           />
 
@@ -762,7 +763,7 @@ export default function ImgCarousel() {
               >
                 <img
                   className="h-28 md:h-40"
-                  src="/assets/carousel/dm.png"
+                  src={assetPath("/assets/carousel/dm.png")}
                   alt={DM_CONSORTIUM_ALT}
                 />
               </motion.div>
