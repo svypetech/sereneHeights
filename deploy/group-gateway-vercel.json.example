@@ -1,5 +1,4 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
   "redirects": [
     {
       "source": "/:path*",
@@ -11,11 +10,11 @@
   "rewrites": [
     {
       "source": "/nathiagali",
-      "destination": "https://REPLACE_WITH_NATHIA_VERCEL_URL/nathiagali"
+      "destination": "https://serene-heights.vercel.app/nathiagali"
     },
     {
       "source": "/nathiagali/:path*",
-      "destination": "https://REPLACE_WITH_NATHIA_VERCEL_URL/nathiagali/:path*"
+      "destination": "https://serene-heights.vercel.app/nathiagali/:path*"
     }
   ]
 }

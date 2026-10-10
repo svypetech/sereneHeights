@@ -13,6 +13,16 @@
       "permanent": true
     }
   ],
+  "rewrites": [
+    {
+      "source": "/nathiagali",
+      "destination": "https://serene-heights.vercel.app/nathiagali"
+    },
+    {
+      "source": "/nathiagali/:path*",
+      "destination": "https://serene-heights.vercel.app/nathiagali/:path*"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
