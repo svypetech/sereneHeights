@@ -2,6 +2,7 @@
 import { Icon } from "@iconify-icon/react";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { assetPath } from "@/utils/assetPath";
 
 const floorsFront = [
   {
@@ -230,7 +231,7 @@ function TowerView() {
         <div className="relative flex justify-end w-full">
           {otherView ? (
             <img
-              src="/assets/carousel/carouselImg1.png"
+              src={assetPath("/assets/carousel/carouselImg1.png")}
               alt="Building"
               className="floor-plan-img w-screen md:max-h-[100%] lg:max-h-[100vh] sm:max-h-[100vh] object-cover md:object-fill"
               // style={{
@@ -240,7 +241,7 @@ function TowerView() {
           ) : snow ? (
             mood ? (
               <img
-                src="/assets/animatedImg/SR_33 - Photo 1.png"
+                src={assetPath("/assets/animatedImg/SR_33 - Photo 1.png")}
                 alt="Building"
                 className="floor-plan-img  w-screen h-full md:max-h-[100%] lg:max-h-[100vh] sm:max-h-[100vh] object-cover md:object-fill"
                 // style={{
@@ -249,7 +250,7 @@ function TowerView() {
               />
             ) : (
               <img
-                src="/assets/animatedImg/SR_31 - Photo 1.png"
+                src={assetPath("/assets/animatedImg/SR_31 - Photo 1.png")}
                 alt="Building"
                 className="floor-plan-img  w-screen md:max-h-[100%] lg:max-h-[100vh] sm:max-h-[100vh] object-cover md:object-fill "
                 // style={{
@@ -259,7 +260,7 @@ function TowerView() {
             )
           ) : (
             <img
-              src="/assets/animatedImg/SR_29 - Photo 1.png"
+              src={assetPath("/assets/animatedImg/SR_29 - Photo 1.png")}
               alt="Building"
               className="floor-plan-img  w-screen md:max-h-[100%] lg:max-h-[100vh] sm:max-h-[100vh] object-cover md:object-fill"
               // style={{
@@ -273,14 +274,14 @@ function TowerView() {
               <div className="">
                 {snow ? (
                   <img
-                    src="/assets/animatedImg/wind.png"
+                    src={assetPath("/assets/animatedImg/wind.png")}
                     onClick={() => setSnow(false)}
                     className=" cursor-pointer hover:bg-black rounded-full h-10 md:h-full"
                     alt="moonImg"
                   />
                 ) : (
                   <img
-                    src="/assets/animatedImg/snow.png"
+                    src={assetPath("/assets/animatedImg/snow.png")}
                     onClick={() => setSnow(true)}
                     className=" cursor-pointer hover:bg-black rounded-full h-10 md:h-full"
                     alt="sunImg"
@@ -291,14 +292,14 @@ function TowerView() {
               <div className="">
                 {mood ? (
                   <img
-                    src="/assets/animatedImg/moon.png"
+                    src={assetPath("/assets/animatedImg/moon.png")}
                     onClick={() => setMood(false)}
                     className=" cursor-pointer hover:bg-black rounded-full h-10 md:h-full"
                     alt="moonImg"
                   />
                 ) : (
                   <img
-                    src="/assets/animatedImg/sun.png"
+                    src={assetPath("/assets/animatedImg/sun.png")}
                     onClick={() => setMood(true)}
                     className=" cursor-pointer hover:bg-black rounded-full h-10 md:h-full"
                     alt="sunImg"
@@ -396,9 +397,9 @@ function TowerView() {
           <div className="flex absolute left-[0rem] w-[100%] md:w-[50%] sm:w-[50%] top-0 h-full items-start md:items-start flex-col sm:justify-between justify-normal md:left-10">
             <div className="px-5 sm:px-0 mt-10 sm:mt-0 flex md:gap-3 gap-2 flex-col justify-center md:py-3 py-0 ">
               <img
-                src="/assets/logo/logo.png"
+                src={assetPath("/assets/logo/logoGreen.png")}
                 alt="logo"
-                className="h-[80px] w-[80px] mb-1 sm:w-full sm:h-[100px] md:h-[150px] object-contain"
+                className="h-[80px] w-[80px] mb-1 sm:w-full sm:h-[100px] md:h-[150px] object-contain drop-shadow-md"
               />
               <button
                 className="cursor-pointer border text-xs sm:text-base flex items-center gap-2 md:gap-1 border-white rounded-lg text-white py-2 px-2 sm:px-4"
@@ -421,7 +422,7 @@ function TowerView() {
             </div>
             <div>
               <img
-                src="/assets/carousel/dm.png"
+                src={assetPath("/assets/carousel/dm.png")}
                 alt="not found"
                 className="md:h-[150px] h-[80px] mt-5 pl-1 sm:pl-16 md:pl-0"
               />
