@@ -7,6 +7,17 @@ import { BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
 import { usePathname, useRouter } from "next/navigation";
 import ResponsiveNavbar from "../responsiveNavbar/ResponsiveNavbar";
 import { trackEvent } from "@/lib/analytics";
+import { assetPath } from "@/utils/assetPath";
+import { SITE_BASE_PATH } from "@/utils/site";
+
+function isHomePath(pathname) {
+  if (!pathname || pathname === "/") return true;
+  // Guard if basePath ever leaks into usePathname()
+  if (SITE_BASE_PATH && (pathname === SITE_BASE_PATH || pathname === `${SITE_BASE_PATH}/`)) {
+    return true;
+  }
+  return false;
+}
 
 function Navbar() {
   const [show, setShow] = useState(false);
@@ -18,6 +29,7 @@ function Navbar() {
   const router = useRouter();
 
   const [isDesktop, setIsDesktop] = useState(false);
+  const onHome = isHomePath(pathname);
 
   useEffect(() => {
     const checkScreenSize = () => setIsDesktop(window.innerWidth >= 768); // md breakpoint
@@ -26,7 +38,6 @@ function Navbar() {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  console.log("Active element", activeElement);
   const handleScroll = () => {
     setScrolling(window.scrollY > 0);
   };
@@ -39,11 +50,12 @@ function Navbar() {
   }, []);
 
   const textColor =
-    scrolling || pathname !== "/"
+    scrolling || !onHome
       ? "text-[#37584F]"
       : "text-white hover:!text-[#37584F]";
+  // White logo on dark hero; green logo on light/scrolled nav
   const logo =
-    scrolling || pathname !== "/" || imgColor == true ? "logoGreen" : "logo";
+    scrolling || !onHome || imgColor == true ? "logoGreen" : "logo";
 
   // Mouse events to track hover state for the dropdown menu
   const handleMouseEnter = (key) => {
@@ -100,7 +112,7 @@ function Navbar() {
         currentPath.includes(`#${el.id}`) || currentPath.includes(`/${el.id}`)
     );
 
-    if (currentPath === "/") {
+    if (isHomePath(currentPath) || currentPath === SITE_BASE_PATH) {
       setActiveElement(null);
     } else if (currentElement) {
       setActiveElement(currentElement.key);
@@ -128,7 +140,7 @@ function Navbar() {
               className="flex items-center space-x-3 rtl:space-x-reverse"
             >
               <img
-                src={`/assets/logo/${logo}.png`}
+                src={assetPath(`/assets/logo/${logo}.png`)}
                 className="h-28 my-0 sm:my-5"
                 alt={BRAND_LOGO_ALT}
               />

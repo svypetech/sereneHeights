@@ -3,6 +3,7 @@ import { Icon } from "@iconify-icon/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { BRAND_LOGO_ALT } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -19,7 +20,7 @@ function Footer() {
           {/* Logo and Contact Info - Stays separate */}
           <div className="flex flex-col lg:w-auto lg:flex-shrink-0">
             <img
-              src="/assets/logo/logo.png"
+              src={assetPath("/assets/logo/logo.png")}
               alt={BRAND_LOGO_ALT}
               className="h-72 w-auto max-w-[256px] object-contain"
             />

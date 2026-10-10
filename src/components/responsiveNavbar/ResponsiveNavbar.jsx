@@ -6,6 +6,7 @@ import { Icon } from "@iconify-icon/react";
 import ConIcon from "../conIcon/ConIcon";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { assetPath } from "@/utils/assetPath";
 
 const SidebarMenu = ({ setShow }) => {
   const [openMenu, setOpenMenu] = useState(null);
@@ -36,7 +37,7 @@ const SidebarMenu = ({ setShow }) => {
       <div className="text-white flex flex-col ">
         <div className="flex justify-between items-center pr-2">
           <img
-            src="assets/logo/logoGreen.png"
+            src={assetPath("/assets/logo/logoGreen.png")}
             className="h-[140px]"
             alt={BRAND_LOGO_ALT}
           />
