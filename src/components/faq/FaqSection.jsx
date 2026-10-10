@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { assetPath } from "@/utils/assetPath";
 
 function FaqAccordionItem({
   question,
@@ -35,8 +36,8 @@ function FaqAccordionItem({
             className="w-6 h-6"
             src={
               isExpanded
-                ? "/assets/payment/minusCircle.svg"
-                : "/assets/payment/plusCircle.svg"
+                ? assetPath("/assets/payment/minusCircle.svg")
+                : assetPath("/assets/payment/plusCircle.svg")
             }
             alt=""
           />

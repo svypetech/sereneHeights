@@ -29,6 +29,7 @@
 // export default UniqueServicesCard
 
 import React from "react";
+import { assetPath } from "@/utils/assetPath";
 
 function UniqueServicesCard({ body, isExpanded, onClick, totalServices, index }) {
   return (
@@ -52,8 +53,8 @@ function UniqueServicesCard({ body, isExpanded, onClick, totalServices, index })
             className="w-6 h-6" // Fixed size for icon
             src={
               isExpanded
-                ? "/assets/payment/minusCircle.svg"
-                : "/assets/payment/plusCircle.svg"
+                ? assetPath("/assets/payment/minusCircle.svg")
+                : assetPath("/assets/payment/plusCircle.svg")
             }
             alt={isExpanded ? "Collapse payment plan details" : "Expand payment plan details"}
           />
