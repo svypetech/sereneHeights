@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { smartPropertyFeatureAlt } from "@/utils/constants/imageAltText";
+import { assetPath } from "@/utils/assetPath";
 
 const smartPropertyFeatures = [
   {
@@ -47,8 +48,12 @@ const FeatureCard = ({ data, screenSize, index, isSecondRow = false }) => {
       }}
     >
 
-      <div className="h-16 w-16 sm:w-20 sm:h-20 mb-4 rounded-full flex items-center justify-center">
-        <img src={data.src} alt={smartPropertyFeatureAlt(data.heading)} />
+      <div className="h-16 w-16 sm:w-20 sm:h-20 mb-4 rounded-full flex items-center justify-center overflow-hidden">
+        <img
+          src={assetPath(data.src)}
+          alt={smartPropertyFeatureAlt(data.heading)}
+          className="h-full w-full object-contain"
+        />
       </div>
 
       <p className="sm:text-2xl xl:text-3xl text-xl font-bold gravesendSans break-words mb-2">
