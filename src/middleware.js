@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
-import { APEX_HOST, SITE_HOST } from "@/utils/site";
+import {
+  ALLOWED_HOSTS,
+  APEX_HOST,
+  LEGACY_REDIRECT_HOSTS,
+  SITE_BASE_PATH,
+  SITE_HOST,
+  SITE_URL,
+} from "@/utils/site";
 
 function isLocalHost(host) {
   return (
@@ -23,19 +30,40 @@ function getRequestProto(req) {
   return (req.nextUrl.protocol || "http:").replace(":", "").toLowerCase();
 }
 
+/** Map a path on a legacy root-domain host onto the new SITE_URL (+ base path). */
+function buildLegacyDestination(req) {
+  const url = new URL(req.url);
+  let appPath = url.pathname || "/";
+
+  if (SITE_BASE_PATH && appPath.startsWith(SITE_BASE_PATH)) {
+    appPath = appPath.slice(SITE_BASE_PATH.length) || "/";
+  }
+
+  if (appPath === "/") {
+    return `${SITE_URL}${url.search}`;
+  }
+
+  return `${SITE_URL}${appPath}${url.search}`;
+}
+
 export function middleware(req) {
   const host = getRequestHost(req);
   const pathname = req.nextUrl.pathname;
 
   if (!isLocalHost(host)) {
     const proto = getRequestProto(req);
-    const isApex = host === APEX_HOST;
-    const isWrongHost = host !== SITE_HOST;
+
+    // Legacy domain → canonical group URL (enable via env at cutover).
+    if (LEGACY_REDIRECT_HOSTS.has(host)) {
+      return NextResponse.redirect(buildLegacyDestination(req), 301);
+    }
+
+    const isApex = host === APEX_HOST && SITE_HOST.startsWith("www.");
+    const isUnknownHost = !ALLOWED_HOSTS.has(host);
     const isInsecure = proto !== "https";
 
-    // Single-hop 301 to the canonical https://www host (covers HTTP and apex).
-    if (isInsecure || isApex || isWrongHost) {
-      const redirectUrl = new URL(req.url);
+    if (isInsecure || isApex || isUnknownHost) {
+      const redirectUrl = req.nextUrl.clone();
       redirectUrl.protocol = "https:";
       redirectUrl.hostname = SITE_HOST;
       redirectUrl.port = "";
@@ -52,7 +80,6 @@ export function middleware(req) {
     },
   });
 
-  // HSTS tells browsers to always use HTTPS on return visits.
   if (!isLocalHost(host)) {
     response.headers.set(
       "Strict-Transport-Security",
@@ -64,11 +91,5 @@ export function middleware(req) {
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all paths except Next.js internals and static files that should
-     * still inherit the host/protocol redirect when requested by URL.
-     */
-    "/((?!_next/static|_next/image|favicon.ico).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

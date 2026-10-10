@@ -1,0 +1,21 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "sereneheightsgroup.com" }],
+      "destination": "https://www.sereneheightsgroup.com/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/nathiagali",
+      "destination": "https://REPLACE_WITH_NATHIA_VERCEL_URL/nathiagali"
+    },
+    {
+      "source": "/nathiagali/:path*",
+      "destination": "https://REPLACE_WITH_NATHIA_VERCEL_URL/nathiagali/:path*"
+    }
+  ]
+}

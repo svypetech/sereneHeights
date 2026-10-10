@@ -1,10 +1,56 @@
-export const SITE_URL =
+/**
+ * Canonical site URL. May include a path prefix when mounted under the group
+ * domain, e.g. https://www.sereneheightsgroup.com/nathiagali
+ *
+ * Cutover (Vercel env):
+ * - Before: https://www.sereneheightsnathiagali.com  + NEXT_PUBLIC_BASE_PATH empty
+ * - After:  https://www.sereneheightsgroup.com/nathiagali + NEXT_PUBLIC_BASE_PATH=/nathiagali
+ */
+const RAW_SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ||
   process.env.SITE_URL ||
-  "https://www.sereneheightsnathiagali.com";
+  "https://www.sereneheightsnathiagali.com"
+).replace(/\/$/, "");
 
-export const SITE_HOST = new URL(SITE_URL).host;
+const parsedSiteUrl = new URL(
+  RAW_SITE_URL.includes("://") ? RAW_SITE_URL : `https://${RAW_SITE_URL}`
+);
+
+export const SITE_ORIGIN = parsedSiteUrl.origin;
+export const SITE_HOST = parsedSiteUrl.host;
 export const APEX_HOST = SITE_HOST.replace(/^www\./, "");
+
+/** Path prefix from SITE_URL (e.g. "/nathiagali") or NEXT_PUBLIC_BASE_PATH. */
+export const SITE_BASE_PATH = (
+  process.env.NEXT_PUBLIC_BASE_PATH ||
+  parsedSiteUrl.pathname.replace(/\/$/, "") ||
+  ""
+).replace(/\/$/, "");
+
+/** Full canonical base without trailing slash (origin + optional base path). */
+export const SITE_URL = SITE_BASE_PATH
+  ? `${SITE_ORIGIN}${SITE_BASE_PATH}`
+  : SITE_ORIGIN;
+
+/** Comma-separated extra hosts that may serve this app (e.g. legacy domain). */
+export const ALLOWED_HOSTS = new Set(
+  [
+    SITE_HOST,
+    APEX_HOST,
+    ...(process.env.NEXT_PUBLIC_ALLOWED_HOSTS || "")
+      .split(",")
+      .map((h) => h.trim().toLowerCase())
+      .filter(Boolean),
+  ].filter(Boolean)
+);
+
+/** Comma-separated hosts that should 301 to SITE_URL (legacy cutover). */
+export const LEGACY_REDIRECT_HOSTS = new Set(
+  (process.env.NEXT_PUBLIC_LEGACY_REDIRECT_HOSTS || "")
+    .split(",")
+    .map((h) => h.trim().toLowerCase())
+    .filter(Boolean)
+);
 
 export const SITE_NAME = "Serene Heights Nathia Gali";
 export const HOME_TITLE =
@@ -129,7 +175,10 @@ function resolveTitle(title, path) {
 }
 
 function buildPageUrl(path) {
-  return path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+  if (!path || path === "/") {
+    return SITE_URL;
+  }
+  return `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 function buildHreflangAlternates(path) {
@@ -210,7 +259,8 @@ export function createPageMetadata({ title, description, path }) {
 }
 
 export const rootMetadata = {
-  metadataBase: new URL(SITE_URL),
+  // Origin only — Next.js prefixes basePath onto absolute metadata URLs.
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: HOME_TITLE,
     template: `%s | ${SITE_NAME}`,

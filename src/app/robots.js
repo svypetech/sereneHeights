@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/utils/site";
+import { SITE_HOST, SITE_URL } from "@/utils/site";
 
 export default function robots() {
   return {
@@ -10,6 +10,6 @@ export default function robots() {
       },
     ],
     sitemap: `${SITE_URL}/sitemap.xml`,
-    host: SITE_URL,
+    host: SITE_HOST,
   };
 }
