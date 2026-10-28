@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { INTEREST_QUESTION, INTERESTS } from "./interestOptions";
 
 // const DropdownError = ({ name, errors, touched }) => {
 //   if (errors[name] && touched[name]) {
@@ -21,26 +22,6 @@ const DropdownRadio = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Define nested options
-  const smartPropertyOptions = [
-    {
-      text: "How many 50 sq ft Smart Property Units of Serene Heights, Nathia Gali would you like to co-own?",
-    },
-    { text: "1 Unit - PKR 2,250,000 (Down Payment: PKR 675,000)" },
-    { text: "2 Units - PKR 4,500,000 (Down Payment: PKR 1,350,000)" },
-    { text: "3 Units - PKR 6,750,000 (Down Payment: PKR 2,025,000)" },
-    {
-      text: "More than 3 Units",
-    },
-  ];
-
-  const fullApartmentOptions = [
-    { text: "What is your investment budget range?" },
-    { text: "Under PKR 1 Crore" },
-    { text: "PKR 1.5 Crore - 2 Crore" },
-    { text: "PKR 2 Crore - PKR 3 Crore" },
-  ];
-
   const handleOptionSelect = (value) => {
     onChange(name, value);
     // Only mark as touched after a valid selection is made
@@ -58,25 +39,14 @@ const DropdownRadio = ({
   };
 
   const getCurrentOptions = () => {
+    // First entry renders as the question header.
     if (name === "interestedIn") {
-      return [
-        { text: "What are you interested in?" },
-        { text: "Smart Property Unit" },
-        { text: "Full Apartment" }
-      ];
+      return [INTEREST_QUESTION, ...Object.keys(INTERESTS)].map((text) => ({ text }));
     }
-    
+
     if (name === "subInterest") {
-      // Use parentValue to determine which sub-options to show
-      if (parentValue === "Smart Property Unit") {
-        return smartPropertyOptions;
-      }
-      
-      if (parentValue === "Full Apartment") {
-        return fullApartmentOptions;
-      }
-      
-      return [];
+      const group = INTERESTS[parentValue];
+      return group ? [group.question, ...group.options].map((text) => ({ text })) : [];
     }
     
     return options;

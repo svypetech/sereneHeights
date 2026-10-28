@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { trackGenerateLead } from "@/lib/analytics";
 import { useLeadSubmit } from "@/lib/submitLead";
+import Turnstile from "@/components/turnstile/Turnstile";
 
 function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ function ContactUs() {
   });
 
   const router = useRouter();
-  const submitLead = useLeadSubmit("contact_form");
+  const { submitLead, turnstileProps } = useLeadSubmit("contact_form");
 
   const handleDropdownChange = (name, value) => {
     setDropdownValues((prev) => ({
@@ -169,6 +170,8 @@ function ContactUs() {
                       />
                     )}
                   </div>
+
+                  <Turnstile {...turnstileProps} />
 
                   <button
                     type="submit"

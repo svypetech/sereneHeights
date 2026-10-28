@@ -8,12 +8,13 @@ import {
   SITE_URL,
 } from "@/utils/site";
 
+/** Hosts exempt from canonical redirects/HSTS: this deployment's Vercel URL and local dev. */
 function isLocalHost(host) {
-  return (
-    host.startsWith("localhost") ||
-    host.startsWith("127.0.0.1") ||
-    host.endsWith(".vercel.app")
-  );
+  if (process.env.VERCEL_URL && host === process.env.VERCEL_URL.toLowerCase()) return true;
+  if (process.env.VERCEL_BRANCH_URL && host === process.env.VERCEL_BRANCH_URL.toLowerCase()) {
+    return true;
+  }
+  return process.env.NODE_ENV !== "production" && (host === "localhost" || host === "127.0.0.1");
 }
 
 function getRequestHost(req) {

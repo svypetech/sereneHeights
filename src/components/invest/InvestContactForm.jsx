@@ -7,11 +7,13 @@ import React, { useState } from "react";
 import Swal from "sweetalert2";
 import { trackGenerateLead } from "@/lib/analytics";
 import { useLeadSubmit } from "@/lib/submitLead";
+import Turnstile from "@/components/turnstile/Turnstile";
+import { INVEST_INTEREST } from "@/components/contactUs/interestOptions";
 
 function InvestContactForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const submitLead = useLeadSubmit("invest_form");
+  const { submitLead, turnstileProps } = useLeadSubmit("invest_form");
 
   const validate = (values) => {
     const errors = {};
@@ -39,8 +41,7 @@ function InvestContactForm() {
         userName: "Investment Inquiry",
         email: values.email,
         phoneNumber: values.phoneNumber,
-        interestedIn: "Investment",
-        subInterest: "Investment Analysis Request",
+        ...INVEST_INTEREST,
         website: values.website,
       });
 
@@ -110,6 +111,8 @@ function InvestContactForm() {
               className="py-1 text-red-600 text-xs"
             />
           </div>
+
+          <Turnstile {...turnstileProps} />
 
           <button
             type="submit"
