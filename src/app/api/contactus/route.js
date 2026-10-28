@@ -1,191 +1,129 @@
 import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
-import Contact from "@/dbSchema/contactUsSchema";
-// import mongoose from "mongoose";
+import { ALLOWED_HOSTS } from "@/utils/site";
 
-// const MONGODB_URI = process.env.MONGODB_URI;
+const CRM_TIMEOUT_MS = 10_000;
+// Picks this site's project in the CRM (WEBSITE_LEADS_PROJECTS on the CRM side).
+const CRM_PROJECT_KEY = "nathia";
+const PHONE_RE = /^\+?\d{7,15}$/;
+const EMAIL_RE = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+const FORMS = new Set(["contact_form", "invest_form"]);
+// Minimum time a human takes to fill the form; faster = bot.
+const MIN_FILL_MS = 2_000;
 
-// if (!MONGODB_URI) {
-//   throw new Error("MONGODB_URI is not defined in .env.local");
-// }
+function text(value, max) {
+  return typeof value === "string" ? value.trim().slice(0, max) : "";
+}
 
-// if (!mongoose.connection.readyState) {
-//   await mongoose.connect(MONGODB_URI, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-//   });
-//   console.log("MongoDB connected!");
-// }
+/** Browsers always send Origin on POST fetch; reject other sites posting here. */
+function isAllowedOrigin(request) {
+  const origin = request.headers.get("origin");
+  if (!origin) return false;
+  try {
+    const host = new URL(origin).hostname.toLowerCase();
+    if (ALLOWED_HOSTS.has(host)) return true;
+    // This deployment's own preview URL (set by Vercel), never other *.vercel.app sites.
+    if (process.env.VERCEL_URL && host === process.env.VERCEL_URL.toLowerCase()) return true;
+    return process.env.NODE_ENV !== "production" && (host === "localhost" || host === "127.0.0.1");
+  } catch {
+    return false;
+  }
+}
 
+/** Vercel sets x-real-ip itself; clients can't override it. */
+function clientIp(request) {
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    ""
+  );
+}
 
-// export async function POST(request) {
-//   try {
-//     const { userName, email, phoneNumber, city, interestedIn, subInterest, check } = await request.json();
-
-//     console.log("Form data:", { userName, email, phoneNumber, city, interestedIn, subInterest, check });
-
-//     // Convert interestedIn to lowercase to match schema enum
-//     const normalizedInterestedIn = interestedIn?.toLowerCase();
-
-//     let existingContact = await Contact.findOne({ email });
-
-//     if (existingContact) {
-//       existingContact.userName = userName;
-//       existingContact.phoneNumber = phoneNumber;
-//       existingContact.city = city;
-//       existingContact.interestedIn = normalizedInterestedIn;
-//       existingContact.subInterest = subInterest;
-//       existingContact.check = check;
-//       existingContact = await existingContact.save();
-
-//       console.log("Contact updated successfully:", existingContact);
-
-//       const transporter = nodemailer.createTransport({
-//         // user: "texinitytesting123@gmail.com",
-//         // pass: "qndx pkan luvz ",
-
-//         service: "gmail",
-//         auth: {
-//           user: "mkashan2912@gmail.com",
-//           pass: "lkzs rusb arup axgn",
-//         },
-//         // tls: { rejectUnauthorized: false },
-//       });
-
-//       const mailOptions = {
-//         // from: "texinitytesting123@gmail.com",
-
-//         from: "mkashan2912@gmail.com",
-//         replyTo: email,
-//         to: "kashan.ashraf2912@gmail.com",
-//         subject: "New Lead from Website",
-//         html: `
-//         <p>You have received an existing contact us submission:</p>
-//         <ul>
-//           <li>User Name: ${existingContact.userName}</li>
-//           <li>Email: ${existingContact.email}</li>
-//           <li>Phone Number: ${existingContact.phoneNumber}</li>
-//           <li>City: ${existingContact.city}</li>
-//           <li>Interested In: ${existingContact.interestedIn}</li>
-//           <li>Sub Interest: ${existingContact.subInterest}</li>
-//         </ul>
-//       `,
-//       };
-
-//       await transporter.sendMail(mailOptions);
-//       return NextResponse.json(existingContact, { status: 200 });
-
-//     } else {
-//       const userContact = new Contact({
-//         userName,
-//         email,
-//         phoneNumber,
-//         city,
-//         interestedIn: normalizedInterestedIn,
-//         subInterest,
-//         check,
-//       });
-
-//       const data = await userContact.save();
-
-//       console.log(userContact, "userContact");
-
-//       const transporter = nodemailer.createTransport({
-//         // user: "texinitytesting123@gmail.com",
-//         // pass: "qndx pkan luvz ",
-
-//         service: "gmail",
-//         auth: {
-//           user: "mkashan2912@gmail.com",
-//           pass: "lkzs rusb arup axgn",
-//         },
-//         // tls: { rejectUnauthorized: false },
-//       });
-
-//       const mailOptions = {
-//         // from: "texinitytesting123@gmail.com",
-
-//         from: "mkashan2912@gmail.com",
-//         replyTo: email,
-//         to: "kashan.ashraf2912@gmail.com",
-//         subject: "New Lead from Website",
-//         html: `
-//         <p>You have received a new contact us submission:</p>
-//         <ul>
-//           <li>User Name: ${data.userName}</li>
-//           <li>Email: ${data.email}</li>
-//           <li>Phone Number: ${data.phoneNumber}</li>
-//           <li>City: ${data.city}</li>
-//           <li>Interested In: ${data.interestedIn}</li>
-//           <li>Sub Interest: ${data.subInterest}</li>
-//         </ul>
-//       `,
-//       };
-
-//       await transporter.sendMail(mailOptions);
-//       console.log("Email sent successfully!!");
-
-//       return NextResponse.json(data, { status: 201 });
-//     }
-//   } catch (error) {
-//     console.log("error", error);
-//     return NextResponse.json({ message: "failed to submit form", status: false });
-//   }
-// }
-
-// ================================== WITHOUT MONGODB DATABASE ==========================================
+function validate(body) {
+  const lead = {
+    project: CRM_PROJECT_KEY,
+    submissionId: text(body.submissionId, 36),
+    form: text(body.form, 32),
+    name: text(body.userName, 120),
+    email: text(body.email, 320).toLowerCase(),
+    phone: text(body.phoneNumber, 16),
+    city: text(body.city, 120),
+    interestedIn: text(body.interestedIn, 120),
+    subInterest: text(body.subInterest, 300),
+  };
+  const ok =
+    UUID_RE.test(lead.submissionId) &&
+    FORMS.has(lead.form) &&
+    lead.name &&
+    EMAIL_RE.test(lead.email) &&
+    PHONE_RE.test(lead.phone);
+  if (!ok) return null;
+  for (const key of ["city", "interestedIn", "subInterest"]) {
+    if (!lead[key]) delete lead[key];
+  }
+  return lead;
+}
 
 export async function POST(request) {
+  if (!isAllowedOrigin(request)) {
+    return NextResponse.json({ message: "Forbidden" }, { status: 403 });
+  }
+
+  let body;
   try {
-    const { userName, email, phoneNumber, city, interestedIn, subInterest, check } = await request.json();
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ message: "Invalid request" }, { status: 400 });
+  }
+  if (!body || typeof body !== "object") {
+    return NextResponse.json({ message: "Invalid request" }, { status: 400 });
+  }
 
-    console.log("Form data:", { userName, email, phoneNumber, city, interestedIn, subInterest, check });
+  // Honeypot / too-fast submit: pretend success so bots learn nothing.
+  const startedAt = Number(body.startedAt);
+  if (body.website || !Number.isFinite(startedAt) || Date.now() - startedAt < MIN_FILL_MS) {
+    return NextResponse.json({ ok: true }, { status: 201 });
+  }
 
-      const userContact = new Contact({
-        userName,
-        email,
-        phoneNumber: String(phoneNumber),
-        city,
-        interestedIn,
-        subInterest,
-        check,
-      });
+  const lead = validate(body);
+  if (!lead) {
+    return NextResponse.json({ message: "Please check your details and try again." }, { status: 400 });
+  }
 
-      console.log(userContact, "userContact");
+  const crmUrl = process.env.CRM_WEBSITE_LEADS_URL;
+  const secret = process.env.CRM_WEBSITE_LEADS_SECRET;
+  if (!crmUrl || !secret) {
+    console.error("Lead form: CRM_WEBSITE_LEADS_URL / CRM_WEBSITE_LEADS_SECRET not configured");
+    return NextResponse.json({ message: "Service unavailable" }, { status: 503 });
+  }
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "sereneenquires@gmail.com",
-          pass: "olxq wbse eenc mkza",
-        },
-        // tls: { rejectUnauthorized: false },
-      });
+  try {
+    const response = await fetch(crmUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Webhook-Secret": secret,
+        "X-Client-IP": clientIp(request),
+      },
+      body: JSON.stringify(lead),
+      signal: AbortSignal.timeout(CRM_TIMEOUT_MS),
+      cache: "no-store",
+    });
 
-      const mailOptions = {
-        from: "sereneenquires@gmail.com",
-        replyTo: email,
-        to: "sereneenquires@gmail.com",
-        subject: "New Lead from Website",
-        html: `
-        <p>You have received a new contact us submission:</p>
-        <ul>
-          <li>User Name: ${userContact.userName}</li>
-          <li>Email: ${userContact.email}</li>
-          <li>Phone Number: ${userContact.phoneNumber}</li>
-          <li>City: ${userContact.city}</li>
-          <li>Interested In: ${userContact.interestedIn}</li>
-          <li>Sub Interest: ${userContact.subInterest}</li>
-        </ul>
-      `,
-      };
-
-      await transporter.sendMail(mailOptions);
-      console.log("Email sent successfully!!");
-
-      return NextResponse.json(userContact, { status: 201 });
+    if (response.status === 429) {
+      return NextResponse.json({ message: "Too many submissions. Please try again later." }, { status: 429 });
+    }
+    if (!response.ok) {
+      console.error("Lead form: CRM rejected lead", { status: response.status, form: lead.form });
+      return NextResponse.json({ message: "Failed to submit form" }, { status: 502 });
+    }
+    return NextResponse.json({ ok: true }, { status: 201 });
   } catch (error) {
-    console.log("error", error);
-    return NextResponse.json({ message: "failed to submit form", status: false });
+    console.error("Lead form: CRM request failed", {
+      form: lead.form,
+      error: error?.name,
+      cause: error?.cause?.code || error?.cause?.message || error?.message,
+    });
+    return NextResponse.json({ message: "Failed to submit form" }, { status: 502 });
   }
 }

@@ -4,11 +4,14 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { RingLoader } from "react-spinners";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import { trackGenerateLead } from "@/lib/analytics";
+import { useLeadSubmit } from "@/lib/submitLead";
 
 function InvestContactForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const submitLead = useLeadSubmit("invest_form");
 
   const validate = (values) => {
     const errors = {};
@@ -32,23 +35,14 @@ function InvestContactForm() {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       setLoading(true);
-      const response = await fetch("/api/contactus", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          userName: "Investment Inquiry",
-          email: values.email,
-          phoneNumber: values.phoneNumber,
-          city: "Not provided",
-          interestedIn: "Investment",
-          subInterest: "Investment Analysis Request",
-          check: "Invest page — Get Investment Analysis form",
-        }),
+      await submitLead({
+        userName: "Investment Inquiry",
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        interestedIn: "Investment",
+        subInterest: "Investment Analysis Request",
+        website: values.website,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to submit form");
-      }
 
       trackGenerateLead({
         method: "invest_form",
@@ -56,10 +50,15 @@ function InvestContactForm() {
       });
       resetForm();
       router.push("/thank-you");
-    } catch {
-      alert(
-        "Something went wrong. Please try again or contact us directly."
-      );
+    } catch (error) {
+      Swal.fire({
+        title: "Error!",
+        text: error.message,
+        icon: "error",
+        confirmButtonText: "OK",
+        backdrop: true,
+        scrollbarPadding: false,
+      });
     } finally {
       setLoading(false);
       setSubmitting(false);
@@ -68,12 +67,16 @@ function InvestContactForm() {
 
   return (
     <Formik
-      initialValues={{ email: "", phoneNumber: "" }}
+      initialValues={{ email: "", phoneNumber: "", website: "" }}
       validate={validate}
       onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
-        <Form className="text-left max-w-lg mx-auto">
+        <Form className="relative text-left max-w-lg mx-auto">
+          {/* Honeypot: hidden from people, bots fill it. */}
+          <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+            <Field name="website" type="text" tabIndex={-1} autoComplete="off" />
+          </div>
           <div className="mb-4 popping">
             <label className="text-xs text-[#222222] font-medium mb-1 block">
               Email Address *

@@ -1,12 +1,13 @@
 "use client";
 import React, { useState } from "react";
-import { Formik, Form } from "formik";
+import { Formik, Form, Field } from "formik";
 import { RingLoader } from "react-spinners";
 import DropdownRadio from "./DropdownRadio";
 import InputField from "./InputField";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 import { trackGenerateLead } from "@/lib/analytics";
+import { useLeadSubmit } from "@/lib/submitLead";
 
 function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -16,6 +17,7 @@ function ContactUs() {
   });
 
   const router = useRouter();
+  const submitLead = useLeadSubmit("contact_form");
 
   const handleDropdownChange = (name, value) => {
     setDropdownValues((prev) => ({
@@ -56,47 +58,25 @@ function ContactUs() {
   };
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log("Form data:", { ...values, ...dropdownValues });
-
     try {
       setLoading(true);
-      const submitData = {
-        ...values,
-        ...dropdownValues,
-        check: "This form is submitted from Svype website",
-      };
+      await submitLead({ ...values, ...dropdownValues });
 
-      const response = await fetch("/api/contactus", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(submitData),
+      trackGenerateLead({
+        method: "contact_form",
+        interested_in: dropdownValues.interestedIn || undefined,
+        sub_interest: dropdownValues.subInterest || undefined,
       });
-
-      if (response.ok) {
-        trackGenerateLead({
-          method: "contact_form",
-          interested_in: dropdownValues.interestedIn || undefined,
-          sub_interest: dropdownValues.subInterest || undefined,
-        });
-        resetForm();
-        setDropdownValues({
-          interestedIn: "",
-          subInterest: "",
-        });
-        router.push("/thank-you");
-      } else {
-        throw new Error("Failed to submit form");
-      }
+      resetForm();
+      setDropdownValues({
+        interestedIn: "",
+        subInterest: "",
+      });
+      router.push("/thank-you");
     } catch (error) {
-      console.error("Error submitting form:", error);
-      // alert(
-      //   "Error! An error occurred while submitting your message. Please try again later."
-      // );
       Swal.fire({
         title: "Error!",
-        text: "An error occurred while submitting your message. Please try again later.",
+        text: error.message,
         icon: "error",
         confirmButtonText: "OK",
         backdrop: true,
@@ -113,6 +93,7 @@ function ContactUs() {
     email: "",
     phoneNumber: "",
     city: "",
+    website: "",
   };
 
   return (
@@ -125,6 +106,10 @@ function ContactUs() {
         >
           {({ isSubmitting, errors, touched, setFieldTouched }) => (
             <Form>
+              {/* Honeypot: hidden from people, bots fill it. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+                <Field name="website" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
               <div className="my-2">
                 <div>
                   <InputField
